@@ -98,10 +98,12 @@ fit <- cfa(model=model, data=data, mimic = mimic, missing=missing, std.lv = TRUE
 ```
 
 Missing Procedure: `r missing`
+
 Mimic: `r mimic`
 
 #### Summary Output
 ```{r}
+## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem.sig(fit)
 sem.fitmeasures(fit)
 sem.factorloadings(fit)
@@ -112,17 +114,20 @@ sem.rsquared(fit)
 
 #### Diagram Output
 ```{r}
+## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000", latents = factors)
 ```
 
 #### Residual Correlation Matrix
 ```{r}
+## If you want to see the residual correlation matrix
 sem.residuals(fit)
 ```
 
 
 #### Full Output
 ```{r}
+## The typical lavaan output
 summary(fit, fit.measures=TRUE, standardized=TRUE)
 varTable(fit)
 modificationIndices(fit, sort.=TRUE, minimum.value=3)
@@ -153,10 +158,12 @@ fit <- sem(model=model, data=data, mimic = "EQS", missing=missing, std.lv = FALS
 ```
 
 Missing Procedure: `r missing`
+
 Mimic: `r mimic`
 
 #### Summary Output
 ```{r}
+## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem.sig(fit)
 sem.fitmeasures(fit)
 sem.factorloadings(fit)
@@ -167,17 +174,20 @@ sem.rsquared(fit)
 
 #### Diagram Output
 ```{r}
+## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000", latents = factors)
 ```
 
 #### Residual Correlation Matrix
 ```{r}
+## If you want to see the residual correlation matrix
 sem.residuals(fit)
 ```
 
 
 #### Full Output
 ```{r}
+## The typical lavaan output
 summary(fit, fit.measures=TRUE, standardized=TRUE)
 modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ```
