@@ -14,11 +14,12 @@ sem.factorloadings <- function(x, standardized = TRUE, print = TRUE){
   table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
                           ifelse(pvalue < .01, "**",
                                  ifelse(pvalue < .05, "*", ""))))
-  table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs, Beta=std.all, B=est, SE=se, z, 'sig'=stars)
+  table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs, Standardized=std.all, Unstandardized=est, SE=se, z, 'sig'=stars)
 
   if (print==TRUE){
     table <- knitr::kable(table, digits=3, format="html", caption="Factor Loadings")
     table <- kableExtra::kable_styling(table)
+    table <- kableExtra::add_header_above(" ", " ", "Loadings" = 2, " " = 3)
   } else if (print==FALSE){
     table <- as.data.frame(table)
   }
