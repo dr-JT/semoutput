@@ -1,0 +1,215 @@
+---
+title: ""
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    code_folding: hide
+    fig_width: 8
+    fig_height: 8
+params:
+  data: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
+```
+
+# Example Output using PoliticalDemocracy data set in lavaan package {.tabset .tabset-pills}
+
+Last updated: `r format(Sys.Date(), "%B %d %Y")`
+
+## Results
+
+### Setup
+
+Required Packages
+```{r warning=FALSE}
+library(readr)
+library(lavaan)
+library(semPlot)
+library(sjPlot)
+
+# Packages developed by Jason Tsukahara. To install, devtools::install_github("dr-JT/packagename")
+library(semoutput) # For displaying lavaan output
+library(resultsoutput) # Optional: For displaying descriptives (you can also just use whatever package/functions you prefer to display descriptives)
+```
+
+
+Import Data
+
+Data file: `r params$data`
+```{r warning=FALSE}
+## Import Data
+data <- PoliticalDemocracy
+```
+
+
+
+```{r}
+## How to handle missing data. "ML" is a full-information maximum likelihood. Alternatively, "listwise" for listwise deletion
+missing <- "ML"
+## Do you want to mimic the results of another statistical software? If not, then set to "lavaan"
+mimic <- "EQS"
+```
+
+---
+
+---
+
+### Descriptives 
+
+```{r}
+# Requires my 'resultsoupt' package. devtools::install_github("dr-JT/resultsoutput")
+# Alternatively, use whatever function you prefer for displaying descriptive statistics
+descriptives(data)
+```
+
+---
+
+### Correlation Matrix
+
+```{r}
+# Uses sjPlot to print a nice looking correlation table
+sjt.corr(data, na.deletion = "pairwise", digits = 2)
+```
+
+---
+---
+
+### CFA {.tabset .tabset-pills}
+
+```{r}
+# factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
+factors <- c("ind60", "dem60", "dem65")
+# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+model <- '
+# latent factors
+ind60 =~ x1 + x2 + x3
+dem60 =~ y1 + y2 + y3 + y4
+dem65 =~ y5 + y6 + y7 + y8
+
+# correlated errors
+y1 ~~ y5
+y2 ~~ y4 + y6
+y3 ~~ y7
+y4 ~~ y8
+y6 ~~ y8
+
+# constraints
+
+'
+# You might want to specify other arguments. But this is pretty standard. 
+#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
+fit <- cfa(model=model, data=data, mimic = mimic, missing=missing, std.lv = TRUE)
+```
+
+Missing Procedure: `r missing`
+
+Mimic: `r mimic`
+
+#### Summary Output
+```{r}
+sem.sig(fit)
+sem.fitmeasures(fit)
+sem.factorloadings(fit)
+sem.factorcor(fit, factors = factors)
+sem.factorvar(fit, factors = factors)
+sem.rsquared(fit)
+```
+
+#### Diagram Output
+```{r}
+semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000", latents = factors)
+```
+
+#### Residual Correlation Matrix
+```{r}
+sem.residuals(fit)
+```
+
+
+#### Full Output
+```{r}
+summary(fit, fit.measures=TRUE, standardized=TRUE)
+varTable(fit)
+modificationIndices(fit, sort.=TRUE, minimum.value=3)
+```
+
+---
+---
+
+### SEM {.tabset .tabset-pills}
+
+```{r warning=TRUE}
+# factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
+factors <- c("ind60", "dem60", "dem65")
+# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+model <- '
+# latent factors
+ind60 =~ x1 + x2 + x3
+dem60 =~ y1 + y2 + y3 + y4
+dem65 =~ y5 + y6 + y7 + y8
+
+# correlated errors
+y1 ~~ y5
+y2 ~~ y4 + y6
+y3 ~~ y7
+y4 ~~ y8
+y6 ~~ y8
+
+# regressions
+dem60 ~ ind60
+dem65 ~ ind60 + dem60
+
+# latent covariances
+
+# latent variances
+
+'
+# You might want to specify other arguments. But this is pretty standard. 
+#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
+fit <- sem(model=model, data=data, mimic = "EQS", missing=missing, std.lv = FALSE)
+```
+
+Missing Procedure: `r missing`
+
+Mimic: `r mimic`
+
+#### Summary Output
+```{r}
+sem.sig(fit)
+sem.fitmeasures(fit)
+sem.factorloadings(fit)
+sem.paths(fit)
+sem.factorcor(fit, factors = factors)
+sem.rsquared(fit)
+```
+
+#### Diagram Output
+```{r}
+semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000", latents = factors)
+```
+
+#### Residual Correlation Matrix
+```{r}
+sem.residuals(fit)
+```
+
+
+#### Full Output
+```{r}
+summary(fit, fit.measures=TRUE, standardized=TRUE)
+modificationIndices(fit, sort.=TRUE, minimum.value=3)
+```
+---
+
+---
+
+## Session Info
+```{r comment=""}
+citation("lavaan")
+citation()
+sessionInfo()
+```
