@@ -19,7 +19,7 @@ sem.factorloadings <- function(x, standardized = TRUE, print = TRUE){
   if (print==TRUE){
     table <- knitr::kable(table, digits=3, format="html", caption="Factor Loadings")
     table <- kableExtra::kable_styling(table)
-    table <- kableExtra::add_header_above(c(" ", " ", "Loadings" = 2, " " = 3))
+    table <- kableExtra::add_header_above(table, c(" ", " ", "Loadings" = 2, " " = 3))
   } else if (print==FALSE){
     table <- as.data.frame(table)
   }
