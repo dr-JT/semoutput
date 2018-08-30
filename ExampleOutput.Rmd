@@ -9,14 +9,14 @@ output:
     fig_width: 8
     fig_height: 8
 params:
-  data: ""
+  data: "filepath"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
 ```
 
-# Example Output using PoliticalDemocracy data set in lavaan package {.tabset .tabset-pills}
+# Example Output {.tabset .tabset-pills}
 
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
@@ -45,13 +45,14 @@ Data file: `r params$data`
 data <- PoliticalDemocracy
 ```
 
+For this example I am using the PoliticalDemocracy data set from the lavaan package.
 
 
 ```{r}
 ## How to handle missing data. "ML" is a full-information maximum likelihood. Alternatively, "listwise" for listwise deletion
 missing <- "ML"
 ## Do you want to mimic the results of another statistical software? If not, then set to "lavaan"
-mimic <- "EQS"
+mimic <- "lavaan"
 ```
 
 ---
