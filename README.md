@@ -9,6 +9,10 @@ Uses the semPlot package to display model diagrams
 
 Uses the sjPlot package to print the correlation table
 
+See <a href="http://englelab.gatech.edu/R/Example_semoutput.html" download>An Example Output</a>
+
+This output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/tutorial/sem.html). 
+
 ## Easy to use
 
 There is an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
@@ -28,6 +32,7 @@ Then specify the CFA or SEM model using lavaan syntax.
 Lavaan syntax is very intuitive to use and is documented with useful tutorials
 
 http://lavaan.ugent.be/tutorial/index.html
+
 
 ## Install
 
