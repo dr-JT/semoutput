@@ -46,24 +46,6 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ### Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
-## Install
-
-### First you may need to install the devtools package
-
-install.packages("devtools")
-
-### Then install the semoutput package from GitHub
-
-devtools::install_github("dr-JT/semoutput")
-
-## Required Packages
-
-Uses the lavaan package to run CFA and SEM analyses
-
-Uses the semPlot package to display model diagrams
-
-Uses the sjPlot package to print the correlation table
-
 ## Screen Shots
 
 ### Model Fit
@@ -87,3 +69,20 @@ Uses the sjPlot package to print the correlation table
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/CorrelationMatrix.png)
 
+## Install
+
+### First you may need to install the devtools package
+
+install.packages("devtools")
+
+### Then install the semoutput package from GitHub
+
+devtools::install_github("dr-JT/semoutput")
+
+## Required Packages
+
+Uses the lavaan package to run CFA and SEM analyses
+
+Uses the semPlot package to display model diagrams
+
+Uses the sjPlot package to print the correlation table
