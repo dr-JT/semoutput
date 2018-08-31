@@ -11,9 +11,10 @@ File -> New File -> R Markdown... -> From Template -> SEM RMarkdown
 
 You simply need to specify the data file location in the YAML header under 
 
+```{r}
 params:
-
-&nbsp;&nbsp;&nbsp;&nbsp; data: "filepath"
+  data: "filepath"
+```
   
 Then specify the CFA or SEM model using lavaan syntax. 
 
