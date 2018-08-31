@@ -9,9 +9,9 @@ Uses the semPlot package to display model diagrams
 
 Uses the sjPlot package to print the correlation table
 
-See <a href="http://englelab.gatech.edu/R/Example_semoutput.html" download>An Example Output</a>
+See <a download="http://englelab.gatech.edu/R/Example_semoutput.html">An Example Output</a>
 
-This output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/tutorial/sem.html). 
+The Example Output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/tutorial/sem.html). 
 
 ## Easy to use
 
