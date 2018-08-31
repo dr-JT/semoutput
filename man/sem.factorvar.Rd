@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.factorvar.R
 \name{sem.factorvar}
 \alias{sem.factorvar}
-\title{A Results Output Function}
+\title{An SEM Output Function}
 \usage{
 sem.factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
 }

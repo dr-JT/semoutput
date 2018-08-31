@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.rsquared.R
 \name{sem.rsquared}
 \alias{sem.rsquared}
-\title{A Results Output Function}
+\title{An SEM Output Function}
 \usage{
 sem.rsquared(x, print = TRUE)
 }

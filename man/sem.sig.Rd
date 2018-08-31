@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.sig.R
 \name{sem.sig}
 \alias{sem.sig}
-\title{A Results Output Function}
+\title{An SEM Output Function}
 \usage{
 sem.sig(x, print = TRUE)
 }

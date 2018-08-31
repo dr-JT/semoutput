@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.residuals.R
 \name{sem.residuals}
 \alias{sem.residuals}
-\title{A Results Output Function}
+\title{An SEM Output Function}
 \usage{
 sem.residuals(x, print = TRUE)
 }

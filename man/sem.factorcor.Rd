@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.factorcor.R
 \name{sem.factorcor}
 \alias{sem.factorcor}
-\title{A Results Output Function}
+\title{An SEM Output Function}
 \usage{
 sem.factorcor(x, standardized = TRUE, factors = c(), print = TRUE)
 }
