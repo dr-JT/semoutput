@@ -3,11 +3,9 @@ semoutput
 
 ## Package to create nice looking output for CFA and SEM analyses.
 
-Uses the lavaan package to run CFA and SEM analyses
+### CFA Output
 
-Uses the semPlot package to display model diagrams
-
-Uses the sjPlot package to print the correlation table
+(https://github.com/dr-JT/semoutput/edit/master/Examples/Ouptut_CFA.png)
 
 See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
@@ -43,3 +41,11 @@ install.packages("devtools")
 ### Then install the semoutput package from GitHub
 
 devtools::install_github("dr-JT/semoutput")
+
+## Required Packages
+
+Uses the lavaan package to run CFA and SEM analyses
+
+Uses the semPlot package to display model diagrams
+
+Uses the sjPlot package to print the correlation table
