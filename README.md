@@ -3,13 +3,32 @@ semoutput
 
 ## Package to create nice looking output for CFA and SEM analyses.
 
-### CFA Output
-
-![alt text](https://github.com/dr-JT/semoutput/edit/master/Examples/Ouptut_CFA.png)
-
-See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
+Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
 The Example Output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/tutorial/sem.html)
+
+### Screen Shots
+
+#### Model Fit
+
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/ModelFit_CFA.png)
+
+#### CFA Output
+
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_CFA.png)
+
+#### SEM Output
+
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_SEM.png)
+
+
+#### Model Diagram
+
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_SEM.png)
+
+#### Correlation Matrix
+
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/CorrelationMatrix.png)
 
 ## Easy to use
 
