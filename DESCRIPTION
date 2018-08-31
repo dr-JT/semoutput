@@ -9,12 +9,12 @@ Description: R Markdown template and functions to produce elegant CFA and SEM ou
     Automatically generates a model diagram.
     Relies on lavaan and semPlot packages.
 Imports:
-    dplyr
-    lavaan
-    knitr
+    dplyr,
+    lavaan,
+    knitr,
     kableExtra
 Suggests:
-    semPlot
+    semPlot,
     sjPlot
 URL: https://github.com/dr-JT/semoutput
 Encoding: UTF-8
