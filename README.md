@@ -21,7 +21,7 @@ You simply need to specify the data file location in the YAML header under
 
 params:
 
-...data: "filepath"
+&nbsp&nbsp&nbsp data: "filepath"
   
 Then specify the CFA or SEM model using lavaan syntax. 
 
