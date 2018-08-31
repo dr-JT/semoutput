@@ -17,11 +17,33 @@ params:
   
 Then specify the CFA or SEM model using lavaan syntax. 
 
-Lavaan syntax is very intuitive to use and is documented with useful tutorials
+lavaan syntax is very intuitive to use and is documented with useful tutorials
 
 http://lavaan.ugent.be/tutorial/index.html
 
-Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
+### Example lavaan syntax
+
+CFA
+
+```{r}
+# Specify the model parameters using intuitive syntax to write out equations
+model <- '
+# latent factors
+f1 =~ v1 + v2 + v3
+f2 =~ v4 + v5 + v6
+f3 =~ v7 + v8 + v9
+
+# correlated errors
+v5 ~~ v6
+v7 ~~ v8
+'
+
+# Run a latent variable analysis
+fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
+
+```
+
+## Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
 ### Screen Shots
 
