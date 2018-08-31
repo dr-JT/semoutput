@@ -1,5 +1,5 @@
 # semoutput
-Package to create nice looking output for CFA and SEM analyses.
+Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
 ## Easy to use
 
