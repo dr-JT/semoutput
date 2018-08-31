@@ -5,7 +5,7 @@ semoutput
 
 ### CFA Output
 
-(https://github.com/dr-JT/semoutput/edit/master/Examples/Ouptut_CFA.png)
+![alt text](https://github.com/dr-JT/semoutput/edit/master/Examples/Ouptut_CFA.png)
 
 See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
