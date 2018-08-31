@@ -44,28 +44,28 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ```
 
-## Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
+### Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
-### Screen Shots
+## Screen Shots
 
-#### Model Fit
+### Model Fit
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/ModelFit_CFA.png)
 
-#### CFA Output
+### CFA Output
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_CFA.png)
 
-#### SEM Output
+### SEM Output
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_SEM.png)
 
 
-#### Model Diagram
+### Model Diagram
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/DiagramModel_SEM.png)
 
-#### Correlation Matrix
+### Correlation Matrix
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/CorrelationMatrix.png)
 
