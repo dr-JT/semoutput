@@ -5,8 +5,6 @@ semoutput
 
 Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
-The Example Output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/tutorial/sem.html)
-
 ### Screen Shots
 
 #### Model Fit
@@ -24,7 +22,7 @@ The Example Output is based on the [SEM lavaan tutorial](http://lavaan.ugent.be/
 
 #### Model Diagram
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/Output_SEM.png)
+![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/DiagramModel_SEM.png)
 
 #### Correlation Matrix
 
