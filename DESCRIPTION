@@ -1,12 +1,22 @@
 Package: semoutput
 Type: Package
-Title: What the Package Does (Title Case)
+Title: SEM Output
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Jason Tsukahara
+Maintainer: Jason Tsukahara <jtsukahara3@gatech.edu>
+Description: R Markdown template and functions to produce elegant CFA and SEM output.
+    Displays easy to view tables of model fit statistics, factor loadings, latent correlations, and regression paths.
+    Automatically generates a model diagram.
+    Relies on lavaan and semPlot packages.
+Imports:
+    dplyr
+    lavaan
+    knitr
+    kableExtra
+Suggests:
+    semPlot
+    sjPlot
+URL: https://github.com/dr-JT/semoutput
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1.9000
