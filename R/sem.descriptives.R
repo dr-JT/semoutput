@@ -18,7 +18,8 @@ sem.descriptives <- function(x){
                         Skewness = e1071::skewness(value, na.rm = TRUE, type = 2),
                         Kurtosis = e1071::kurtosis(value, na.rm = TRUE, type = 1),
                         '% Missing' = 100*(length(which(is.na(value)))/n()))
-  x <- knitr::kable(x, digits=2, format="html", caption="Descriptive Statistics", color = "white", background = "black")
+  x <- knitr::kable(x, digits=2, format="html", caption="Descriptive Statistics")
+  x <- knitr::cell_spec(x, color = "white", background = "#000000")
   x <- kableExtra::kable_styling(x)
   return(x)
 }
