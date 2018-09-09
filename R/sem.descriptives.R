@@ -19,7 +19,7 @@ sem.descriptives <- function(x){
                         Kurtosis = e1071::kurtosis(value, na.rm = TRUE, type = 1),
                         '% Missing' = 100*(length(which(is.na(value)))/n()))
   x <- knitr::kable(x, digits=2, format="html", caption="Descriptive Statistics")
-  x <- knitr::cell_spec(x, color = "white", background = "#000000")
+  x <- kableExtra::cell_spec(x, color = "white", background = "#000000")
   x <- kableExtra::kable_styling(x)
   return(x)
 }
