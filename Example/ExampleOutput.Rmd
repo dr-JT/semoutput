@@ -62,8 +62,7 @@ mimic <- "lavaan"
 ### Descriptives 
 
 ```{r}
-# Requires my 'resultsoupt' package. devtools::install_github("dr-JT/resultsoutput")
-# Alternatively, use whatever function you prefer for displaying descriptive statistics
+# Prints basic descriptive statistics
 sem.descriptives(data)
 ```
 
