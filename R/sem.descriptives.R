@@ -6,7 +6,7 @@
 #' @examples
 #' sem.descriptives(x)
 
-descriptives <- function(x){
+sem.descriptives <- function(x){
   x <- tidyr::gather(x, "Variable", "value")
   x <- dplyr::group_by(x, Variable)
   x <- dplyr::summarise(x,
