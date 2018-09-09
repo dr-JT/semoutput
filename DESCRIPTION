@@ -10,12 +10,13 @@ Description: R Markdown template and functions to produce elegant CFA and SEM ou
     Relies on lavaan and semPlot packages.
 Imports:
     dplyr,
+    tidyr,
     lavaan,
     knitr,
-    kableExtra
-Suggests:
+    kableExtra,
     semPlot,
-    sjPlot
+    sjPlot,
+    e1071
 URL: https://github.com/dr-JT/semoutput
 Encoding: UTF-8
 LazyData: true
