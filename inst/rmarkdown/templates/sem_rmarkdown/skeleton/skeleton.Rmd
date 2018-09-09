@@ -33,7 +33,6 @@ library(sjPlot)
 
 # Packages developed by Jason Tsukahara. To install, devtools::install_github("dr-JT/packagename")
 library(semoutput) # For displaying lavaan output
-library(resultsoutput) # Optional: For displaying descriptives (you can also just use whatever package/functions you prefer to display descriptives)
 ```
 
 
@@ -61,9 +60,8 @@ mimic <- "EQS"
 ### Descriptives 
 
 ```{r}
-# Requires my 'resultsoupt' package. devtools::install_github("dr-JT/resultsoutput")
-# Alternatively, use whatever function you prefer for displaying descriptive statistics
-descriptives(data)
+# Prints basic descriptive statistics
+sem.descriptives(data)
 ```
 
 ---
