@@ -20,6 +20,5 @@ sem.descriptives <- function(x){
                         '% Missing' = 100*(length(which(is.na(value)))/n()))
   x <- knitr::kable(x, digits=2, format="html", caption="Descriptive Statistics")
   x <- kableExtra::kable_styling(x)
-  x <- kableExtra::cell_spec(x, color = "white", background = "black")
   return(x)
 }
