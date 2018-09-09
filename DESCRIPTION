@@ -15,8 +15,9 @@ Imports:
     knitr,
     kableExtra,
     semPlot,
-    sjPlot,
     e1071
+Suggests:
+    sjPlot
 URL: https://github.com/dr-JT/semoutput
 Encoding: UTF-8
 LazyData: true
