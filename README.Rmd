@@ -69,7 +69,6 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ![alt text](https://github.com/dr-JT/semoutput/blob/master/Example/CorrelationMatrix.png)
 
-
 ## Install
 
 ### First you may need to install the devtools package
