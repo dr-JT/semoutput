@@ -11,7 +11,7 @@ File -> New File -> R Markdown... -> From Template -> SEM RMarkdown
 
 You simply need to specify the data file location in the YAML header under 
 
-```{r}
+```r
 params:
   data: "filepath"
 ```
@@ -26,7 +26,7 @@ http://lavaan.ugent.be/tutorial/index.html
 
 CFA
 
-```{r}
+```r
 # Specify the model parameters using intuitive syntax to write out equations
 model <- '
 # latent factors
