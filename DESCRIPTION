@@ -1,8 +1,8 @@
 Package: semoutput
 Type: Package
 Title: SEM Output
-Version: 0.1.0
-Author: Jason Tsukahara
+Version: 0.9.0
+Authors@R: Jason Tsukahara
 Maintainer: Jason Tsukahara <jtsukahara3@gatech.edu>
 Description: R Markdown template and functions to produce elegant CFA and SEM output.
     Displays easy to view tables of model fit statistics, factor loadings, latent correlations, and regression paths.
