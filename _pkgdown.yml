@@ -1,5 +1,0 @@
-template:
-  params:
-    bootswatch: sandstone
-pkgdown:
-  as_is: true
