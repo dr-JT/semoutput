@@ -10,10 +10,12 @@ output:
     fig_height: 8
 params:
   data: "filepath"
+pkgdown:
+  as_is: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE, eval = FALSE)
+knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
 ```
 
 # {.tabset .tabset-pills}
