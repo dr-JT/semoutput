@@ -54,20 +54,20 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ### CFA Output
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_CFA.png)
+![alt text](man/figures/Output_CFA.png)
 
 ### SEM Output
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_SEM.png)
+![alt text](man/figures/Output_SEM.png)
 
 
 ### Model Diagram
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/DiagramModel_SEM.png)
+![alt text](man/figures/DiagramModel_SEM.png)
 
 ### Correlation Matrix
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/CorrelationMatrix.png)
+![alt text](man/figures/CorrelationMatrix.png)
 
 ## Install
 
