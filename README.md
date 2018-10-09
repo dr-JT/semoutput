@@ -29,7 +29,7 @@ http://lavaan.ugent.be/tutorial/index.html
 
 CFA
 
-```{r}
+```r
 # Specify the model parameters using intuitive syntax to write out equations
 model <- '
 # latent factors
@@ -72,7 +72,7 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ## Install
 
-```{r eval = false}
+```
 devtools::install_github("dr-JT/semoutput")
 ```
 
