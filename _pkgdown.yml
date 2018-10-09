@@ -1,0 +1,13 @@
+url: https://dr-jt.github.io/pupillometry/
+
+authors:
+  Jason Tsukahara:
+    href: http://englelab.gatech.edu/jason.html
+
+template:
+  params:
+    docsearch:
+      api_key: API_KEY
+      index_name: INDEX_NAME
+
+

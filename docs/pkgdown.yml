@@ -3,4 +3,7 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   ExampleTemplate: ExampleTemplate.html
+urls:
+  reference: https://dr-jt.github.io/pupillometry//reference
+  article: https://dr-jt.github.io/pupillometry//articles
 
