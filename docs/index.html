@@ -83,6 +83,18 @@
 <a href="#semoutput" class="anchor"></a>semoutput</h1></div>
 <p>Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages</p>
 <p>See an <a href="http://englelab.gatech.edu/R/Example_semoutput.html">Example Output</a></p>
+<div id="install" class="section level2">
+<h2 class="hasAnchor">
+<a href="#install" class="anchor"></a>Install</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"dr-JT/semoutput"</span>)</a></code></pre></div>
+</div>
+<div id="required-packages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#required-packages" class="anchor"></a>Required Packages</h2>
+<p>Uses the lavaan package to run CFA and SEM analyses</p>
+<p>Uses the semPlot package to display model diagrams</p>
+<p>Uses the sjPlot package to print the correlation table</p>
+</div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
@@ -99,20 +111,20 @@
 <h3 class="hasAnchor">
 <a href="#example-lavaan-syntax" class="anchor"></a>Example lavaan syntax</h3>
 <p>CFA</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">model &lt;-<span class="st"> '</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st"># latent factors</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">f1 =~ v1 + v2 + v3</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">f2 =~ v4 + v5 + v6</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">f3 =~ v7 + v8 + v9</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st"># correlated errors</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">v5 ~~ v6</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">v7 ~~ v8</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">'</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># Run a latent variable analysis</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class="dt">data =</span> data, <span class="dt">missing =</span> <span class="st">"ML"</span>, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">model &lt;-<span class="st"> '</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st"># latent factors</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">f1 =~ v1 + v2 + v3</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">f2 =~ v4 + v5 + v6</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">f3 =~ v7 + v8 + v9</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st"># correlated errors</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">v5 ~~ v6</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">v7 ~~ v8</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">'</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># Run a latent variable analysis</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class="dt">data =</span> data, <span class="dt">missing =</span> <span class="st">"ML"</span>, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="screen-shots" class="section level2">
@@ -143,18 +155,6 @@
 <a href="#correlation-matrix" class="anchor"></a>Correlation Matrix</h3>
 <p><img src="reference/figures/CorrelationMatrix.png" alt="alt text"></p>
 </div>
-</div>
-<div id="install" class="section level2">
-<h2 class="hasAnchor">
-<a href="#install" class="anchor"></a>Install</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"dr-JT/semoutput"</span>)</a></code></pre></div>
-</div>
-<div id="required-packages" class="section level2">
-<h2 class="hasAnchor">
-<a href="#required-packages" class="anchor"></a>Required Packages</h2>
-<p>Uses the lavaan package to run CFA and SEM analyses</p>
-<p>Uses the semPlot package to display model diagrams</p>
-<p>Uses the sjPlot package to print the correlation table</p>
 </div>
 </div>
   </div>
