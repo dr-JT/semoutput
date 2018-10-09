@@ -123,10 +123,9 @@
 <div id="section" class="section level1 tabset tabset-pills">
 <h1></h1>
 <p>Last updated:</p>
-<div id="results" class="section level2">
-<h2>Results</h2>
-<div id="setup" class="section level3">
-<h3>Setup</h3>
+<p>Results</p>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
 <p>Required Packages</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 <span class="kw">library</span>(lavaan)
@@ -148,19 +147,19 @@ mimic &lt;-<span class="st"> &quot;lavaan&quot;</span></code></pre></div>
 <hr />
 <hr />
 </div>
-<div id="descriptives" class="section level3">
-<h3>Descriptives</h3>
+<div id="descriptives" class="section level2">
+<h2>Descriptives</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prints basic descriptive statistics</span>
 <span class="kw">sem.descriptives</span>(data)</code></pre></div>
 <hr />
 </div>
-<div id="correlation-matrix" class="section level3">
-<h3>Correlation Matrix</h3>
+<div id="correlation-matrix" class="section level2">
+<h2>Correlation Matrix</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Uses sjPlot to print a nice looking correlation table</span>
 <span class="kw">sjt.corr</span>(data, <span class="dt">na.deletion =</span> <span class="st">&quot;pairwise&quot;</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
 </div>
-<div id="cfa" class="section level3 tabset tabset-pills">
-<h3>CFA</h3>
+<div id="cfa" class="section level2 tabset tabset-pills">
+<h2>CFA</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span>
 factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)
 <span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span>
@@ -209,8 +208,8 @@ fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(<span class="dt">m
 <span class="kw">modificationIndices</span>(fit, <span class="dt">sort.=</span><span class="ot">TRUE</span>, <span class="dt">minimum.value=</span><span class="dv">3</span>)</code></pre></div>
 </div>
 </div>
-<div id="sem" class="section level3 tabset tabset-pills">
-<h3>SEM</h3>
+<div id="sem" class="section level2 tabset tabset-pills">
+<h2>SEM</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span>
 factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)
 <span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span>
@@ -265,13 +264,12 @@ fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">m
 <hr />
 <hr />
 </div>
-</div>
-</div>
-<div id="session-info" class="section level2">
-<h2>Session Info</h2>
+<div id="session-info" class="section level3">
+<h3>Session Info</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">&quot;lavaan&quot;</span>)
 <span class="kw">citation</span>()
 <span class="kw">sessionInfo</span>()</code></pre></div>
+</div>
 </div>
 </div>
   </div>
@@ -281,8 +279,11 @@ fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">m
       <h2>Contents</h2>
       <ul>
       <li><a href="#section"></a><ul>
-      <li><a href="#results">Results</a></li>
-      <li><a href="#session-info">Session Info</a></li>
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#descriptives">Descriptives</a></li>
+      <li><a href="#correlation-matrix">Correlation Matrix</a></li>
+      <li><a href="#cfa">CFA</a></li>
+      <li><a href="#sem">SEM</a></li>
       </ul></li>
       </ul>
     </div>

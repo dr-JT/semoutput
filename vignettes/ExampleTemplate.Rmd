@@ -20,9 +20,9 @@ knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning
 
 Last updated: 
 
-## Results
+Results
 
-### Setup
+## Setup
 
 Required Packages
 ```{r warning=FALSE}
@@ -59,7 +59,7 @@ mimic <- "lavaan"
 
 ---
 
-### Descriptives 
+## Descriptives 
 
 ```{r}
 # Prints basic descriptive statistics
@@ -68,7 +68,7 @@ sem.descriptives(data)
 
 ---
 
-### Correlation Matrix
+## Correlation Matrix
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
@@ -78,7 +78,7 @@ sjt.corr(data, na.deletion = "pairwise", digits = 2)
 ---
 ---
 
-### CFA {.tabset .tabset-pills}
+## CFA {.tabset .tabset-pills}
 
 ```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
@@ -140,7 +140,7 @@ modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ---
 ---
 
-### SEM {.tabset .tabset-pills}
+## SEM {.tabset .tabset-pills}
 
 ```{r warning=TRUE}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
@@ -207,7 +207,7 @@ modificationIndices(fit, sort.=TRUE, minimum.value=3)
 
 ---
 
-## Session Info
+### Session Info
 ```{r comment=""}
 citation("lavaan")
 citation()
