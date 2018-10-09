@@ -21,7 +21,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -77,15 +77,16 @@
 
       
       </header><div class="row">
-  <div class="col-md-9 contents">
-    
-
-    
-    
-<div id="semoutput" class="section level1">
+  <div class="contents col-md-9">
+    <div id="semoutput" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#semoutput" class="anchor"></a>semoutput</h1></div>
 <p>Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages</p>
+<div id="interact-with-an-example-output" class="section level2">
+<h2 class="hasAnchor">
+<a href="#interact-with-an-example-output" class="anchor"></a>Interact with an <a href="http://englelab.gatech.edu/R/Example_semoutput.html">Example Output</a>
+</h2>
+</div>
 <div id="easy-to-use" class="section level2">
 <h2 class="hasAnchor">
 <a href="#easy-to-use" class="anchor"></a>Easy to use</h2>
@@ -117,11 +118,6 @@ model &lt;-<span class="st"> '</span>
 <span class="co"># Run a latent variable analysis</span>
 fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class="dt">data =</span> data, <span class="dt">missing =</span> <span class="st">"ML"</span>, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
-<div id="interact-with-an-example-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#interact-with-an-example-output" class="anchor"></a>Interact with an <a href="http://englelab.gatech.edu/R/Example_semoutput.html">Example Output</a>
-</h3>
-</div>
 </div>
 <div id="screen-shots" class="section level2">
 <h2 class="hasAnchor">
@@ -129,37 +125,27 @@ fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class
 <div id="model-fit" class="section level3">
 <h3 class="hasAnchor">
 <a href="#model-fit" class="anchor"></a>Model Fit</h3>
-<div class="figure">
-<img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/ModelFit_CFA.png" alt="alt text"><p class="caption">alt text</p>
-</div>
+<p><img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/ModelFit_CFA.png" alt="alt text"></p>
 </div>
 <div id="cfa-output" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cfa-output" class="anchor"></a>CFA Output</h3>
-<div class="figure">
-<img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_CFA.png" alt="alt text"><p class="caption">alt text</p>
-</div>
+<p><img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_CFA.png" alt="alt text"></p>
 </div>
 <div id="sem-output" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sem-output" class="anchor"></a>SEM Output</h3>
-<div class="figure">
-<img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_SEM.png" alt="alt text"><p class="caption">alt text</p>
-</div>
+<p><img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/Output_SEM.png" alt="alt text"></p>
 </div>
 <div id="model-diagram" class="section level3">
 <h3 class="hasAnchor">
 <a href="#model-diagram" class="anchor"></a>Model Diagram</h3>
-<div class="figure">
-<img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/DiagramModel_SEM.png" alt="alt text"><p class="caption">alt text</p>
-</div>
+<p><img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/DiagramModel_SEM.png" alt="alt text"></p>
 </div>
 <div id="correlation-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#correlation-matrix" class="anchor"></a>Correlation Matrix</h3>
-<div class="figure">
-<img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/CorrelationMatrix.png" alt="alt text"><p class="caption">alt text</p>
-</div>
+<p><img src="https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/CorrelationMatrix.png" alt="alt text"></p>
 </div>
 </div>
 <div id="install" class="section level2">
@@ -186,7 +172,7 @@ fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -203,8 +189,7 @@ fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class
 </ul>
 </div>
 
-      </div>
-
+  </div>
 </div>
 
 
