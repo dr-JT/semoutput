@@ -50,7 +50,7 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ### Model Fit
 
-![alt text](https://github.com/dr-JT/semoutput/blob/master/docs/reference/figures/ModelFit_CFA.png)
+![alt text](https://github.com/dr-JT/semoutput/master/docs/reference/figures/ModelFit_CFA.png)
 
 ### CFA Output
 
