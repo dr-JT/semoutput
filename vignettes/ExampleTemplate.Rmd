@@ -1,5 +1,5 @@
 ---
-title: "Example Output"
+title: "Example Template"
 output: 
   html_document:
     toc: true
@@ -16,9 +16,9 @@ params:
 knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
 ```
 
-# Example Output {.tabset .tabset-pills}
+# {.tabset .tabset-pills}
 
-Last updated: `r format(Sys.Date(), "%B %d %Y")`
+Last updated: 
 
 ## Results
 
@@ -39,7 +39,7 @@ library(resultsoutput) # Optional: For displaying descriptives (you can also jus
 
 Import Data
 
-Data file: `r params$data`
+Data file: 
 ```{r warning=FALSE}
 ## Import Data
 data <- PoliticalDemocracy
@@ -105,9 +105,9 @@ y6 ~~ y8
 fit <- cfa(model=model, data=data, mimic = mimic, missing=missing, std.lv = TRUE)
 ```
 
-Missing Procedure: `r missing`
+Missing Procedure: 
 
-Mimic: `r mimic`
+Mimic: 
 
 #### Summary Output
 ```{r}
@@ -173,9 +173,9 @@ dem65 ~ ind60 + dem60
 fit <- sem(model=model, data=data, mimic = "EQS", missing=missing, std.lv = FALSE)
 ```
 
-Missing Procedure: `r missing`
+Missing Procedure: 
 
-Mimic: `r mimic`
+Mimic: 
 
 #### Summary Output
 ```{r}
