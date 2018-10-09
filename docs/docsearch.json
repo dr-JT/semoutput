@@ -2,21 +2,21 @@
   "index_name": "INDEX_NAME",
   "start_urls": [
     {
-      "url": "https://dr-jt.github.io/pupillometry//index.html",
+      "url": "https://dr-jt.github.io/semoutput//index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://dr-jt.github.io/pupillometry//reference",
+      "url": "https://dr-jt.github.io/semoutput//reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://dr-jt.github.io/pupillometry//articles",
+      "url": "https://dr-jt.github.io/semoutput//articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://dr-jt.github.io/pupillometry//sitemap.xml"
+    "https://dr-jt.github.io/semoutput//sitemap.xml"
   ],
   "selectors": {
     "homepage": {
