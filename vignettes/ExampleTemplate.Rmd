@@ -1,15 +1,5 @@
 ---
-title: "Example Template"
-output: 
-  html_document:
-    toc: true
-    toc_float:
-      collapsed: false
-    code_folding: hide
-    fig_width: 8
-    fig_height: 8
-params:
-  data: "filepath"
+title: "Examples"
 ---
 
 ```{r setup, include=FALSE}
