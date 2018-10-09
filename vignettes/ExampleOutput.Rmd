@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Example Output"
 output: 
   html_document:
     toc: true
