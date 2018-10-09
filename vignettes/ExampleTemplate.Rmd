@@ -13,7 +13,7 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
+knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE, eval = FALSE)
 ```
 
 # {.tabset .tabset-pills}
