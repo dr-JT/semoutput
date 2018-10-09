@@ -72,7 +72,7 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ## Install
 
-```
+```r
 devtools::install_github("dr-JT/semoutput")
 ```
 
