@@ -1,9 +1,10 @@
 # semoutput
+
 Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
-## Interact with an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
+See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
-## Easy to use
+## Usage
 
 The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
 
@@ -71,13 +72,9 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ## Install
 
-### First you may need to install the devtools package
-
-install.packages("devtools")
-
-### Then install the semoutput package from GitHub
-
+```r{eval = false}
 devtools::install_github("dr-JT/semoutput")
+```
 
 ## Required Packages
 

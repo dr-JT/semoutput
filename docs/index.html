@@ -82,20 +82,16 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#semoutput" class="anchor"></a>semoutput</h1></div>
 <p>Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages</p>
-<div id="interact-with-an-example-output" class="section level2">
+<p>See an <a href="http://englelab.gatech.edu/R/Example_semoutput.html">Example Output</a></p>
+<div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#interact-with-an-example-output" class="anchor"></a>Interact with an <a href="http://englelab.gatech.edu/R/Example_semoutput.html">Example Output</a>
-</h2>
-</div>
-<div id="easy-to-use" class="section level2">
-<h2 class="hasAnchor">
-<a href="#easy-to-use" class="anchor"></a>Easy to use</h2>
+<a href="#usage" class="anchor"></a>Usage</h2>
 <p>The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.</p>
 <p>Once you install the package, you will be able to access the RMarkdown template by going to</p>
 <p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt; SEM RMarkdown</p>
 <p>You simply need to specify the data file location in the YAML header under</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">params<span class="op">:</span>
-<span class="st">  </span>data<span class="op">:</span><span class="st"> "filepath"</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">params<span class="op">:</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">  </span>data<span class="op">:</span><span class="st"> "filepath"</span></a></code></pre></div>
 <p>Then specify the CFA or SEM model using lavaan syntax.</p>
 <p>lavaan syntax is very intuitive to use and is documented with useful tutorials</p>
 <p><a href="http://lavaan.ugent.be/tutorial/index.html" class="uri">http://lavaan.ugent.be/tutorial/index.html</a></p>
@@ -103,20 +99,20 @@
 <h3 class="hasAnchor">
 <a href="#example-lavaan-syntax" class="anchor"></a>Example lavaan syntax</h3>
 <p>CFA</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span>
-model &lt;-<span class="st"> '</span>
-<span class="st"># latent factors</span>
-<span class="st">f1 =~ v1 + v2 + v3</span>
-<span class="st">f2 =~ v4 + v5 + v6</span>
-<span class="st">f3 =~ v7 + v8 + v9</span>
-
-<span class="st"># correlated errors</span>
-<span class="st">v5 ~~ v6</span>
-<span class="st">v7 ~~ v8</span>
-<span class="st">'</span>
-
-<span class="co"># Run a latent variable analysis</span>
-fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class="dt">data =</span> data, <span class="dt">missing =</span> <span class="st">"ML"</span>, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">model &lt;-<span class="st"> '</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st"># latent factors</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">f1 =~ v1 + v2 + v3</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">f2 =~ v4 + v5 + v6</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">f3 =~ v7 + v8 + v9</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st"># correlated errors</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">v5 ~~ v6</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">v7 ~~ v8</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">'</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># Run a latent variable analysis</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class="dt">data =</span> data, <span class="dt">missing =</span> <span class="st">"ML"</span>, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="screen-shots" class="section level2">
@@ -151,16 +147,7 @@ fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(model, <span class
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
-<div id="first-you-may-need-to-install-the-devtools-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#first-you-may-need-to-install-the-devtools-package" class="anchor"></a>First you may need to install the devtools package</h3>
-<p>install.packages(“devtools”)</p>
-</div>
-<div id="then-install-the-semoutput-package-from-github" class="section level3">
-<h3 class="hasAnchor">
-<a href="#then-install-the-semoutput-package-from-github" class="anchor"></a>Then install the semoutput package from GitHub</h3>
-<p>devtools::install_github(“dr-JT/semoutput”)</p>
-</div>
+<p><code>r{eval = false} devtools::install_github("dr-JT/semoutput")</code></p>
 </div>
 <div id="required-packages" class="section level2">
 <h2 class="hasAnchor">

@@ -8,14 +8,7 @@ knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning
 
 # {.tabset .tabset-pills}
 
-Last updated: 
-
-Results
-
-## Setup
-
-Required Packages
-```{r warning=FALSE}
+```{r warning=FALSE, echo = FALSE}
 library(readr)
 library(lavaan)
 library(semPlot)
@@ -29,7 +22,6 @@ library(resultsoutput) # Optional: For displaying descriptives (you can also jus
 
 Import Data
 
-Data file: 
 ```{r warning=FALSE}
 ## Import Data
 data <- PoliticalDemocracy
@@ -38,7 +30,7 @@ data <- PoliticalDemocracy
 For this example I am using the PoliticalDemocracy data set from the lavaan package.
 
 
-```{r}
+```{r echo=FALSE}
 ## How to handle missing data. "ML" is a full-information maximum likelihood. Alternatively, "listwise" for listwise deletion
 missing <- "ML"
 ## Do you want to mimic the results of another statistical software? If not, then set to "lavaan"
@@ -66,6 +58,7 @@ sjt.corr(data, na.deletion = "pairwise", digits = 2)
 ```
 
 ---
+
 ---
 
 ## CFA {.tabset .tabset-pills}
@@ -95,9 +88,6 @@ y6 ~~ y8
 fit <- cfa(model=model, data=data, mimic = mimic, missing=missing, std.lv = TRUE)
 ```
 
-Missing Procedure: 
-
-Mimic: 
 
 #### Summary Output
 ```{r}
@@ -128,6 +118,9 @@ modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ```
 
 ---
+
+---
+
 ---
 
 ## SEM {.tabset .tabset-pills}
@@ -163,10 +156,6 @@ dem65 ~ ind60 + dem60
 fit <- sem(model=model, data=data, mimic = "EQS", missing=missing, std.lv = FALSE)
 ```
 
-Missing Procedure: 
-
-Mimic: 
-
 #### Summary Output
 ```{r}
 sem.sig(fit)
@@ -193,13 +182,8 @@ sem.residuals(fit)
 summary(fit, fit.measures=TRUE, standardized=TRUE)
 modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ```
----
 
 ---
 
-### Session Info
-```{r comment=""}
-citation("lavaan")
-citation()
-sessionInfo()
-```
+---
+

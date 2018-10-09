@@ -123,35 +123,16 @@
     
 <div id="section" class="section level1 tabset tabset-pills">
 <h1></h1>
-<p>Last updated:</p>
-<p>Results</p>
-<div id="setup" class="section level2">
-<h2>Setup</h2>
-<p>Required Packages</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
-<span class="kw">library</span>(lavaan)
-<span class="kw">library</span>(semPlot)
-<span class="kw">library</span>(sjPlot)
-
-<span class="co"># Packages developed by Jason Tsukahara. To install, devtools::install_github(&quot;dr-JT/packagename&quot;)</span>
-<span class="kw">library</span>(semoutput) <span class="co"># For displaying lavaan output</span>
-<span class="kw">library</span>(resultsoutput) <span class="co"># Optional: For displaying descriptives (you can also just use whatever package/functions you prefer to display descriptives)</span></code></pre></div>
 <p>Import Data</p>
-<p>Data file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Import Data
-data &lt;-<span class="st"> </span>PoliticalDemocracy</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">## Import Data</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">data &lt;-<span class="st"> </span>PoliticalDemocracy</a></code></pre></div>
 <p>For this example I am using the PoliticalDemocracy data set from the lavaan package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## How to handle missing data. &quot;ML&quot; is a full-information maximum likelihood. Alternatively, &quot;listwise&quot; for listwise deletion
-missing &lt;-<span class="st"> &quot;ML&quot;</span>
-## Do you want to mimic the results of another statistical software? If not, then set to &quot;lavaan&quot;
-mimic &lt;-<span class="st"> &quot;lavaan&quot;</span></code></pre></div>
 <hr />
 <hr />
-</div>
 <div id="descriptives" class="section level2">
 <h2>Descriptives</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prints basic descriptive statistics</span>
-<span class="kw">sem.descriptives</span>(data)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Prints basic descriptive statistics</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">sem.descriptives</span>(data)</a></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive Statistics
@@ -513,8 +494,8 @@ y8
 </div>
 <div id="correlation-matrix" class="section level2">
 <h2>Correlation Matrix</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Uses sjPlot to print a nice looking correlation table</span>
-<span class="kw">sjt.corr</span>(data, <span class="dt">na.deletion =</span> <span class="st">&quot;pairwise&quot;</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Uses sjPlot to print a nice looking correlation table</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">sjt.corr</span>(data, <span class="dt">na.deletion =</span> <span class="st">&quot;pairwise&quot;</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -978,36 +959,36 @@ Computed correlation used pearson-method with pairwise-deletion.
 </td>
 </tr>
 </table>
+<hr />
+<hr />
 </div>
 <div id="cfa" class="section level2 tabset tabset-pills">
 <h2>CFA</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span>
-factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)
-<span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span>
-model &lt;-<span class="st"> &#39;</span>
-<span class="st"># latent factors</span>
-<span class="st">ind60 =~ x1 + x2 + x3</span>
-<span class="st">dem60 =~ y1 + y2 + y3 + y4</span>
-<span class="st">dem65 =~ y5 + y6 + y7 + y8</span>
-
-<span class="st"># correlated errors</span>
-<span class="st">y1 ~~ y5</span>
-<span class="st">y2 ~~ y4 + y6</span>
-<span class="st">y3 ~~ y7</span>
-<span class="st">y4 ~~ y8</span>
-<span class="st">y6 ~~ y8</span>
-
-<span class="st"># constraints</span>
-
-<span class="st">&#39;</span>
-<span class="co"># You might want to specify other arguments. But this is pretty standard. </span>
-<span class="co">#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.</span>
-fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(<span class="dt">model=</span>model, <span class="dt">data=</span>data, <span class="dt">mimic =</span> mimic, <span class="dt">missing=</span>missing, <span class="dt">std.lv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Missing Procedure:</p>
-<p>Mimic:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">model &lt;-<span class="st"> &#39;</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st"># latent factors</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">ind60 =~ x1 + x2 + x3</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">dem60 =~ y1 + y2 + y3 + y4</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="st">dem65 =~ y5 + y6 + y7 + y8</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="st"># correlated errors</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="st">y1 ~~ y5</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st">y2 ~~ y4 + y6</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">y3 ~~ y7</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="st">y4 ~~ y8</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="st">y6 ~~ y8</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="st"># constraints</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co"># You might want to specify other arguments. But this is pretty standard. </span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">fit &lt;-<span class="st"> </span><span class="kw">cfa</span>(<span class="dt">model=</span>model, <span class="dt">data=</span>data, <span class="dt">mimic =</span> mimic, <span class="dt">missing=</span>missing, <span class="dt">std.lv =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div id="summary-output" class="section level4">
 <h4>Summary Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.sig</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">sem.sig</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Model Significance
@@ -1045,7 +1026,7 @@ p.value
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.fitmeasures</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sem.fitmeasures</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Model Fit Measures
@@ -1095,7 +1076,7 @@ BIC
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.factorloadings</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">sem.factorloadings</span>(fit)</a></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 Factor Loadings
@@ -1394,7 +1375,7 @@ y8
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.factorcor</span>(fit, <span class="dt">factors =</span> factors)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sem.factorcor</span>(fit, <span class="dt">factors =</span> factors)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Latent Factor Correlations
@@ -1460,7 +1441,7 @@ dem65
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.factorvar</span>(fit, <span class="dt">factors =</span> factors)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">sem.factorvar</span>(fit, <span class="dt">factors =</span> factors)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Latent Factor Variance/Residual Variance
@@ -1489,7 +1470,7 @@ sig
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.rsquared</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">sem.rsquared</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 R-Squared Values
@@ -1598,18 +1579,412 @@ y8
 </div>
 <div id="diagram-output" class="section level4">
 <h4>Diagram Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semPaths</span>(fit, <span class="dt">whatLabels =</span> <span class="st">&quot;std&quot;</span>, <span class="dt">edge.label.cex =</span> .<span class="dv">5</span>, <span class="dt">layout =</span> <span class="st">&quot;tree2&quot;</span>, <span class="dt">rotation =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="dt">intercepts =</span> <span class="ot">FALSE</span>, <span class="dt">residuals =</span> <span class="ot">TRUE</span>, <span class="dt">curve =</span> <span class="dv">1</span>, <span class="dt">curvature =</span> <span class="dv">3</span>, <span class="dt">nCharNodes =</span> <span class="dv">8</span>, <span class="dt">sizeMan =</span> <span class="dv">6</span>, <span class="dt">sizeMan2 =</span> <span class="dv">3</span>, <span class="dt">optimizeLatRes =</span> <span class="ot">TRUE</span>, <span class="dt">edge.color =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">latents =</span> factors)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">semPaths</span>(fit, <span class="dt">whatLabels =</span> <span class="st">&quot;std&quot;</span>, <span class="dt">edge.label.cex =</span> <span class="fl">.5</span>, <span class="dt">layout =</span> <span class="st">&quot;tree2&quot;</span>, <span class="dt">rotation =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="dt">intercepts =</span> <span class="ot">FALSE</span>, <span class="dt">residuals =</span> <span class="ot">TRUE</span>, <span class="dt">curve =</span> <span class="dv">1</span>, <span class="dt">curvature =</span> <span class="dv">3</span>, <span class="dt">nCharNodes =</span> <span class="dv">8</span>, <span class="dt">sizeMan =</span> <span class="dv">6</span>, <span class="dt">sizeMan2 =</span> <span class="dv">3</span>, <span class="dt">optimizeLatRes =</span> <span class="ot">TRUE</span>, <span class="dt">edge.color =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">latents =</span> factors)</a></code></pre></div>
 <p><img src="ExampleTemplate_files/figure-html/unnamed-chunk-8-1.png" width="200%" /></p>
 </div>
 <div id="residual-correlation-matrix" class="section level4">
 <h4>Residual Correlation Matrix</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.residuals</span>(fit)</code></pre></div>
-<pre><code>## Error in array(x, c(length(x), 1L), if (!is.null(names(x))) list(names(x), : &#39;data&#39; must be of a vector type, was &#39;NULL&#39;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">sem.residuals</span>(fit)</a></code></pre></div>
+<table class="table" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+x1
+</th>
+<th style="text-align:right;">
+x2
+</th>
+<th style="text-align:right;">
+x3
+</th>
+<th style="text-align:right;">
+y1
+</th>
+<th style="text-align:right;">
+y2
+</th>
+<th style="text-align:right;">
+y3
+</th>
+<th style="text-align:right;">
+y4
+</th>
+<th style="text-align:right;">
+y5
+</th>
+<th style="text-align:right;">
+y6
+</th>
+<th style="text-align:right;">
+y7
+</th>
+<th style="text-align:right;">
+y8
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x1
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x3
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y1
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y2
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y3
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y4
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y5
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y6
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y7
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y8
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="full-output" class="section level4">
 <h4>Full Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit, <span class="dt">fit.measures=</span><span class="ot">TRUE</span>, <span class="dt">standardized=</span><span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## lavaan 0.6-3 ended normally after 75 iterations
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">summary</span>(fit, <span class="dt">fit.measures=</span><span class="ot">TRUE</span>, <span class="dt">standardized=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## lavaan 0.6-2 ended normally after 75 iterations
 ## 
 ##   Optimization method                           NLMINB
 ##   Number of free parameters                         42
@@ -1728,7 +2103,7 @@ y8
 ##     ind60             1.000                               1.000    1.000
 ##     dem60             1.000                               1.000    1.000
 ##     dem65             1.000                               1.000    1.000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varTable</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">varTable</span>(fit)</a></code></pre></div>
 <pre><code>##    name idx nobs    type exo user  mean    var nlev lnam
 ## 1    x1   9   75 numeric   0    0 5.054  0.537    0     
 ## 2    x2  10   75 numeric   0    0 4.792  2.282    0     
@@ -1741,50 +2116,51 @@ y8
 ## 9    y6   6   75 numeric   0    0 2.978 11.375    0     
 ## 10   y7   7   75 numeric   0    0 6.196 10.799    0     
 ## 11   y8   8   75 numeric   0    0 4.043 10.534    0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">modificationIndices</span>(fit, <span class="dt">sort.=</span><span class="ot">TRUE</span>, <span class="dt">minimum.value=</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">modificationIndices</span>(fit, <span class="dt">sort.=</span><span class="ot">TRUE</span>, <span class="dt">minimum.value=</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##      lhs op rhs    mi    epc sepc.lv sepc.all sepc.nox
 ## 52 ind60 =~  y4 4.796  0.577   0.577    0.174    0.174
 ## 53 ind60 =~  y5 4.456  0.559   0.559    0.215    0.215
 ## 70 dem65 =~  y4 4.260  2.986   2.986    0.898    0.898
 ## 99    y1 ~~  y3 3.771  0.849   0.849    0.274    0.274
 ## 74    x1 ~~  y2 3.040 -0.155  -0.155   -0.200   -0.200</code></pre>
+<hr />
+<hr />
+<hr />
 </div>
 </div>
 <div id="sem" class="section level2 tabset tabset-pills">
 <h2>SEM</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span>
-factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)
-<span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span>
-model &lt;-<span class="st"> &#39;</span>
-<span class="st"># latent factors</span>
-<span class="st">ind60 =~ x1 + x2 + x3</span>
-<span class="st">dem60 =~ y1 + y2 + y3 + y4</span>
-<span class="st">dem65 =~ y5 + y6 + y7 + y8</span>
-
-<span class="st"># correlated errors</span>
-<span class="st">y1 ~~ y5</span>
-<span class="st">y2 ~~ y4 + y6</span>
-<span class="st">y3 ~~ y7</span>
-<span class="st">y4 ~~ y8</span>
-<span class="st">y6 ~~ y8</span>
-
-<span class="st"># regressions</span>
-<span class="st">dem60 ~ ind60</span>
-<span class="st">dem65 ~ ind60 + dem60</span>
-
-<span class="st"># latent covariances</span>
-
-<span class="st"># latent variances</span>
-
-<span class="st">&#39;</span>
-<span class="co"># You might want to specify other arguments. But this is pretty standard. </span>
-<span class="co">#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details</span>
-fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model=</span>model, <span class="dt">data=</span>data, <span class="dt">mimic =</span> <span class="st">&quot;EQS&quot;</span>, <span class="dt">missing=</span>missing, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p>Missing Procedure:</p>
-<p>Mimic:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">factors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ind60&quot;</span>, <span class="st">&quot;dem60&quot;</span>, <span class="st">&quot;dem65&quot;</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">model &lt;-<span class="st"> &#39;</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st"># latent factors</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="st">ind60 =~ x1 + x2 + x3</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="st">dem60 =~ y1 + y2 + y3 + y4</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="st">dem65 =~ y5 + y6 + y7 + y8</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="st"># correlated errors</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="st">y1 ~~ y5</span></a>
+<a class="sourceLine" id="cb19-12" data-line-number="12"><span class="st">y2 ~~ y4 + y6</span></a>
+<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="st">y3 ~~ y7</span></a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"><span class="st">y4 ~~ y8</span></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15"><span class="st">y6 ~~ y8</span></a>
+<a class="sourceLine" id="cb19-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17"><span class="st"># regressions</span></a>
+<a class="sourceLine" id="cb19-18" data-line-number="18"><span class="st">dem60 ~ ind60</span></a>
+<a class="sourceLine" id="cb19-19" data-line-number="19"><span class="st">dem65 ~ ind60 + dem60</span></a>
+<a class="sourceLine" id="cb19-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb19-21" data-line-number="21"><span class="st"># latent covariances</span></a>
+<a class="sourceLine" id="cb19-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb19-23" data-line-number="23"><span class="st"># latent variances</span></a>
+<a class="sourceLine" id="cb19-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb19-25" data-line-number="25"><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb19-26" data-line-number="26"><span class="co"># You might want to specify other arguments. But this is pretty standard. </span></a>
+<a class="sourceLine" id="cb19-27" data-line-number="27"><span class="co">#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details</span></a>
+<a class="sourceLine" id="cb19-28" data-line-number="28">fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model=</span>model, <span class="dt">data=</span>data, <span class="dt">mimic =</span> <span class="st">&quot;EQS&quot;</span>, <span class="dt">missing=</span>missing, <span class="dt">std.lv =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div id="summary-output-1" class="section level4">
 <h4>Summary Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.sig</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">sem.sig</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Model Significance
@@ -1822,7 +2198,7 @@ p.value
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.fitmeasures</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">sem.fitmeasures</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Model Fit Measures
@@ -1872,7 +2248,7 @@ BIC
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.factorloadings</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">sem.factorloadings</span>(fit)</a></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 Factor Loadings
@@ -1933,10 +2309,8 @@ x1
 0.000
 </td>
 <td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
-NA
 </td>
 </tr>
 <tr>
@@ -2002,10 +2376,8 @@ y1
 0.000
 </td>
 <td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
-NA
 </td>
 </tr>
 <tr>
@@ -2094,10 +2466,8 @@ y5
 0.000
 </td>
 <td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
-NA
 </td>
 </tr>
 <tr>
@@ -2171,7 +2541,7 @@ y8
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.paths</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">sem.paths</span>(fit)</a></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 Regression Paths
@@ -2274,7 +2644,7 @@ dem60
 </tbody>
 </table></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.factorcor</span>(fit, <span class="dt">factors =</span> factors)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">sem.factorcor</span>(fit, <span class="dt">factors =</span> factors)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 Latent Factor Correlations
@@ -2300,7 +2670,7 @@ sig
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.rsquared</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">sem.rsquared</span>(fit)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <caption>
 R-Squared Values
@@ -2425,18 +2795,412 @@ dem65
 </div>
 <div id="diagram-output-1" class="section level4">
 <h4>Diagram Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semPaths</span>(fit, <span class="dt">whatLabels =</span> <span class="st">&quot;std&quot;</span>, <span class="dt">edge.label.cex =</span> .<span class="dv">5</span>, <span class="dt">layout =</span> <span class="st">&quot;tree2&quot;</span>, <span class="dt">rotation =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="dt">intercepts =</span> <span class="ot">FALSE</span>, <span class="dt">residuals =</span> <span class="ot">TRUE</span>, <span class="dt">curve =</span> <span class="dv">1</span>, <span class="dt">curvature =</span> <span class="dv">3</span>, <span class="dt">nCharNodes =</span> <span class="dv">8</span>, <span class="dt">sizeMan =</span> <span class="dv">6</span>, <span class="dt">sizeMan2 =</span> <span class="dv">3</span>, <span class="dt">optimizeLatRes =</span> <span class="ot">TRUE</span>, <span class="dt">edge.color =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">latents =</span> factors)</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">semPaths</span>(fit, <span class="dt">whatLabels =</span> <span class="st">&quot;std&quot;</span>, <span class="dt">edge.label.cex =</span> <span class="fl">.5</span>, <span class="dt">layout =</span> <span class="st">&quot;tree2&quot;</span>, <span class="dt">rotation =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="dt">intercepts =</span> <span class="ot">FALSE</span>, <span class="dt">residuals =</span> <span class="ot">TRUE</span>, <span class="dt">curve =</span> <span class="dv">1</span>, <span class="dt">curvature =</span> <span class="dv">3</span>, <span class="dt">nCharNodes =</span> <span class="dv">8</span>, <span class="dt">sizeMan =</span> <span class="dv">6</span>, <span class="dt">sizeMan2 =</span> <span class="dv">3</span>, <span class="dt">optimizeLatRes =</span> <span class="ot">TRUE</span>, <span class="dt">edge.color =</span> <span class="st">&quot;#000000&quot;</span>, <span class="dt">latents =</span> factors)</a></code></pre></div>
 <p><img src="ExampleTemplate_files/figure-html/unnamed-chunk-13-1.png" width="200%" /></p>
 </div>
 <div id="residual-correlation-matrix-1" class="section level4">
 <h4>Residual Correlation Matrix</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sem.residuals</span>(fit)</code></pre></div>
-<pre><code>## Error in array(x, c(length(x), 1L), if (!is.null(names(x))) list(names(x), : &#39;data&#39; must be of a vector type, was &#39;NULL&#39;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">sem.residuals</span>(fit)</a></code></pre></div>
+<table class="table" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+x1
+</th>
+<th style="text-align:right;">
+x2
+</th>
+<th style="text-align:right;">
+x3
+</th>
+<th style="text-align:right;">
+y1
+</th>
+<th style="text-align:right;">
+y2
+</th>
+<th style="text-align:right;">
+y3
+</th>
+<th style="text-align:right;">
+y4
+</th>
+<th style="text-align:right;">
+y5
+</th>
+<th style="text-align:right;">
+y6
+</th>
+<th style="text-align:right;">
+y7
+</th>
+<th style="text-align:right;">
+y8
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x1
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x3
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y1
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y2
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y3
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y4
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y5
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y6
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y7
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y8
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="full-output-1" class="section level4">
 <h4>Full Output</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit, <span class="dt">fit.measures=</span><span class="ot">TRUE</span>, <span class="dt">standardized=</span><span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## lavaan 0.6-3 ended normally after 83 iterations
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">summary</span>(fit, <span class="dt">fit.measures=</span><span class="ot">TRUE</span>, <span class="dt">standardized=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## lavaan 0.6-2 ended normally after 83 iterations
 ## 
 ##   Optimization method                           NLMINB
 ##   Number of free parameters                         42
@@ -2558,7 +3322,7 @@ dem65
 ##     ind60             0.448    0.087    5.135    0.000    1.000    1.000
 ##    .dem60             3.956    0.951    4.160    0.000    0.800    0.800
 ##    .dem65             0.172    0.222    0.778    0.437    0.039    0.039</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">modificationIndices</span>(fit, <span class="dt">sort.=</span><span class="ot">TRUE</span>, <span class="dt">minimum.value=</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">modificationIndices</span>(fit, <span class="dt">sort.=</span><span class="ot">TRUE</span>, <span class="dt">minimum.value=</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##      lhs op rhs    mi    epc sepc.lv sepc.all sepc.nox
 ## 52 ind60 =~  y4 4.796  0.862   0.577    0.174    0.174
 ## 53 ind60 =~  y5 4.456  0.835   0.559    0.215    0.215
@@ -2567,123 +3331,6 @@ dem65
 ## 74    x1 ~~  y2 3.040 -0.155  -0.155   -0.200   -0.200</code></pre>
 <hr />
 <hr />
-</div>
-<div id="session-info" class="section level3">
-<h3>Session Info</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">&quot;lavaan&quot;</span>)</code></pre></div>
-<pre><code>
-To cite lavaan in publications use:
-
-  Yves Rosseel (2012). lavaan: An R Package for Structural
-  Equation Modeling. Journal of Statistical Software, 48(2), 1-36.
-  URL http://www.jstatsoft.org/v48/i02/.
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    title = {{lavaan}: An {R} Package for Structural Equation Modeling},
-    author = {Yves Rosseel},
-    journal = {Journal of Statistical Software},
-    year = {2012},
-    volume = {48},
-    number = {2},
-    pages = {1--36},
-    url = {http://www.jstatsoft.org/v48/i02/},
-  }</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>()</code></pre></div>
-<pre><code>
-To cite R in publications use:
-
-  R Core Team (2018). R: A language and environment for
-  statistical computing. R Foundation for Statistical Computing,
-  Vienna, Austria. URL https://www.R-project.org/.
-
-A BibTeX entry for LaTeX users is
-
-  @Manual{,
-    title = {R: A Language and Environment for Statistical Computing},
-    author = {{R Core Team}},
-    organization = {R Foundation for Statistical Computing},
-    address = {Vienna, Austria},
-    year = {2018},
-    url = {https://www.R-project.org/},
-  }
-
-We have invested a lot of time and effort in creating R, please
-cite it when using it for data analysis. See also
-&#39;citation(&quot;pkgname&quot;)&#39; for citing R packages.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>R version 3.5.0 (2018-04-23)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS  10.14
-
-Matrix products: default
-BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] bindrcpp_0.2.2           resultsoutput_0.0.0.9000
-[3] semoutput_0.1.0          sjPlot_2.6.0            
-[5] semPlot_1.1              lavaan_0.6-3            
-[7] readr_1.1.1             
-
-loaded via a namespace (and not attached):
-  [1] readxl_1.1.0         backports_1.1.2      Hmisc_4.1-1         
-  [4] BDgraph_2.51         plyr_1.8.4           igraph_1.2.2        
-  [7] lazyeval_0.2.1       TMB_1.7.14           splines_3.5.0       
- [10] TH.data_1.0-8        ggplot2_3.0.0        digest_0.6.16       
- [13] htmltools_0.3.6      matrixcalc_1.0-3     magrittr_1.5        
- [16] checkmate_1.8.5      memoise_1.1.0        lisrelToR_0.1.4     
- [19] cluster_2.0.7-1      openxlsx_4.1.0       sna_2.4             
- [22] modelr_0.1.2         sandwich_2.4-0       pkgdown_1.1.0       
- [25] jpeg_0.1-8           sem_3.1-9            colorspace_1.3-2    
- [28] rvest_0.3.2          haven_1.1.2          dplyr_0.7.6         
- [31] crayon_1.3.4         roxygen2_6.1.0       lme4_1.1-18-1       
- [34] bindr_0.1.1          zoo_1.8-1            survival_2.41-3     
- [37] glue_1.3.0           kableExtra_0.9.0     gtable_0.2.0        
- [40] emmeans_1.2.3        mi_1.0               sjstats_0.17.0      
- [43] sjmisc_2.7.4         car_3.0-0            ggm_2.3             
- [46] abind_1.4-5          scales_1.0.0         mvtnorm_1.0-8       
- [49] ggeffects_0.5.0      Rcpp_0.12.18         viridisLite_0.3.0   
- [52] xtable_1.8-3         htmlTable_1.12       foreign_0.8-70      
- [55] Formula_1.2-3        stats4_3.5.0         prediction_0.3.6    
- [58] survey_3.33-2        httr_1.3.1           htmlwidgets_1.2     
- [61] RColorBrewer_1.1-2   acepack_1.4.1        modeltools_0.2-21   
- [64] pkgconfig_2.0.1      XML_3.98-1.16        nnet_7.3-12         
- [67] tidyselect_0.2.4     rlang_0.2.2          reshape2_1.4.3      
- [70] munsell_0.5.0        cellranger_1.1.0     tools_3.5.0         
- [73] statnet.common_4.1.4 sjlabelled_1.0.13    broom_0.5.0         
- [76] ggridges_0.5.0       fdrtool_1.2.15       evaluate_0.10.1     
- [79] stringr_1.3.1        arm_1.10-1           yaml_2.1.19         
- [82] knitr_1.20           fs_1.2.5             zip_1.0.0           
- [85] purrr_0.2.5          coin_1.2-2           glasso_1.10         
- [88] pbapply_1.3-4        nlme_3.1-137         whisker_0.3-2       
- [91] xml2_1.2.0           compiler_3.5.0       bayesplot_1.6.0     
- [94] rstudioapi_0.7       curl_3.2             png_0.1-7           
- [97] e1071_1.7-0          huge_1.2.7           tibble_1.4.2        
-[100] pbivnorm_0.6.0       stringi_1.2.4        highr_0.7           
-[103] qgraph_1.5           rockchalk_1.8.111    desc_1.2.0          
-[106] forcats_0.3.0        lattice_0.20-35      Matrix_1.2-14       
-[109] commonmark_1.5       psych_1.8.4          nloptr_1.0.4        
-[112] effects_4.0-3        stringdist_0.9.5.1   pillar_1.3.0        
-[115] pwr_1.2-2            estimability_1.3     OpenMx_2.9.6        
-[118] data.table_1.11.4    corpcor_1.6.9        R6_2.2.2            
-[121] latticeExtra_0.6-28  network_1.13.0.1     gridExtra_2.3       
-[124] rio_0.5.10           codetools_0.2-15     boot_1.3-20         
-[127] MASS_7.3-49          gtools_3.8.1         assertthat_0.2.0    
-[130] rprojroot_1.3-2      rjson_0.2.20         mnormt_1.5-5        
-[133] multcomp_1.4-8       parallel_3.5.0       hms_0.4.2           
-[136] grid_3.5.0           rpart_4.1-13         class_7.3-14        
-[139] glmmTMB_0.2.2.0      tidyr_0.8.1          coda_0.19-1         
-[142] minqa_1.2.4          rmarkdown_1.9        snakecase_0.9.2     
-[145] carData_3.0-1        d3Network_0.5.2.1    semTools_0.5-0      
-[148] base64enc_0.1-3      ellipse_0.4.1       </code></pre>
 </div>
 </div>
 </div>
@@ -2694,7 +3341,6 @@ loaded via a namespace (and not attached):
       <h2>Contents</h2>
       <ul>
       <li><a href="#section"></a><ul>
-      <li><a href="#setup">Setup</a></li>
       <li><a href="#descriptives">Descriptives</a></li>
       <li><a href="#correlation-matrix">Correlation Matrix</a></li>
       <li><a href="#cfa">CFA</a></li>
