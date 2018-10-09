@@ -10,8 +10,6 @@ output:
     fig_height: 8
 params:
   data: "filepath"
-pkgdown:
-  as_is: true
 ---
 
 ```{r setup, include=FALSE}
