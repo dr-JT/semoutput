@@ -12,11 +12,11 @@ devtools::install_github("dr-JT/semoutput")
 
 ## Required Packages
 
-Uses the lavaan package to run CFA and SEM analyses
+* lavaan package to run CFA and SEM analyses
 
-Uses the semPlot package to display model diagrams
+* semPlot package to display model diagrams
 
-Uses the sjPlot package to print the correlation table
+* sjPlot package to print correlation tables
 
 ## Usage
 
