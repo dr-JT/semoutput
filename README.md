@@ -16,7 +16,7 @@ devtools::install_github("dr-JT/semoutput")
 
 * semPlot package to display model diagrams
 
-* sjPlot package to print correlation tables
+* sjPlot package to print correlation tables <img src = "man/figures/logo_small.png" align = "right" />
 
 ## Usage
 
