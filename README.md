@@ -1,4 +1,4 @@
-# semoutput
+# semoutput <img src = "man/figures/logo_small.png" align = "right" />
 
 Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
@@ -16,7 +16,7 @@ devtools::install_github("dr-JT/semoutput")
 
 * semPlot package to display model diagrams
 
-* sjPlot package to print correlation tables <img src = "man/figures/logo_small.png" align = "right" />
+* sjPlot package to print correlation tables
 
 ## Usage
 
