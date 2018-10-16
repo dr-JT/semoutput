@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.factorvar.R
 \name{sem.factorvar}
 \alias{sem.factorvar}
-\title{An SEM Output Function}
+\title{Latent factor variances}
 \usage{
 sem.factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
 }

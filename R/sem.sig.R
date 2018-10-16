@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Chi-square significance test
 #'
 #' This function will display a table of Model significance tests
 #' @param x results from a cfa() or sem() lavaan model

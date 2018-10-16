@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.paths.R
 \name{sem.paths}
 \alias{sem.paths}
-\title{An SEM Output Function}
+\title{SEM regression paths}
 \usage{
 sem.paths(x, standardized = TRUE, print = TRUE)
 }

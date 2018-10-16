@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.fitmeasures.R
 \name{sem.fitmeasures}
 \alias{sem.fitmeasures}
-\title{An SEM Output Function}
+\title{Model fit statistics}
 \usage{
 sem.fitmeasures(x, print = TRUE)
 }

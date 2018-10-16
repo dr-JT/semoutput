@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Residual correlation matrix
 #'
 #' This function will display a table of the residual correlation matrix of a lavaan cfa() or sem() model
 #' @param x results from a cfa() or sem() lavaan model

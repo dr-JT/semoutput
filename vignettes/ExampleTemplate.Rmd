@@ -6,7 +6,7 @@ title: "Examples"
 knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
 ```
 
-# {.tabset .tabset-pills}
+
 
 ```{r warning=FALSE, echo = FALSE}
 library(readr)

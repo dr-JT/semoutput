@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Model fit statistics
 #'
 #' This function will display a table of Model fit measures
 #' @param x results from a cfa() or sem() lavaan model

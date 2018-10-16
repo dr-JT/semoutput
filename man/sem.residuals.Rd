@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.residuals.R
 \name{sem.residuals}
 \alias{sem.residuals}
-\title{An SEM Output Function}
+\title{Residual correlation matrix}
 \usage{
 sem.residuals(x, print = TRUE)
 }

@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' SEM regression paths
 #'
 #' This function will display a table of SEM regression paths
 #' @param x results from a cfa() or sem() lavaan model

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.descriptives.R
 \name{sem.descriptives}
 \alias{sem.descriptives}
-\title{An SEM Output Function}
+\title{Descriptives table}
 \usage{
 sem.descriptives(x)
 }

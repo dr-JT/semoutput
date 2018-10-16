@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' R squared values
 #'
 #' This function will display a table of R squared values (explained variance)
 #' @param x results from a cfa() or sem() lavaan model

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.sig.R
 \name{sem.sig}
 \alias{sem.sig}
-\title{An SEM Output Function}
+\title{Chi-square significance test}
 \usage{
 sem.sig(x, print = TRUE)
 }

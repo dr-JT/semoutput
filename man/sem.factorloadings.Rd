@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.factorloadings.R
 \name{sem.factorloadings}
 \alias{sem.factorloadings}
-\title{An SEM Output Function}
+\title{Factor loadings}
 \usage{
 sem.factorloadings(x, standardized = TRUE, print = TRUE)
 }

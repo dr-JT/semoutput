@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Latent factor correlations
 #'
 #' This function will display a table of Latent factor correlations
 #' @param x results from a cfa() or sem() lavaan model

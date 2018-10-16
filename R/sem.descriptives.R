@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Descriptives table
 #'
 #' This function will display basic descriptive statistics for a dataframe
 #' @param x dataframe

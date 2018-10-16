@@ -1,4 +1,4 @@
-#' An SEM Output Function
+#' Factor loadings
 #'
 #' This function will display a table of Factor loadings
 #' @param x results from a cfa() or sem() lavaan model
