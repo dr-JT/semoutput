@@ -167,6 +167,7 @@ sem.fitmeasures(fit)
 sem.factorloadings(fit)
 sem.paths(fit)
 sem.factorcor(fit, factors = factors)
+sem.factorvar(fit, factors = factors)
 sem.rsquared(fit)
 ```
 
