@@ -8,7 +8,7 @@
 #' sem.residuals(x)
 
 sem.residuals <- function(x, print = TRUE){
-  table <- lavaan::residuals(x, type="cor")$cor
+  table <- lavaan::residuals(x, type="cor")$cov
   table[upper.tri(table)] <- NA
   diag(table) <- NA
 
