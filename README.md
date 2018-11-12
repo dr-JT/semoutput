@@ -1,6 +1,6 @@
 # semoutput <img src = "man/figures/logo_small.png" align = "right" />
 
-Package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
+An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
 See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
 
