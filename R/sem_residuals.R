@@ -3,21 +3,11 @@
 #' This function will display a table of the residual correlation matrix of a lavaan cfa() or sem() model
 #' @param x results from a cfa() or sem() lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.residuals
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.residuals
-#' @templateVar new sem_residuals
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.residuals(x)
+#' sem_residuals(x)
 
-sem.residuals <- function(x, print = TRUE){
-  .Deprecated("sem_residuals")
+sem_residuals <- function(x, print = TRUE){
   table <- lavaan::residuals(x, type="cor")$cov
   table[upper.tri(table)] <- NA
   diag(table) <- NA
