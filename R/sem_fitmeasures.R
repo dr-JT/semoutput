@@ -3,21 +3,11 @@
 #' This function will display a table of Model fit measures
 #' @param x results from a cfa() or sem() lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.fitmeasures
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.fitmeasures
-#' @templateVar new sem_fitmeasures
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.fitmeasures(x)
+#' sem_fitmeasures(x)
 
-sem.fitmeasures <- function(x, print = TRUE){
-  .Deprecated("sem_fitmeasures")
+sem_fitmeasures <- function(x, print = TRUE){
   stats <- lavaan::fitMeasures(x, c("cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "aic", "bic"))
   table <- data.frame(CFI=stats[["cfi"]], RMSEA=stats[["rmsea"]], 'RMSEA Lower'=stats[["rmsea.ci.lower"]],
                       'RMSEA Upper'=stats[["rmsea.ci.upper"]], AIC=stats[["aic"]], BIC=stats[["bic"]])
