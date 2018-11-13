@@ -3,21 +3,11 @@
 #' This function will display a table of Model significance tests
 #' @param x results from a cfa() or sem() lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.sig
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.sig
-#' @templateVar new sem_sig
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.sig(x)
+#' sem_sig(x)
 
-sem.sig <- function(x, print = TRUE){
-  .Deprecated("sem_sig")
+sem_sig <- function(x, print = TRUE){
   stats <- lavaan::fitMeasures(x, c("ntotal", "chisq", "pvalue", "df"))
   table <- data.frame('Sample Size'=stats[["ntotal"]], 'Chi-Square'=stats[["chisq"]], df=stats[["df"]], 'p-value'=stats[["pvalue"]])
 
