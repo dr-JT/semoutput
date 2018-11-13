@@ -2,21 +2,11 @@
 #'
 #' This function will display basic descriptive statistics for a dataframe
 #' @param x dataframe
-#'
-#' @templateVar fun sem.descriptives
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.descriptives
-#' @templateVar new sem_descriptives
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.descriptives(x)
+#' sem_descriptives(x)
 
-sem.descriptives <- function(x){
-  .Deprecated("sem_descriptives")
+sem_descriptives <- function(x){
   x <- tidyr::gather(x, "Variable", "value")
   x <- dplyr::group_by(x, Variable)
   x <- dplyr::summarise(x,
