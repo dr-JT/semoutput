@@ -5,21 +5,11 @@
 #' @param standardized logical whether to include standardized loadings (default = TRUE)
 #' @param factors list c() of factors included in the model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.factorvar
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.factorvar
-#' @templateVar new sem_factorvar
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.factorvar(x)
+#' sem_factorvar(x)
 
-sem.factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
-  .Deprecated("sem_factorvar")
+sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
   table <- lavaan::parameterEstimates(x, standardized = standardized)
   table <- dplyr::filter(table, op=="~~", lhs %in% factors, !is.na(pvalue), lhs==rhs)
   table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
