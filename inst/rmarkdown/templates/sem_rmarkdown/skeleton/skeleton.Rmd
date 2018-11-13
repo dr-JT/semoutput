@@ -61,7 +61,7 @@ mimic <- "EQS"
 
 ```{r}
 # Prints basic descriptive statistics
-sem.descriptives(data)
+sem_descriptives(data)
 ```
 
 ---
@@ -102,12 +102,12 @@ Mimic: `r mimic`
 #### Summary Output
 ```{r}
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
-sem.sig(fit)
-sem.fitmeasures(fit)
-sem.factorloadings(fit)
-sem.factorcor(fit, factors = factors)
-sem.factorvar(fit, factors = factors)
-sem.rsquared(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_factorcor(fit, factors = factors)
+sem_factorvar(fit, factors = factors)
+sem_rsquared(fit)
 ```
 
 #### Diagram Output
@@ -119,7 +119,7 @@ semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotatio
 #### Residual Correlation Matrix
 ```{r}
 ## If you want to see the residual correlation matrix
-sem.residuals(fit)
+sem_residuals(fit)
 ```
 
 
@@ -162,13 +162,13 @@ Mimic: `r mimic`
 #### Summary Output
 ```{r}
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
-sem.sig(fit)
-sem.fitmeasures(fit)
-sem.factorloadings(fit)
-sem.paths(fit)
-sem.factorcor(fit, factors = factors)
-sem.factorvar(fit, factors = factors)
-sem.rsquared(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_paths(fit)
+sem_factorcor(fit, factors = factors)
+sem_factorvar(fit, factors = factors)
+sem_rsquared(fit)
 ```
 
 #### Diagram Output
@@ -180,7 +180,7 @@ semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotatio
 #### Residual Correlation Matrix
 ```{r}
 ## If you want to see the residual correlation matrix
-sem.residuals(fit)
+sem_residuals(fit)
 ```
 
 

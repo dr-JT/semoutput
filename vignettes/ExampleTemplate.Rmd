@@ -45,7 +45,7 @@ mimic <- "lavaan"
 
 ```{r}
 # Prints basic descriptive statistics
-sem.descriptives(data)
+sem_descriptives(data)
 ```
 
 ---
@@ -91,12 +91,12 @@ fit <- cfa(model=model, data=data, mimic = mimic, missing=missing, std.lv = TRUE
 
 #### Summary Output
 ```{r}
-sem.sig(fit)
-sem.fitmeasures(fit)
-sem.factorloadings(fit)
-sem.factorcor(fit, factors = factors)
-sem.factorvar(fit, factors = factors)
-sem.rsquared(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_factorcor(fit, factors = factors)
+sem_factorvar(fit, factors = factors)
+sem_rsquared(fit)
 ```
 
 #### Diagram Output
@@ -106,7 +106,7 @@ semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotatio
 
 #### Residual Correlation Matrix
 ```{r}
-sem.residuals(fit)
+sem_residuals(fit)
 ```
 
 
@@ -158,12 +158,12 @@ fit <- sem(model=model, data=data, mimic = "EQS", missing=missing, std.lv = FALS
 
 #### Summary Output
 ```{r}
-sem.sig(fit)
-sem.fitmeasures(fit)
-sem.factorloadings(fit)
-sem.paths(fit)
-sem.factorcor(fit, factors = factors)
-sem.rsquared(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_paths(fit)
+sem_factorcor(fit, factors = factors)
+sem_rsquared(fit)
 ```
 
 #### Diagram Output
@@ -173,7 +173,7 @@ semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotatio
 
 #### Residual Correlation Matrix
 ```{r}
-sem.residuals(fit)
+sem_residuals(fit)
 ```
 
 
