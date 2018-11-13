@@ -3,21 +3,11 @@
 #' This function will display a table of R squared values (explained variance)
 #' @param x results from a cfa() or sem() lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.rsquared
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.rsquared
-#' @templateVar new sem_rsquared
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.rsquared(x)
+#' sem_rsquared(x)
 
-sem.rsquared <- function(x, print = TRUE){
-  .Deprecated("sem_rsquared")
+sem_rsquared <- function(x, print = TRUE){
   table <- lavaan::inspect(x, 'r2')
   table <- data.frame(table)
   table <- tibble::rownames_to_column(table)
