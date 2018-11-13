@@ -4,21 +4,11 @@
 #' @param x results from a cfa() or sem() lavaan model
 #' @param standardized logical whether to include standardized loadings (default = TRUE)
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.factorloadings
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.factorloadings
-#' @templateVar new sem_factorloadings
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.factorloadings(x)
+#' sem_factorloadings(x)
 
-sem.factorloadings <- function(x, standardized = TRUE, print = TRUE){
-  .Deprecated("sem_factorloadings")
+sem_factorloadings <- function(x, standardized = TRUE, print = TRUE){
   table <- lavaan::parameterEstimates(x, standardized = standardized)
   table <- dplyr::filter(table, op=="=~")
   table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
