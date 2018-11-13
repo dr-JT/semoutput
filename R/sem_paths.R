@@ -4,21 +4,11 @@
 #' @param x results from a cfa() or sem() lavaan model
 #' @param standardized logical whether to include standardized loadings (default = TRUE)
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#'
-#' @templateVar fun sem.paths
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem.paths
-#' @templateVar new sem_paths
-#' @template template-depr_pkg
-#'
 #' @export
 #' @examples
-#' sem.paths(x)
+#' sem_paths(x)
 
-sem.paths <- function(x, standardized = TRUE, print = TRUE){
-  .Deprecated("sem_paths")
+sem_paths <- function(x, standardized = TRUE, print = TRUE){
   table <- lavaan::parameterEstimates(x, standardized = standardized)
   table <- dplyr::filter(table, op=="~" | op==":=")
   table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
