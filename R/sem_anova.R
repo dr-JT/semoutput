@@ -10,7 +10,7 @@
 
 sem_anova <- function(m1, m2, print = TRUE){
   stats <- lavaan::anova(m1, m2)
-  table <- broom::tidy(stats)
+  table <- suppressWarnings(broom::tidy(stats))
   table <- dplyr::arrange(table, desc(df))
   table$term <- c(1, 2)
 
