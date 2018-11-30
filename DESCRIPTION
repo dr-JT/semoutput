@@ -13,6 +13,7 @@ Description: R Markdown template and functions to produce elegant CFA and SEM ou
 Imports:
     dplyr,
     tidyr,
+    broom,
     lavaan,
     knitr,
     kableExtra,
