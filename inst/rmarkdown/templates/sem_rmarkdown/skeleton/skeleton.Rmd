@@ -6,14 +6,12 @@ output:
     toc_float:
       collapsed: false
     code_folding: hide
-    fig_width: 8
-    fig_height: 8
 params:
   data: ""
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE)
+knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE, fig.width = 8, fig.height = 8)
 ```
 
 # Document Title {.tabset .tabset-pills}
