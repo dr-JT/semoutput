@@ -22,7 +22,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
                                                  ifelse(pvalue < .01, "**",
                                                         ifelse(pvalue < .05, "\\*", ""))))
     table <- dplyr::select(table, DV=lhs, Predictor=rhs,
-                           Loadings=est.std, SE=se, z, 'sig'=stars,
+                          `Path Values`=est.std, SE=se, z, 'sig'=stars,
                            Lower.CI = ci.lower, Upper.CI = ci.upper)
 
     if (print==TRUE){
@@ -40,7 +40,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
                                                         ifelse(pvalue < .05, "*", ""))))
     if (standardized==TRUE){
       table <- dplyr::select(table, DV=lhs, Predictor=rhs,
-                             Loadings=est, SE=se, z, 'sig'=stars,
+                             `Path Values`=est, SE=se, z, 'sig'=stars,
                              Lower.CI = ci.lower, Upper.CI = ci.upper, Loadings.std=std.all)
       if (print==TRUE){
         table <- knitr::kable(table, digits=digits, format="html", caption="Regression Paths")
@@ -51,7 +51,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
 
     if (standardized==FALSE){
       table <- dplyr::select(table, DV=lhs, Predictor=rhs,
-                             Loadings=est, SE=se, z, 'sig'=stars,
+                             `Path Values`=est, SE=se, z, 'sig'=stars,
                              Lower.CI = ci.lower, Upper.CI = ci.upper)
       if (print==TRUE){
         table <- knitr::kable(table, digits=digits, format="html", caption="Regression Paths")
