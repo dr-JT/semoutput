@@ -2,16 +2,17 @@
 title: ""
 output: 
   html_document:
+    code_download: yes
+    code_folding: hide
     toc: true
     toc_float:
       collapsed: false
-    code_folding: hide
 params:
   data: ""
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width = "200%", error = TRUE, message = FALSE, warning = TRUE, fig.width = 8, fig.height = 8)
+knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE, fig.width = 8, fig.height = 8)
 ```
 
 # Document Title {.tabset .tabset-pills}
@@ -102,7 +103,7 @@ Mimic: `r mimic`
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
 sem_fitmeasures(fit)
-sem_factorloadings(fit)
+sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
 sem_factorcor(fit, factors = factors)
 sem_factorvar(fit, factors = factors)
 sem_rsquared(fit)
@@ -122,10 +123,20 @@ sem_residuals(fit)
 
 
 #### Full Output
+
+##### Summary
 ```{r}
-## The typical lavaan output
 summary(fit, fit.measures=TRUE, standardized=TRUE)
-varTable(fit)
+```
+
+##### Parameter Estimates
+```{r}
+standardizedSolution(fit)
+```
+
+
+##### Modification Indices
+```{r}
 modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ```
 
@@ -162,8 +173,8 @@ Mimic: `r mimic`
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
 sem_fitmeasures(fit)
-sem_factorloadings(fit)
-sem_paths(fit)
+sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
+sem_paths(fit, standardized = TRUE, ci = "standardized")
 sem_factorcor(fit, factors = factors)
 sem_factorvar(fit, factors = factors)
 sem_rsquared(fit)
@@ -183,9 +194,20 @@ sem_residuals(fit)
 
 
 #### Full Output
+
+##### Summary
 ```{r}
-## The typical lavaan output
 summary(fit, fit.measures=TRUE, standardized=TRUE)
+```
+
+##### Parameter Estimates
+```{r}
+standardizedSolution(fit)
+```
+
+
+##### Modification Indices
+```{r}
 modificationIndices(fit, sort.=TRUE, minimum.value=3)
 ```
 ---
