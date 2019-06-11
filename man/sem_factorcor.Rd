@@ -4,12 +4,10 @@
 \alias{sem_factorcor}
 \title{Latent factor correlations}
 \usage{
-sem_factorcor(x, standardized = TRUE, factors = c(), print = TRUE)
+sem_factorcor(x, factors = c(), print = TRUE)
 }
 \arguments{
 \item{x}{results from a cfa() or sem() lavaan model}
-
-\item{standardized}{logical whether to include standardized loadings (default = TRUE)}
 
 \item{factors}{list c() of factors included in the model}
 
