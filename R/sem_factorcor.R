@@ -2,20 +2,21 @@
 #'
 #' This function will display a table of Latent factor correlations
 #' @param x results from a cfa() or sem() lavaan model
-#' @param standardized logical whether to include standardized loadings (default = TRUE)
 #' @param factors list c() of factors included in the model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #' @examples
 #' sem_factorcor(x)
 
-sem_factorcor <- function(x, standardized = TRUE, factors = c(), print = TRUE){
-  table <- lavaan::parameterEstimates(x, standardized = standardized)
+sem_factorcor <- function(x, factors = c(), print = TRUE){
+  table <- lavaan::standardizedSolution(x, level = 0.95)
   table <- dplyr::filter(table, op=="~~", lhs %in% factors, !is.na(pvalue), lhs!=rhs)
   table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
                                        ifelse(pvalue < .01, "**",
                                               ifelse(pvalue < .05, "*", ""))))
-  table <- dplyr::select(table, 'Factor 1'=lhs, 'Factor 2'=rhs, r=std.all, sig=stars)
+  table <- dplyr::select(table, 'Factor 1'=lhs, 'Factor 2'=rhs,
+                         r=std.all, SE=se, sig=stars,
+                         Lower.CI = ci.lower, Upper.CI = ci.upper)
 
   if (print==TRUE){
     table <- knitr::kable(table, digits=3, format="html", caption="Latent Factor Correlations")
