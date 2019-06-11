@@ -20,7 +20,7 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized", ci.l
     table <- dplyr::filter(table, op=="=~")
     table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
                                                  ifelse(pvalue < .01, "**",
-                                                        ifelse(pvalue < .05, "\\*", ""))))
+                                                        ifelse(pvalue < .05, "*", ""))))
     table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs,
                            Loadings=est.std, SE=se, z, 'sig'=stars,
                            Lower.CI = ci.lower, Upper.CI = ci.upper)
