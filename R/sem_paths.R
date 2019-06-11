@@ -20,8 +20,8 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
     table <- dplyr::filter(table, op=="~" | op==":=")
     table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
                                                  ifelse(pvalue < .01, "**",
-                                                        ifelse(pvalue < .05, "\\*", ""))))
-    table <- dplyr::select(table, DV=lhs, Predictor=rhs,
+                                                        ifelse(pvalue < .05, "*", ""))))
+    table <- dplyr::select(table, Predictor=rhs, DV=lhs,
                           `Path Values`=est.std, SE=se, z, 'sig'=stars,
                            Lower.CI = ci.lower, Upper.CI = ci.upper)
 
@@ -39,7 +39,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
                                                  ifelse(pvalue < .01, "**",
                                                         ifelse(pvalue < .05, "*", ""))))
     if (standardized==TRUE){
-      table <- dplyr::select(table, DV=lhs, Predictor=rhs,
+      table <- dplyr::select(table, Predictor=rhs, DV=lhs,
                              `Path Values`=est, SE=se, z, 'sig'=stars,
                              Lower.CI = ci.lower, Upper.CI = ci.upper, Loadings.std=std.all)
       if (print==TRUE){
@@ -50,7 +50,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized", ci.level = 0.
     }
 
     if (standardized==FALSE){
-      table <- dplyr::select(table, DV=lhs, Predictor=rhs,
+      table <- dplyr::select(table, Predictor=rhs, DV=lhs,
                              `Path Values`=est, SE=se, z, 'sig'=stars,
                              Lower.CI = ci.lower, Upper.CI = ci.upper)
       if (print==TRUE){
