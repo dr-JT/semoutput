@@ -15,7 +15,7 @@ sem_factorcor <- function(x, factors = c(), print = TRUE){
                                        ifelse(pvalue < .01, "**",
                                               ifelse(pvalue < .05, "*", ""))))
   table <- dplyr::select(table, 'Factor 1'=lhs, 'Factor 2'=rhs,
-                         r=est.std, SE=se, sig=stars,
+                         r=est.std, sig=stars, SE=se,
                          Lower.CI = ci.lower, Upper.CI = ci.upper)
 
   if (print==TRUE){

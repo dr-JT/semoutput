@@ -22,8 +22,9 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized", ci.l
                                                  ifelse(pvalue < .01, "**",
                                                         ifelse(pvalue < .05, "*", ""))))
     table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs,
-                           Loadings=est.std, SE=se, z, 'sig'=stars,
-                           Lower.CI = ci.lower, Upper.CI = ci.upper)
+                           Loadings=est.std, 'sig'=stars,
+                           Lower.CI = ci.lower, Upper.CI = ci.upper,
+                           SE=se, z)
 
     if (print==TRUE){
       table <- knitr::kable(table, digits=digits, format="html", caption="Factor Loadings")
@@ -40,8 +41,9 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized", ci.l
                                                         ifelse(pvalue < .05, "*", ""))))
     if (standardized==TRUE){
       table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs,
-                             Loadings=est, SE=se, z, 'sig'=stars,
-                             Lower.CI = ci.lower, Upper.CI = ci.upper, Loadings.std=std.all)
+                             Loadings=est, 'sig'=stars,
+                             Lower.CI = ci.lower, Upper.CI = ci.upper,
+                             SE=se, z, Loadings.std=std.all)
 
       if (print==TRUE){
         table <- knitr::kable(table, digits=digits, format="html", caption="Factor Loadings")
@@ -52,8 +54,9 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized", ci.l
 
     if (standardized==FALSE){
       table <- dplyr::select(table, 'Latent Factor'=lhs, Indicator=rhs,
-                             Loadings=est, SE=se, z, 'sig'=stars,
-                             Lower.CI = ci.lower, Upper.CI = ci.upper)
+                             Loadings=est, 'sig'=stars,
+                             Lower.CI = ci.lower, Upper.CI = ci.upper,
+                             SE=se, z)
 
       if (print==TRUE){
         table <- knitr::kable(table, digits=digits, format="html", caption="Factor Loadings")
