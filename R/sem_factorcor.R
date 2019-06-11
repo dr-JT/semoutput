@@ -15,8 +15,9 @@ sem_factorcor <- function(x, factors = c(), print = TRUE){
                                        ifelse(pvalue < .01, "**",
                                               ifelse(pvalue < .05, "*", ""))))
   table <- dplyr::select(table, 'Factor 1'=lhs, 'Factor 2'=rhs,
-                         r=est.std, sig=stars, SE=se,
-                         Lower.CI = ci.lower, Upper.CI = ci.upper)
+                         r=est.std, sig=stars,
+                         Lower.CI = ci.lower, Upper.CI = ci.upper,
+                         SE=se)
 
   if (print==TRUE){
     table <- knitr::kable(table, digits=3, format="html", caption="Latent Factor Correlations")
