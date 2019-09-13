@@ -218,7 +218,7 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 
 ### SEM {.tabset .tabset-pills}
 
-```{r warning=TRUE}
+```{r comment=''}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
 factors <- c("dem60", "ind60", "dem65")
 # Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
