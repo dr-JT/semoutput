@@ -7,17 +7,14 @@
 sem_factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
 }
 \arguments{
-\item{x}{results from a cfa() or sem() lavaan model}
+\item{x}{a cfa() or sem() lavaan model}
 
 \item{factors}{list c() of factors included in the model}
 
-\item{standardized}{logical whether to include standardized loadings (default = TRUE)}
+\item{standardized}{logical. include standardized loadings? (default = TRUE)}
 
-\item{print}{Create a knitr table for displaying as html table (default = TRUE)}
+\item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }
 \description{
 This function will display a table of Latent factor variances
-}
-\examples{
-sem_factorvar(x)
 }

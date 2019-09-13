@@ -7,7 +7,7 @@
 sem_factorcor(x, factors = c(), print = TRUE)
 }
 \arguments{
-\item{x}{results from a cfa() or sem() lavaan model}
+\item{x}{a cfa() or sem() lavaan model}
 
 \item{factors}{list c() of factors included in the model}
 
@@ -15,7 +15,4 @@ sem_factorcor(x, factors = c(), print = TRUE)
 }
 \description{
 This function will display a table of Latent factor correlations
-}
-\examples{
-sem_factorcor(x)
 }

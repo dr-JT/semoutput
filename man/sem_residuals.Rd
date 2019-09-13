@@ -7,13 +7,10 @@
 sem_residuals(x, print = TRUE)
 }
 \arguments{
-\item{x}{results from a cfa() or sem() lavaan model}
+\item{x}{a cfa() or sem() lavaan model}
 
-\item{print}{Create a knitr table for displaying as html table (default = TRUE)}
+\item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }
 \description{
-This function will display a table of the residual correlation matrix of a lavaan cfa() or sem() model
-}
-\examples{
-sem_residuals(x)
+This function will display a table of the residual correlation matrix
 }
