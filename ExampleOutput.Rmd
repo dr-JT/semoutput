@@ -1,5 +1,5 @@
 ---
-title: "Document Title"
+title: "Example Output"
 output: 
   html_document:
     code_download: yes
@@ -8,7 +8,7 @@ output:
     toc_float:
       collapsed: false
 params:
-  import.file: ""       # Relative file path to data
+  import.file: "data/HolzingerSwineford1939.csv"       # Relative file path to data
   mimic: "lavaan"       # Which software program to mimic for estimating models
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
   std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
@@ -42,10 +42,19 @@ library(sjPlot)
 Import Data
 
 Data file: `r params$import.file`
-```{r warning=FALSE}
+
+We will actually use two data sets in this example output. They come from the `lavaan` tutorial data sets; cfa data set is`HolzingerSwineford1939` and sem data set is `PoliticalDemocracy`
+
+```{r warning=FALSE, eval = FALSE}
 ## Import Data
 data <- read_csv(params$import.file)
 ```
+
+```{r}
+cfa_data <- dplyr::select(HolzingerSwineford1939, -id, -school)
+sem_data <- PoliticalDemocracy
+```
+
 
 lavaan parameters:
 
@@ -69,7 +78,8 @@ bootstrap = `r params$bootstrap`
 
 ```{r}
 # Prints basic descriptive statistics
-sem_descriptives(data)
+sem_descriptives(cfa_data)
+sem_descriptives(sem_data)
 ```
 
 ---
@@ -78,7 +88,8 @@ sem_descriptives(data)
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
-sjt.corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+sjt.corr(cfa_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+sjt.corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
 ---
@@ -88,10 +99,13 @@ sjt.corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 
 ```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
-factors <- c()
+factors <- c("visual", "textual", "speed")
 # Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
 model <- '
 # latent factors
+visual =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+speed =~ x7 + x8 + x9
 
 # correlated errors
 
@@ -100,7 +114,7 @@ model <- '
 '
 # You might want to specify other arguments. But this is pretty standard. 
 #std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
-fit <- cfa(model = model, data = data, 
+fit <- cfa(model = model, data = cfa_data, 
            mimic = params$mimic, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
@@ -160,21 +174,31 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 
 ```{r warning=TRUE}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
-factors <- c()
+factors <- c("dem60", "ind60", "dem65")
 # Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
 model <- '
 # measurement model
+ind60 =~ x1 + x2 + x3
+dem60 =~ y1 + y2 + y3 + y4
+dem65 =~ y5 + y6 + y7 + y8
 
 # regressions
+dem60 ~ ind60
+dem65 ~ ind60 + dem60
 
 # covariances
+y1 ~~ y5
+y2 ~~ y4 + y6
+y3 ~~ y7
+y4 ~~ y8
+y6 ~~ y8
 
 # variances
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
 #std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
-fit <- sem(model = model, data = data, 
+fit <- sem(model = model, data = sem_data, 
            mimic = params$mimic, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
