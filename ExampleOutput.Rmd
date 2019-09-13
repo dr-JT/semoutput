@@ -23,6 +23,28 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 # {.tabset .tabset-pills}
 
+**NOTE: We will actually use two data sets in this example output. They come from the `lavaan` tutorial data sets; cfa data set is`HolzingerSwineford1939` and sem data set is `PoliticalDemocracy`**
+
+**NOTE: You can download the RMarkdown file associated with this output by selecting the 'Code' button on the top-right of this document and selecting "Download Rmd". You can also display the code used to produce each output by selecting the 'Code' buttons along the right of the document.** 
+
+
+**NOTE: for the entire document there are 2 tabs:**
+
+- The "Results" tab contains ALL the results output
+
+- The "Session Infor" tab contains information about the current R Session including what packages were loaded, how to cite the `lavaan` package and how to cite the R statistical software.
+
+**NOTE: For each CFA or SEM model output there are 4 tabs:**
+
+- The "Summary Output" tab display nice looking tables summarizing the model results
+
+- The "Diagram Output" tab will display a model diagram
+
+- The "Residual Correlation Matrix" tab will display the residual correlation matrix
+
+- The "Full Output" tab will display the results from `summary()` along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the "Summary Output". You can also add additional output to this section if you need more info about the model.
+
+
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
 ## Results
@@ -42,8 +64,6 @@ library(sjPlot)
 Import Data
 
 Data file: `r params$import.file`
-
-We will actually use two data sets in this example output. They come from the `lavaan` tutorial data sets; cfa data set is`HolzingerSwineford1939` and sem data set is `PoliticalDemocracy`
 
 ```{r warning=FALSE, eval = FALSE}
 ## Import Data
@@ -76,6 +96,8 @@ bootstrap = `r params$bootstrap`
 
 ### Descriptives 
 
+Typically there is only one descriptive table displayed but since we have two data sets for this one output two descriptive tables are displayed.
+
 ```{r}
 # Prints basic descriptive statistics
 sem_descriptives(cfa_data)
@@ -85,6 +107,10 @@ sem_descriptives(sem_data)
 ---
 
 ### Correlation Matrix
+
+There are also two correlation matrices
+
+This is a publication quality correlation matrix that can be inserted into a manuscript.
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
@@ -217,6 +243,9 @@ sem_rsquared(fit)
 ```
 
 #### Diagram Output
+
+In the Rmarkdown document I changed the r-code chunck option for figure width to `fig.width = 10` to make the image wider. Notice in the 'Code' I also changed the default paramter for edge labels to `edge.label.cex = 8`.
+
 ```{r fig.width=10}
 ## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
