@@ -104,6 +104,7 @@ fit <- cfa(model = model, data = data,
            mimic = params$mimic, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
+cat("Model: \n", model)
 ```
 
 #### Summary Output
@@ -178,6 +179,7 @@ fit <- sem(model = model, data = data,
            mimic = params$mimic, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
+cat("Model: \n", model)
 ```
 
 #### Summary Output
