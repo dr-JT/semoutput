@@ -217,13 +217,13 @@ sem_rsquared(fit)
 ```
 
 #### Diagram Output
-```{r}
+```{r fig.width=10}
 ## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
          sizeLat = 10, nCharNodes = 8, sizeMan = 11, sizeMan2 = 4, 
-         edge.label.cex = 1.2, edge.color = "#000000")
+         edge.label.cex = .8, edge.color = "#000000")
 ## If you want to modify the plot see ?semPlot::semPaths for argument descriptions
 ```
 

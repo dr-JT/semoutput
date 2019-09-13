@@ -2,7 +2,7 @@
 
 An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
-See an [Example Output](http://englelab.gatech.edu/R/Example_semoutput.html)
+Interact with an <a href="http://englelab.gatech.edu/R/ExampleOutput.html" target="_blank">Example Output</a>
 
 ## Install
 
@@ -61,26 +61,26 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ```
 
-## Screen Shots
+### Screen Shots
 
-### Model Fit
+#### Model Fit
 
 ![alt text](man/figures/ModelFit_CFA.png)
 
-### CFA Output
+#### CFA Output
 
 ![alt text](man/figures/Output_CFA.png)
 
-### SEM Output
+#### SEM Output
 
 ![alt text](man/figures/Output_SEM.png)
 
 
-### Model Diagram
+#### Model Diagram
 
 ![alt text](man/figures/DiagramModel_SEM.png)
 
-### Correlation Matrix
+#### Correlation Matrix
 
 ![alt text](man/figures/CorrelationMatrix.png)
 

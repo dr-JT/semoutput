@@ -1,8 +1,7 @@
-pandoc: 2.2.3.2
-pkgdown: 1.1.0
+pandoc: 2.3.1
+pkgdown: 1.3.0
 pkgdown_sha: ~
-articles:
-  ExampleTemplate: ExampleTemplate.html
+articles: []
 urls:
   reference: https://dr-jt.github.io/semoutput//reference
   article: https://dr-jt.github.io/semoutput//articles
