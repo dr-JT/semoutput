@@ -103,11 +103,17 @@
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.</p>
-<p>Once you install the package, you will be able to access the RMarkdown template by going to</p>
+<p><strong>Once you install the package, you will be able to access the RMarkdown template by going to</strong>:</p>
 <p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt; SEM RMarkdown</p>
-<p>You simply need to specify the data file location in the YAML header under</p>
-<pre><code>params:
-  data: "filepath"</code></pre>
+<p>You simply need to specify the data file location and the following default model parameters in the YAML header</p>
+<pre class="{r}"><code>params:
+  import.file: ""       # Relative file path to data
+  mimic: "lavaan"       # Which software program to mimic for estimating models
+  missing: "ML"         # How to deal with missing values: "ML" or "listwise"
+  std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
+  std.ov: FALSE         # Staandardize all observed varialbes?
+  se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
+  bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?</code></pre>
 <p>Then specify the CFA or SEM model using lavaan syntax.</p>
 <p>lavaan syntax is very intuitive to use and is documented with useful tutorials</p>
 <p><a href="http://lavaan.ugent.be/tutorial/index.html" class="uri">http://lavaan.ugent.be/tutorial/index.html</a></p>

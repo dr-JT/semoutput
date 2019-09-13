@@ -44,6 +44,24 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 - The "Full Output" tab will display the results from `summary()` along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the "Summary Output". You can also add additional output to this section if you need more info about the model.
 
+**Once you install the package, you will be able to access this Rmarkdown template by going to**:
+
+File -> New File -> R Markdown… -> From Template -> CFA/SEM (lavaan)
+
+In the YAML header you will need to specify the default parameters (select the 'Code' button to the right):
+
+```{r eval=FALSE, }
+params:
+  import.file: ""       # Relative file path to data
+  mimic: "lavaan"       # Which software program to mimic for estimating models
+  missing: "ML"         # How to deal with missing values: "ML" or "listwise"
+  std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
+  std.ov: FALSE         # Staandardize all observed varialbes?
+  se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
+  bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
+```
+
+
 
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
