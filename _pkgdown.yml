@@ -2,7 +2,7 @@ url: https://dr-jt.github.io/semoutput/
 
 authors:
   Jason Tsukahara:
-    href: http://englelab.gatech.edu/jason.html
+    href: http://englelab.gatech.edu/jason
 
 template:
   params:
@@ -10,4 +10,23 @@ template:
       api_key: API_KEY
       index_name: INDEX_NAME
 
+reference:
+- title: Data
+  contents:
+  - sem_descriptives
+- title: Model Fit
+  contents:
+  - sem_sig
+  - sem_fitmeasures
+  - sem_anova
+- title: Model Parameters
+  contents:
+  - sem_factorloadings
+  - sem_factorcor
+  - sem_factorvar
+  - sem_paths
+  - sem_rsquared
+- title: Model Diagnostics
+  contents:
+  - sem_residuals
 

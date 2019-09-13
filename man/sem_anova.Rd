@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem_anova.R
 \name{sem_anova}
 \alias{sem_anova}
-\title{Chi-square significance test}
+\title{Model comparison}
 \usage{
 sem_anova(m1, m2, print = TRUE)
 }

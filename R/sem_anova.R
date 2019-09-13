@@ -1,4 +1,4 @@
-#' Chi-square significance test
+#' Model comparison
 #'
 #' This function will display a table of Model significance tests
 #' @param m1 A nested lavaan model
