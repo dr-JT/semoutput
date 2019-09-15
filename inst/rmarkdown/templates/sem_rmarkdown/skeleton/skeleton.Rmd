@@ -82,6 +82,7 @@ sjt.corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
 ---
+
 ---
 
 ### CFA {.tabset .tabset-pills}
@@ -159,6 +160,7 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
 ---
+
 ---
 
 ### SEM {.tabset .tabset-pills}
@@ -240,6 +242,7 @@ standardizedSolution(fit)
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
+
 ---
 
 ---
