@@ -164,13 +164,16 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 factors <- c()
 # Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
 model <- '
-# measurement model
+# latent factors
 
-# regressions
+
+# variances
+
 
 # covariances
 
-# variances
+
+# regressions
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
