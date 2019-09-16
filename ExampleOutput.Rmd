@@ -73,6 +73,7 @@ Required Packages
 ```{r warning=FALSE}
 library(readr)
 library(lavaan)
+library(psych)
 library(semoutput)
 library(semPlot)
 library(sjPlot)
@@ -137,7 +138,37 @@ sjt.corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
 ---
+
 ---
+
+### EFA {.tabset .tabset-pills}
+
+```{r}
+efa_data <- dplyr::select(cfa_data, dplyr::starts_with("x"))
+efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
+```
+
+#### Summary Output
+```{r}
+efa_method(efa_fit)
+efa_var(efa_fit)
+efa_loadings(efa_fit)
+```
+
+#### Diagram Output
+```{r}
+VSS.scree(efa_data)
+fa.diagram(efa_fit)
+```
+
+#### Full Output
+```{r}
+efa_fit
+```
+
+----
+
+----
 
 ### CFA {.tabset .tabset-pills}
 
