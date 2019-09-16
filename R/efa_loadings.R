@@ -16,7 +16,7 @@ efa_loadings <- function(fit, print = TRUE){
 
   comm <- as.data.frame(fit$communality)
   comm <- tibble::rownames_to_column(comm)
-  comm <- rename(comm, Variable = rowname, `h2` = `fit$communality`)
+  comm <- dplyr::rename(comm, Variable = rowname, `h2` = `fit$communality`)
 
   table <- merge(table, comm, by = "Variable", all = TRUE)
   table <- dplyr::arrange(table, id)
