@@ -4,27 +4,19 @@
 #' @param m1 A nested lavaan model
 #' @param m2 A nested lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#' #' @templateVar fun sem_anova
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem_anova
-#' @templateVar new sem_modelcomp
-#' @template template-depr_pkg
 #' @export
 #'
 
-sem_anova <- function(m1, m2, print = TRUE){
-  .Deprecated("sem_modelcomp")
+sem_modelcomp <- function(m1, m2, print = TRUE){
   stats <- lavaan::anova(m1, m2)
   table <- suppressWarnings(broom::tidy(stats))
   table <- dplyr::arrange(table, desc(df))
   table$term <- c(1, 2)
 
-  if (print==TRUE){
-    table <- knitr::kable(table, digits=3, format="html",
-                          caption="Model Comparison", row.names = FALSE)
-    table <- kableExtra::kable_styling(table, full_width=FALSE,
+  if (print == TRUE){
+    table <- knitr::kable(table, digits = 3, format = "html",
+                          caption = "Model Comparison", row.names = FALSE)
+    table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")
   }
 

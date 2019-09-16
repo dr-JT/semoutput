@@ -2,7 +2,7 @@
 % Please edit documentation in R/sem.descriptives.R, R/sem.factorcor.R,
 %   R/sem.factorloadings.R, R/sem.factorvar.R, R/sem.fitmeasures.R,
 %   R/sem.paths.R, R/sem.residuals.R, R/sem.rsquared.R, R/sem.sig.R,
-%   R/semoutput-deprecated.r
+%   R/sem_anova.R, R/semoutput-deprecated.r
 \name{semoutput-deprecated}
 \alias{semoutput-deprecated}
 \alias{sem.descriptives}
@@ -14,6 +14,7 @@
 \alias{sem.residuals}
 \alias{sem.rsquared}
 \alias{sem.sig}
+\alias{sem_anova}
 \title{Deprecated functions in package \pkg{semoutput}.}
 \usage{
 sem.descriptives(x)
@@ -33,6 +34,8 @@ sem.residuals(x, print = TRUE)
 sem.rsquared(x, print = TRUE)
 
 sem.sig(x, print = TRUE)
+
+sem_anova(m1, m2, print = TRUE)
 }
 \description{
 The functions listed below are deprecated and will be defunct in
@@ -83,6 +86,11 @@ For \code{sem.rsquared}, use \code{\link{sem_rsquared}}.
 \section{\code{sem.sig}}{
 
 For \code{sem.sig}, use \code{\link{sem_sig}}.
+}
+
+\section{\code{sem_anova}}{
+
+For \code{sem_anova}, use \code{\link{sem_modelcomp}}.
 }
 
 \examples{
