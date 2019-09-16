@@ -29,7 +29,7 @@ efa_loadings <- function(fit, print = TRUE){
                                        position = "left")
     table <- kableExtra::add_header_above(table,
                                           c(" ", "Factors" = factors.n, " "))
-    table <- kableExtra::column_spec(1 + factors.n, border_right = TRUE)
+    table <- kableExtra::column_spec(table, 1 + factors.n, border_right = TRUE)
   }
 
   return(table)
