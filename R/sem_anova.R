@@ -4,7 +4,7 @@
 #' @param m1 A nested lavaan model
 #' @param m2 A nested lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#' #' @templateVar fun sem_anova
+#' @templateVar fun sem_anova
 #' @template template-depr_fun
 NULL
 
