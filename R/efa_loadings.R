@@ -27,7 +27,8 @@ efa_loadings <- function(fit, print = TRUE){
                           caption = "Factor Loadings", row.names = FALSE)
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")
-    table <- kableExtra::add_header_above(" ", "Factors" = factors.n, " ")
+    table <- kableExtra::add_header_above(table,
+                                          c(" ", "Factors" = factors.n, " "))
   }
 
   return(table)
