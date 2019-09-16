@@ -4,6 +4,18 @@
     <loc>https://dr-jt.github.io/semoutput//index.html</loc>
   </url>
   <url>
+    <loc>https://dr-jt.github.io/semoutput//reference/efa_loadings.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput//reference/efa_method.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput//reference/efa_rotmatrix.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput//reference/efa_var.html</loc>
+  </url>
+  <url>
     <loc>https://dr-jt.github.io/semoutput//reference/sem.descriptives-deprecated.html</loc>
   </url>
   <url>
@@ -31,9 +43,6 @@
     <loc>https://dr-jt.github.io/semoutput//reference/sem.sig-deprecated.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_anova.html</loc>
-  </url>
-  <url>
     <loc>https://dr-jt.github.io/semoutput//reference/sem_descriptives.html</loc>
   </url>
   <url>
@@ -47,6 +56,9 @@
   </url>
   <url>
     <loc>https://dr-jt.github.io/semoutput//reference/sem_fitmeasures.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput//reference/sem_modelcomp.html</loc>
   </url>
   <url>
     <loc>https://dr-jt.github.io/semoutput//reference/sem_paths.html</loc>

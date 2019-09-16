@@ -18,7 +18,7 @@ reference:
   contents:
   - sem_sig
   - sem_fitmeasures
-  - sem_anova
+  - sem_modelcomp
 - title: Model Parameters
   contents:
   - sem_factorloadings
@@ -29,4 +29,10 @@ reference:
 - title: Model Diagnostics
   contents:
   - sem_residuals
+- title: Exploratory Factor Analysis
+  contents:
+  - efa_method
+  - efa_var
+  - efa_loadings
+  - efa_rotmatrix
 

@@ -6,6 +6,8 @@ Updated: 11/29/2018
 
 * Added actual p-values to all tables not just significant stars
 
+* Renamed `sem_anova()` to `sem_modelcomp()`
+
 # semoutput 0.1.2
 
 Updated: 11/29/2018
