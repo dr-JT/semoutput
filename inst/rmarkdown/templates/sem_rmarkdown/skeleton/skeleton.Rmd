@@ -33,6 +33,7 @@ Required Packages
 ```{r warning=FALSE}
 library(readr)
 library(lavaan)
+library(psych)
 library(semoutput)
 library(semPlot)
 library(sjPlot)
