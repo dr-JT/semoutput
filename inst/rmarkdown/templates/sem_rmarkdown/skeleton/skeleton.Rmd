@@ -85,6 +85,35 @@ sjt.corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 
 ---
 
+### EFA {.tabset .tabset-pills}
+
+```{r}
+efa_data <- data
+efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
+```
+
+#### Summary Output
+```{r}
+efa_method(efa_fit)
+efa_var(efa_fit)
+efa_loadings(efa_fit)
+```
+
+#### Diagram Output
+```{r}
+VSS.scree(efa_data)
+fa.diagram(efa_fit)
+```
+
+#### Full Output
+```{r}
+efa_fit
+```
+
+----
+
+----
+
 ### CFA {.tabset .tabset-pills}
 
 ```{r}
