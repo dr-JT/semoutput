@@ -153,6 +153,7 @@ efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 efa_method(efa_fit)
 efa_var(efa_fit)
 efa_loadings(efa_fit)
+efa_rotmatrix(efa_fit)
 ```
 
 #### Diagram Output
