@@ -12,6 +12,3 @@ sem_descriptives(x)
 \description{
 This function will display basic descriptive statistics for a dataframe
 }
-\examples{
-sem_descriptives(x)
-}
