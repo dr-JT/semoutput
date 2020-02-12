@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Residual correlation matrix — sem.residuals-deprecated • semoutput</title>
+<title>Model comparison — sem_anova-deprecated • semoutput</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,9 +45,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Residual correlation matrix — sem.residuals-deprecated" />
+<meta property="og:title" content="Model comparison — sem_anova-deprecated" />
 
-<meta property="og:description" content="This function will display a table of the residual correlation matrix of a lavaan cfa() or sem() model" />
+<meta property="og:description" content="This function will display a table of Model significance tests" />
 
 <meta property="og:image" content="https://dr-jt.github.io/semoutput/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -127,25 +127,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Residual correlation matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dr-JT/semoutput/blob/master/R/sem.residuals.R'><code>R/sem.residuals.R</code></a></small>
-    <div class="hidden name"><code>sem.residuals-deprecated.Rd</code></div>
+    <h1>Model comparison</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dr-JT/semoutput/blob/master/R/sem_anova.R'><code>R/sem_anova.R</code></a></small>
+    <div class="hidden name"><code>sem_anova-deprecated.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function will display a table of the residual correlation matrix of a lavaan cfa() or sem() model</p>
+    <p>This function will display a table of Model significance tests</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='semoutput-deprecated.html'>sem.residuals</a></span>(<span class='no'>x</span>, <span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='semoutput-deprecated.html'>sem_anova</a></span>(<span class='no'>m1</span>, <span class='no'>m2</span>, <span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>results from a cfa() or sem() lavaan model</p></td>
+      <th>m1</th>
+      <td><p>A nested lavaan model</p></td>
+    </tr>
+    <tr>
+      <th>m2</th>
+      <td><p>A nested lavaan model</p></td>
     </tr>
     <tr>
       <th>print</th>
