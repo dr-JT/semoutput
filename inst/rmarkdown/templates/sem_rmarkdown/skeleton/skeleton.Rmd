@@ -25,6 +25,8 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
+See [Package References](https://dr-jt.github.io/semoutput/reference/index.html){target="_blank"} for help documentation on `semoutput` functions
+
 ## Results
 
 ### Setup
