@@ -24,9 +24,9 @@ The package contains an R Markdwon template that makes it very easy to run CFA a
 
 **Once you install the package, you will be able to access the RMarkdown template by going to**:
 
-File -> New File -> R Markdown... -> From Template -> SEM RMarkdown
+File -> New File -> R Markdown... -> From Template -> CFA/SEM (lavaan)
 
-You simply need to specify the data file location and the following default model parameters in the YAML header 
+When the RMarkdown file opens you need to specify the data file location and the following default model parameters in the YAML header 
 
 ```{r}
 params:
@@ -38,8 +38,24 @@ params:
   se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ```
-  
-Then specify the CFA or SEM model using lavaan syntax. 
+
+The RMarkdown document is organized into 2 tabs:
+
+- __Results__: contains ALL the results output
+
+- __Session Info__: contains information about the current R Session including what packages were loaded, how to cite the lavaan package, and how to cite the R statistical software.
+
+Within the **Results** tab are the EFA, CFA, and SEM model outputs. For each of these sections there are 4 tabs:
+
+- __Summary Output__: displays nice looking tables summarizing the model results
+
+- __Diagram Output__: displays a model diagram
+
+- __Residual Correlation Matrix__: displays the residual correlation matrix
+
+- __Full Output__: display the results from summary() along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the “Summary Output”. You can also add additional output to this section if you need more info about the model.
+
+## lavaan
 
 lavaan syntax is very intuitive to use and is documented with useful tutorials
 
@@ -67,26 +83,26 @@ fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
 ```
 
-### Screen Shots
+## Screen Shots
 
-#### Model Fit
+### Model Fit
 
 ![alt text](man/figures/ModelFit_CFA.png)
 
-#### CFA Output
+### CFA Output
 
 ![alt text](man/figures/Output_CFA.png)
 
-#### SEM Output
+### SEM Output
 
 ![alt text](man/figures/Output_SEM.png)
 
 
-#### Model Diagram
+### Model Diagram
 
 ![alt text](man/figures/DiagramModel_SEM.png)
 
-#### Correlation Matrix
+### Correlation Matrix
 
 ![alt text](man/figures/CorrelationMatrix.png)
 
