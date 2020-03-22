@@ -34,6 +34,8 @@ See [Package References](https://dr-jt.github.io/semoutput/reference/index.html)
 Required Packages
 ```{r warning=FALSE}
 library(readr)
+library(here)
+library(dplyr)
 library(lavaan)
 library(psych)
 library(semoutput)
@@ -47,7 +49,7 @@ Import Data
 Data file: `r params$import.file`
 ```{r warning=FALSE}
 ## Import Data
-data <- read_csv(params$import.file)
+data <- read_csv(here(params$import.file))
 ```
 
 lavaan parameters:
@@ -140,10 +142,6 @@ fit <- cfa(model = model, data = data,
            se = params$se, bootstrap = params$bootstrap)
 ```
 
-```{r comment=''}
-cat("Model: \n", model)
-```
-
 
 #### Summary Output
 ```{r}
@@ -221,10 +219,6 @@ fit <- sem(model = model, data = data,
            mimic = params$mimic, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
-```
-
-```{r comment=''}
-cat("Model: \n", model)
 ```
 
 
