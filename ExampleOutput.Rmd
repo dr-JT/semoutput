@@ -101,6 +101,8 @@ lavaan parameters:
 
 mimic = `r params$mimic`
 
+estimator = `r params$estimator`
+
 missing = `r params$missing`
 
 std.lv = `r params$std.lv`

@@ -22,7 +22,7 @@ devtools::install_github("dr-JT/semoutput")
 
 The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
 
-**Once you install the package, you will be able to access the RMarkdown template by going to**:
+**Once you install the package, you will be able to access the R Markdown template by going to**:
 
 File -> New File -> R Markdown... -> From Template -> CFA/SEM (lavaan)
 
@@ -31,11 +31,12 @@ When the RMarkdown file opens you need to specify the data file location and the
 ```{r}
 params:
   import.file: ""       # Relative file path to data
-  mimic: "lavaan"       # Which software program to mimic for estimating models
+  mimic: "lavaan"       # Which software program to mimic?
+  estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
+  std.lv: TRUE          # For CFAs, set latent variances to 1?
   std.ov: FALSE         # Staandardize all observed varialbes?
-  se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
+  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ```
 

@@ -1,3 +1,11 @@
+# semoutput 1.0.0
+
+Updated: 5/11/2020
+
+* Added EFA output functions
+
+* Added parameter `estimator` to YAML
+
 # semoutput 0.1.3
 
 Updated: 11/29/2018
