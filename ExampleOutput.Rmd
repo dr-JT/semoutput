@@ -8,12 +8,13 @@ output:
     toc_float:
       collapsed: false
 params:
-  import.file: "data/HolzingerSwineford1939.csv"       # Relative file path to data
-  mimic: "lavaan"       # Which software program to mimic for estimating models
+  import.file: ""       # Relative file path to data
+  mimic: "lavaan"       # Which software program to mimic?
+  estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
+  std.lv: TRUE          # For CFAs, set latent variances to 1?
   std.ov: FALSE         # Staandardize all observed varialbes?
-  se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
+  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ---
 
@@ -53,11 +54,12 @@ In the YAML header you will need to specify the default parameters (select the '
 ```{r eval=FALSE, }
 params:
   import.file: ""       # Relative file path to data
-  mimic: "lavaan"       # Which software program to mimic for estimating models
+  mimic: "lavaan"       # Which software program to mimic?
+  estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, default setting whether to set latent variances to 1 or not
+  std.lv: TRUE          # For CFAs, set latent variances to 1?
   std.ov: FALSE         # Staandardize all observed varialbes?
-  se: "standard"        # How to calcualte standard errors: "standard" or "bootstrap"
+  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ```
 
@@ -145,6 +147,13 @@ sjt.corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 
 ```{r}
 efa_data <- dplyr::select(cfa_data, dplyr::starts_with("x"))
+
+## Determine the number of factors to extract
+VSS.scree(efa_data)
+fa.parallel(efa_data, fa = "fa")
+VSS(efa_data, n = 4, rotate = "varimax")
+
+## Conduct EFA analysis with nfactors determined from methods above
 efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 ```
 
@@ -158,7 +167,6 @@ efa_rotmatrix(efa_fit)
 
 #### Diagram Output
 ```{r}
-VSS.scree(efa_data)
 fa.diagram(efa_fit)
 ```
 
@@ -190,11 +198,10 @@ speed =~ x7 + x8 + x9
 '
 # You might want to specify other arguments. But this is pretty standard. 
 #std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
-fit <- cfa(model = model, data = cfa_data, 
-           mimic = params$mimic, missing = params$missing, 
+fit <- cfa(model = model, data = cfa_data, mimic = params$mimic, 
+           estimator = params$estimator, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
-cat("Model: \n", model)
 ```
 
 
@@ -276,11 +283,10 @@ y6 ~~ y8
 '
 # You might want to specify other arguments. But this is pretty standard. 
 #std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
-fit <- sem(model = model, data = sem_data, 
-           mimic = params$mimic, missing = params$missing, 
+fit <- sem(model = model, data = sem_data, mimic = params$mimic, 
+           estimator = params$estimator, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
            se = params$se, bootstrap = params$bootstrap)
-cat("Model: \n", model)
 ```
 
 #### Summary Output
