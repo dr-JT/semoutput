@@ -9,19 +9,20 @@
 #'
 
 sem_modelcomp <- function(m1, m2, print = TRUE, method = "chi-square"){
-  if (method = "chi-square") {
+
+  if (method == "chi-square") {
     stats <- lavaan::anova(m1, m2)
     table <- suppressWarnings(broom::tidy(stats))
     table <- dplyr::arrange(table, desc(df))
     table$term <- c(1, 2)
   }
 
-  if (method = "BIC") {
-    df1 <- lavaan::fitMeasures(m1, c("df"))
-    df2 <- lavaan::fitMeasures(m2, c("df"))
+  if (method == "BIC") {
+    df1 <- lavaan::fitMeasures(m1, c("df"))[[1]]
+    df2 <- lavaan::fitMeasures(m2, c("df"))[[1]]
     bic1 <- BIC(m1)
     bic2 <- BIC(m2)
-    bf <- exp((bic1 - bic2)/2)
+    bf <- exp((bic1 - bic2) / 2)
 
     table <- data.frame(Model = c(1, 2), df = c(df1, df2),
                         BIC = c(bic1, bic2), BF = c(NA, bf))
