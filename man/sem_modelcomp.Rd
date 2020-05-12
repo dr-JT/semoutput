@@ -7,9 +7,9 @@
 sem_modelcomp(m1, m2, print = TRUE, method = "chi-square")
 }
 \arguments{
-\item{m1}{A nested lavaan model}
+\item{m1}{A nested lavaan model. Null hypothesis}
 
-\item{m2}{A nested lavaan model}
+\item{m2}{A nested lavaan model. Alternative hypothesis}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 
