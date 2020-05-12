@@ -14,6 +14,7 @@ params:
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
   std.lv: TRUE          # For CFAs, set latent variances to 1?
   std.ov: FALSE         # Staandardize all observed varialbes?
+  test: "standard"      # How to compute Chi-square test statistic
   se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ---
@@ -59,6 +60,7 @@ params:
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
   std.lv: TRUE          # For CFAs, set latent variances to 1?
   std.ov: FALSE         # Staandardize all observed varialbes?
+  test: "standard"      # How to compute Chi-square test statistic
   se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ```
@@ -108,6 +110,8 @@ missing = `r params$missing`
 std.lv = `r params$std.lv`
 
 std.ov = `r params$std.ov`
+
+test = `r params$test`
 
 se = `r params$se`
 
@@ -203,7 +207,7 @@ speed =~ x7 + x8 + x9
 fit <- cfa(model = model, data = cfa_data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
-           se = params$se, bootstrap = params$bootstrap)
+           test = params$test, se = params$se, bootstrap = params$bootstrap)
 ```
 
 
@@ -288,7 +292,7 @@ y6 ~~ y8
 fit <- sem(model = model, data = sem_data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
-           se = params$se, bootstrap = params$bootstrap)
+           test = params$test, se = params$se, bootstrap = params$bootstrap)
 ```
 
 #### Summary Output
