@@ -28,9 +28,9 @@ sem_modelcomp <- function(m1, m2, print = TRUE){
                          p = ifelse(Model == 2,
                                     dplyr::first(p.value), NA),
                          BICnull = dplyr::first(BIC),
-                         `Bayes Factor` = ifelse(Model == 1, NA,
+                         BF.01 = ifelse(Model == 1, NA,
                                                  exp((BIC - BICnull) / 2)))
-  table <- dplyr::select(table, Model, df, AIC, BIC, `Bayes Factor`,
+  table <- dplyr::select(table, Model, df, AIC, BIC, BF.01,
                          `Chi Square`, `Chi Square Diff` = Chisq.diff,
                          `df Diff` = df.diff, p)
 
