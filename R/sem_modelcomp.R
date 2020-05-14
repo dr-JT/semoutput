@@ -29,8 +29,11 @@ sem_modelcomp <- function(m1, m2, print = TRUE){
                                     dplyr::first(p.value), NA),
                          BICnull = dplyr::first(BIC),
                          BF.01 = ifelse(Model == 1, NA,
-                                                 exp((BIC - BICnull) / 2)))
-  table <- dplyr::select(table, Model, df, AIC, BIC, BF.01,
+                                                 exp((BIC - BICnull) / 2)),
+                         `P(Model|Data)` = last(BF.01) / (last(BF.01) + 1),
+                         `P(Model|Data)` = ifelse(Model == 1, `P(Model|Data)`,
+                                                  1 - `P(Model|Data)`))
+  table <- dplyr::select(table, Model, df, AIC, BIC, BF.01, `P(Model|Data)`,
                          `Chi Square`, `Chi Square Diff` = Chisq.diff,
                          `df Diff` = df.diff, p)
 
