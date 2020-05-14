@@ -30,6 +30,9 @@ sem_modelcomp <- function(m1, m2, print = TRUE){
                          BICnull = dplyr::first(BIC),
                          `Bayes Factor` = ifelse(Model == 1, NA,
                                                  exp((BIC - BICnull) / 2)))
+  table <- dplyr::select(table, Model, df, AIC, BIC, `Bayes Factor`,
+                         `Chi Square`, `Chi Square Diff` = Chisq.diff,
+                         `df Diff` = df.diff, p)
 
   if (print == TRUE){
     table <- knitr::kable(table, digits = 3, format = "html",
