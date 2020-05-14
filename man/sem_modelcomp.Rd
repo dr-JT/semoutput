@@ -4,7 +4,7 @@
 \alias{sem_modelcomp}
 \title{Model comparison}
 \usage{
-sem_modelcomp(m1, m2, print = TRUE, method = "chi-square")
+sem_modelcomp(m1, m2, print = TRUE)
 }
 \arguments{
 \item{m1}{A nested lavaan model. Null hypothesis}
@@ -12,8 +12,6 @@ sem_modelcomp(m1, m2, print = TRUE, method = "chi-square")
 \item{m2}{A nested lavaan model. Alternative hypothesis}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
-
-\item{method}{Model comparison method. "chi-square" or "BIC"}
 }
 \description{
 This function will display a table of Model significance tests

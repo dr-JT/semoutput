@@ -4,29 +4,27 @@
 #' @param m1 A nested lavaan model. Null hypothesis
 #' @param m2 A nested lavaan model. Alternative hypothesis
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#' @param method Model comparison method. "chi-square" or "BIC"
 #' @export
 #'
 
-sem_modelcomp <- function(m1, m2, print = TRUE, method = "chi-square"){
+sem_modelcomp <- function(m1, m2, print = TRUE){
 
-  if (method == "chi-square") {
-    stats <- lavaan::anova(m1, m2)
-    table <- suppressWarnings(broom::tidy(stats))
-    table <- dplyr::arrange(table, desc(df))
-    table$term <- c(1, 2)
-  }
+  stats <- lavaan::anova(m1, m2)
+  bic1 <- BIC(m1)
+  bic2 <- BIC(m2)
+  bf <- exp((bic2 - bic1) / 2)
 
-  if (method == "BIC") {
-    df1 <- lavaan::fitMeasures(m1, c("df"))[[1]]
-    df2 <- lavaan::fitMeasures(m2, c("df"))[[1]]
-    bic1 <- BIC(m1)
-    bic2 <- BIC(m2)
-    bf <- exp((bic2 - bic1) / 2)
-
-    table <- data.frame(Model = c(1, 2), df = c(df1, df2),
-                        BIC = c(bic1, bic2), BF = c(NA, bf))
-  }
+  table <- suppressWarnings(broom::tidy(stats))
+  table <- dplyr::rename(Model = term,
+                         `Chi Square` = statistic)
+  table$Model <- c(1, 2)
+  table <- dplyr::mutate(table,
+                         BICnull = dplyr::first(BIC),
+                         `Bayes Factor` = ifelse(Model == 1, NA,
+                                                 exp((BIC - BICnull) / 2)))
+  table <- dplyr::select(Model, df, AIC, BIC, `Bayes Factor`,
+                         `Chi Square`, Chisq.diff, df.diff = Df.diff,
+                         p = p.value)
 
   if (print == TRUE){
     table <- knitr::kable(table, digits = 3, format = "html",
