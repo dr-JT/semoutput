@@ -4,8 +4,14 @@
 \alias{sem_paths}
 \title{SEM regression paths}
 \usage{
-sem_paths(x, standardized = TRUE, ci = "standardized",
-  ci.level = 0.95, digits = 3, print = TRUE)
+sem_paths(
+  x,
+  standardized = TRUE,
+  ci = "standardized",
+  ci.level = 0.95,
+  digits = 3,
+  print = TRUE
+)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}

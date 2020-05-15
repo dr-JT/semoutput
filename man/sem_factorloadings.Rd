@@ -4,8 +4,14 @@
 \alias{sem_factorloadings}
 \title{Factor loadings}
 \usage{
-sem_factorloadings(x, standardized = TRUE, ci = "standardized",
-  ci.level = 0.95, digits = 3, print = TRUE)
+sem_factorloadings(
+  x,
+  standardized = TRUE,
+  ci = "standardized",
+  ci.level = 0.95,
+  digits = 3,
+  print = TRUE
+)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}

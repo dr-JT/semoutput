@@ -4,18 +4,10 @@
 #' @param m1 A nested lavaan model
 #' @param m2 A nested lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
-#' @templateVar fun sem_anova
-#' @template template-depr_fun
-NULL
-
-#' @templateVar old sem_anova
-#' @templateVar new sem_modelcomp
-#' @template template-depr_pkg
 #' @export
 #'
 
 sem_anova <- function(m1, m2, print = TRUE){
-  .Deprecated("sem_modelcomp")
   stats <- lavaan::anova(m1, m2)
   table <- suppressWarnings(broom::tidy(stats))
   table <- dplyr::arrange(table, desc(df))
