@@ -19,22 +19,21 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
                          `Chi Square` = statistic)
   table <- dplyr::mutate(table,
                          Model = ifelse(Model == "m0",
-                                        "0 (Null)", "1 (Alternative)"))
+                                        0, 1))
   table <- dplyr::arrange(table, Model)
   table <- dplyr::mutate(table,
-                         Chisq.diff = ifelse(Model == 2,
-                                             dplyr::last(Chisq.diff), NA),
-                         df.diff = ifelse(Model ==2,
-                                          dplyr::last(Df.diff), NA),
-                         p = ifelse(Model == 2,
-                                    dplyr::last(p.value), NA),
-                         BICnull = dplyr::first(BIC),
-                         BF.10 = ifelse(Model == 1, NA,
-                                                 exp((BICnull - BIC) / 2)),
-                         `P(Model|Data)` = last(BF.10) / (last(BF.10) + 1),
-                         `P(Model|Data)` = ifelse(Model == 1, `P(Model|Data)`,
-                                                  1 - `P(Model|Data)`))
-  table <- dplyr::select(table, Model, df, AIC, BIC, BF.10, `P(Model|Data)`,
+                         Chisq.diff = ifelse(Model == 1,
+                                             dplyr::first(Chisq.diff), NA),
+                         df.diff = ifelse(Model == 1,
+                                          dplyr::first(Df.diff), NA),
+                         p = ifelse(Model == 1,
+                                    dplyr::first(p.value), NA),
+                         BF =
+                           ifelse(Model == 0,
+                                  exp((dplyr::last(BIC) - dplyr::first(BIC)) / 2),
+                                  exp((dplyr::first(BIC) - dplyr::last(BIC)) / 2)),
+                         `P(Model|Data)` = BF / (BF + 1))
+  table <- dplyr::select(table, Model, df, AIC, BIC, BF, `P(Model|Data)`,
                          `Chi Square`, `Chi Square Diff` = Chisq.diff,
                          `df Diff` = df.diff, p)
 
