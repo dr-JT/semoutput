@@ -4,12 +4,12 @@
 \alias{sem_modelcomp}
 \title{Model comparison}
 \usage{
-sem_modelcomp(m1, m2, print = TRUE)
+sem_modelcomp(m0, m1, print = TRUE)
 }
 \arguments{
-\item{m1}{A nested lavaan model. Null hypothesis}
+\item{m0}{A nested lavaan model. Null hypothesis}
 
-\item{m2}{A nested lavaan model. Alternative hypothesis}
+\item{m1}{A nested lavaan model. Alternative hypothesis}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }
