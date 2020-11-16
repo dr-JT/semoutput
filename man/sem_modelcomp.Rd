@@ -7,11 +7,11 @@
 sem_modelcomp(m0, m1, print = TRUE)
 }
 \arguments{
-\item{m0}{A nested lavaan model. Null hypothesis}
+\item{m0}{A lavaan model.}
 
-\item{m1}{A nested lavaan model. Alternative hypothesis}
+\item{m1}{A lavaan model.}
 
-\item{print}{Create a knitr table for displaying as html table (default = TRUE)}
+\item{print}{Create a knitr table for displaying as html table.}
 }
 \description{
 This function will display a table of Model significance tests
