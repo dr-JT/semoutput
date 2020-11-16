@@ -24,20 +24,21 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
                          `Chi Square` = statistic)
   table <- dplyr::mutate(table,
                          Model = ifelse(Model == "m0",
-                                        m0_name, m1_name))
+                                        0, 1))
   table <- dplyr::arrange(table, Model)
   table <- dplyr::mutate(table,
-                         Chisq.diff = ifelse(Model == m1_name,
+                         Chisq.diff = ifelse(Model == 1,
                                              dplyr::first(Chisq.diff), NA),
-                         df.diff = ifelse(Model == m1_name,
+                         df.diff = ifelse(Model == 1,
                                           dplyr::first(Df.diff), NA),
-                         p = ifelse(Model == m1_name,
+                         p = ifelse(Model == 1,
                                     dplyr::first(p.value), NA),
                          BF =
-                           ifelse(Model == m0_name,
+                           ifelse(Model == 0,
                                   exp((dplyr::last(BIC) - dplyr::first(BIC)) / 2),
                                   exp((dplyr::first(BIC) - dplyr::last(BIC)) / 2)),
-                         `P(Model|Data)` = BF / (BF + 1))
+                         `P(Model|Data)` = BF / (BF + 1),
+                         Model = ifelse(Model == 0, m0_name, m1_name))
   table <- dplyr::select(table, Model, df, AIC, BIC, BF, `P(Model|Data)`,
                          `Chi Square`, `Chi Square Diff` = Chisq.diff,
                          `df Diff` = df.diff, p)
