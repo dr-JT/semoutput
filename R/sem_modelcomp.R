@@ -27,14 +27,14 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
                                         m0_name, m1_name))
   table <- dplyr::arrange(table, Model)
   table <- dplyr::mutate(table,
-                         Chisq.diff = ifelse(Model == 1,
+                         Chisq.diff = ifelse(Model == m1_name,
                                              dplyr::first(Chisq.diff), NA),
-                         df.diff = ifelse(Model == 1,
+                         df.diff = ifelse(Model == m1_name,
                                           dplyr::first(Df.diff), NA),
-                         p = ifelse(Model == 1,
+                         p = ifelse(Model == m1_name,
                                     dplyr::first(p.value), NA),
                          BF =
-                           ifelse(Model == 0,
+                           ifelse(Model == m0_name,
                                   exp((dplyr::last(BIC) - dplyr::first(BIC)) / 2),
                                   exp((dplyr::first(BIC) - dplyr::last(BIC)) / 2)),
                          `P(Model|Data)` = BF / (BF + 1))
