@@ -2,7 +2,7 @@
 
 An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
-Interact with an <a href="http://englelab.gatech.edu/ExampleSEMOutput.html" target="_blank">Example RMarkdown Output</a>
+Interact with an <a href="http://englelab.gatech.edu/articles/ExampleSEMOutput.html" target="_blank">Example RMarkdown Output</a>
 
 ## Install
 
