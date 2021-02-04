@@ -1,5 +1,5 @@
 ---
-title: "Example Output"
+title: "Document Title"
 output: 
   html_document:
     code_download: yes
@@ -8,12 +8,11 @@ output:
     toc_float:
       collapsed: false
 params:
-  import.file: ""       # Relative file path to data
   mimic: "lavaan"       # Which software program to mimic?
   estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, set latent variances to 1?
-  std.ov: FALSE         # Staandardize all observed varialbes?
+  std.lv: TRUE          # For CFAs only, set latent variances to 1?
+  std.ov: FALSE         # Standardize all observed varialbes?
   test: "standard"      # How to compute Chi-square test statistic
   se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
@@ -25,7 +24,11 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 # {.tabset .tabset-pills}
 
-**NOTE: We will actually use two data sets in this example output. They come from the `lavaan` tutorial data sets; cfa data set is`HolzingerSwineford1939` and sem data set is `PoliticalDemocracy`**
+Last updated: `r format(Sys.Date(), "%B %d %Y")`
+
+See [Package References](https://dr-jt.github.io/semoutput/reference/index.html){target="_blank"} for help documentation on `semoutput` functions
+
+**NOTE: We will use two data sets in this example output. They come from the `lavaan` tutorial data sets; the cfa data set is`HolzingerSwineford1939` and the sem data set is `PoliticalDemocracy`**
 
 **NOTE: You can download the RMarkdown file associated with this output by selecting the 'Code' button on the top-right of this document and selecting "Download Rmd". You can also display the code used to produce each output by selecting the 'Code' buttons along the right of the document.** 
 
@@ -34,9 +37,9 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 - The "Results" tab contains ALL the results output
 
-- The "Session Infor" tab contains information about the current R Session including what packages were loaded, how to cite the `lavaan` package and how to cite the R statistical software.
+- The "Session Info" tab contains information about the current R Session including what packages were loaded, how to cite the `lavaan` package and how to cite the R statistical software.
 
-**NOTE: For each CFA or SEM model output there are 4 tabs:**
+**NOTE: For each CFA or SEM model output block there are 4 tabs:**
 
 - The "Summary Output" tab display nice looking tables summarizing the model results
 
@@ -46,28 +49,23 @@ knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 
 - The "Full Output" tab will display the results from `summary()` along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the "Summary Output". You can also add additional output to this section if you need more info about the model.
 
-**Once you install the package, you will be able to access this Rmarkdown template by going to**:
+**Once you install the package, you will be able to access an Rmarkdown template by going to**:
 
 File -> New File -> R Markdown… -> From Template -> CFA/SEM (lavaan)
 
-In the YAML header you will need to specify the default parameters (select the 'Code' button to the right):
+In the YAML header you will need to specify the default parameters:
 
-```{r eval=FALSE, }
+```{r eval=FALSE, class.source = "fold-show"}
 params:
-  import.file: ""       # Relative file path to data
   mimic: "lavaan"       # Which software program to mimic?
   estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, set latent variances to 1?
-  std.ov: FALSE         # Staandardize all observed varialbes?
+  std.lv: TRUE          # For CFAs only, set latent variances to 1?
+  std.ov: FALSE         # Standardize all observed varialbes?
   test: "standard"      # How to compute Chi-square test statistic
   se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ```
-
-
-
-Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
 ## Results
 
@@ -76,6 +74,8 @@ Last updated: `r format(Sys.Date(), "%B %d %Y")`
 Required Packages
 ```{r warning=FALSE}
 library(readr)
+library(here)
+library(dplyr)
 library(lavaan)
 library(psych)
 library(semoutput)
@@ -86,20 +86,17 @@ library(sjPlot)
 
 Import Data
 
-Data file: `r params$import.file`
-
-```{r warning=FALSE, eval = FALSE}
+```{r warning=FALSE}
 ## Import Data
-data <- read_csv(params$import.file)
-```
-
-```{r}
+# data <- read_csv(here("relative file path", "file name"))
 cfa_data <- dplyr::select(HolzingerSwineford1939, -id, -school)
 sem_data <- PoliticalDemocracy
 ```
 
+```{r}
+```
 
-lavaan parameters:
+default lavaan parameters:
 
 mimic = `r params$mimic`
 
@@ -123,7 +120,7 @@ bootstrap = `r params$bootstrap`
 
 ### Descriptives 
 
-Typically there is only one descriptive table displayed but since we have two data sets for this one output two descriptive tables are displayed.
+**Typically there is only one descriptive table displayed but since we have two data sets for this one output two descriptive tables are displayed.**
 
 ```{r}
 # Prints basic descriptive statistics
@@ -135,14 +132,14 @@ sem_descriptives(sem_data)
 
 ### Correlation Matrix
 
-There are also two correlation matrices
+**There are also two correlation matrices**
 
-This is a publication quality correlation matrix that can be inserted into a manuscript.
+**This is a publication quality correlation matrix that can be inserted into a manuscript.**
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
-sjt.corr(cfa_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
-sjt.corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+tab_corr(cfa_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+tab_corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
 ---
@@ -154,12 +151,7 @@ sjt.corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```{r}
 efa_data <- dplyr::select(cfa_data, dplyr::starts_with("x"))
 
-## Determine the number of factors to extract
-VSS.scree(efa_data)
-fa.parallel(efa_data, fa = "fa")
-VSS(efa_data, n = 4, rotate = "varimax")
-
-## Conduct EFA analysis with nfactors determined from methods above
+## Conduct EFA analysis with nfactors
 efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 ```
 
@@ -174,6 +166,11 @@ efa_rotmatrix(efa_fit)
 #### Diagram Output
 ```{r}
 fa.diagram(efa_fit)
+
+## Determine the number of factors to extract
+VSS.scree(efa_data)
+fa.parallel(efa_data, fa = "fa")
+VSS(efa_data, n = 4, rotate = "varimax")
 ```
 
 #### Full Output
@@ -187,10 +184,10 @@ efa_fit
 
 ### CFA {.tabset .tabset-pills}
 
-```{r comment=''}
+```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
 factors <- c("visual", "textual", "speed")
-# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
 model <- '
 # latent factors
 visual =~ x1 + x2 + x3
@@ -203,7 +200,7 @@ speed =~ x7 + x8 + x9
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
-#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
+# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
 fit <- cfa(model = model, data = cfa_data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
@@ -235,7 +232,6 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 
 #### Residual Correlation Matrix
 ```{r}
-## If you want to see the residual correlation matrix
 sem_residuals(fit)
 ```
 
@@ -252,18 +248,18 @@ summary(fit, fit.measures = TRUE, standardized = TRUE)
 standardizedSolution(fit)
 ```
 
-
 ##### Modification Indices
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
 ---
+
 ---
 
 ### SEM {.tabset .tabset-pills}
 
-```{r comment=''}
+```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
 factors <- c("dem60", "ind60", "dem65")
 # Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
@@ -288,12 +284,13 @@ y6 ~~ y8
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
-#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
+# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
 fit <- sem(model = model, data = sem_data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
            test = params$test, se = params$se, bootstrap = params$bootstrap)
 ```
+
 
 #### Summary Output
 ```{r}
@@ -309,7 +306,7 @@ sem_rsquared(fit)
 
 #### Diagram Output
 
-In the Rmarkdown document I changed the r-code chunck option for figure width to `fig.width = 10` to make the image wider. Notice in the 'Code' I also changed the default paramter for edge labels to `edge.label.cex = 8`.
+**Compared to the CFA figure above, I modified the r-code chunck option for figure width to `fig.width = 10` to make the image wider. And in the 'Code' I also changed the paramter for edge labels to `edge.label.cex = 8`.**
 
 ```{r fig.width=10}
 ## This tab will print out a model diagram. Pretty freak'n cool!
@@ -323,7 +320,6 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 
 #### Residual Correlation Matrix
 ```{r}
-## If you want to see the residual correlation matrix
 sem_residuals(fit)
 ```
 
@@ -340,11 +336,11 @@ summary(fit, fit.measures = TRUE, standardized = TRUE)
 standardizedSolution(fit)
 ```
 
-
 ##### Modification Indices
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
+
 ---
 
 ---

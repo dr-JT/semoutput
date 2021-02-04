@@ -8,12 +8,11 @@ output:
     toc_float:
       collapsed: false
 params:
-  import.file: ""       # Relative file path to data
   mimic: "lavaan"       # Which software program to mimic?
   estimator: "ML"       # Which estimation method to use?
   missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs, set latent variances to 1?
-  std.ov: FALSE         # Staandardize all observed varialbes?
+  std.lv: TRUE          # For CFAs only, set latent variances to 1?
+  std.ov: FALSE         # Standardize all observed varialbes?
   test: "standard"      # How to compute Chi-square test statistic
   se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
   bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
@@ -48,13 +47,12 @@ library(sjPlot)
 
 Import Data
 
-Data file: `r params$import.file`
 ```{r warning=FALSE}
 ## Import Data
-data <- read_csv(here(params$import.file))
+data <- read_csv(here("relative file path", "file name"))
 ```
 
-lavaan parameters:
+default lavaan parameters:
 
 mimic = `r params$mimic`
 
@@ -89,7 +87,7 @@ sem_descriptives(data)
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
-sjt.corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+tab_corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
 ---
@@ -137,7 +135,7 @@ efa_fit
 ```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
 factors <- c()
-# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
 model <- '
 # latent factors
 
@@ -147,7 +145,7 @@ model <- '
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
-#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
+# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
 fit <- cfa(model = model, data = data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = params$std.lv, std.ov = params$std.ov,
@@ -179,7 +177,6 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 
 #### Residual Correlation Matrix
 ```{r}
-## If you want to see the residual correlation matrix
 sem_residuals(fit)
 ```
 
@@ -195,7 +192,6 @@ summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```{r}
 standardizedSolution(fit)
 ```
-
 
 ##### Modification Indices
 ```{r}
@@ -226,7 +222,7 @@ model <- '
 
 '
 # You might want to specify other arguments. But this is pretty standard. 
-#std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
+# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
 fit <- sem(model = model, data = data, mimic = params$mimic, 
            estimator = params$estimator, missing = params$missing, 
            std.lv = FALSE, std.ov = params$std.ov,
@@ -259,7 +255,6 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 
 #### Residual Correlation Matrix
 ```{r}
-## If you want to see the residual correlation matrix
 sem_residuals(fit)
 ```
 
@@ -275,7 +270,6 @@ summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```{r}
 standardizedSolution(fit)
 ```
-
 
 ##### Modification Indices
 ```{r}
