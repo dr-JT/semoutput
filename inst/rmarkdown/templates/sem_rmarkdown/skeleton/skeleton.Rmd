@@ -22,15 +22,11 @@ params:
 knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
 ```
 
-# {.tabset .tabset-pills}
-
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
 See [Package References](https://dr-jt.github.io/semoutput/reference/index.html){target="_blank"} for help documentation on `semoutput` functions
 
-## Results
-
-### Setup
+# Setup
 
 Required Packages
 ```{r warning=FALSE}
@@ -74,7 +70,7 @@ bootstrap = `r params$bootstrap`
 
 ---
 
-### Descriptives 
+# Descriptives 
 
 ```{r}
 # Prints basic descriptive statistics
@@ -83,7 +79,7 @@ sem_descriptives(data)
 
 ---
 
-### Correlation Matrix
+# Correlation Matrix
 
 ```{r}
 # Uses sjPlot to print a nice looking correlation table
@@ -94,7 +90,7 @@ tab_corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 
 ---
 
-### EFA {.tabset .tabset-pills}
+# EFA {.tabset .tabset-pills}
 
 ```{r}
 efa_data <- data
@@ -108,7 +104,7 @@ VSS(efa_data, n = 4, rotate = "varimax")
 efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 ```
 
-#### Summary Output
+## Summary Output
 ```{r}
 efa_method(efa_fit)
 efa_var(efa_fit)
@@ -116,12 +112,12 @@ efa_loadings(efa_fit)
 efa_rotmatrix(efa_fit)
 ```
 
-#### Diagram Output
+## Diagram Output
 ```{r}
 fa.diagram(efa_fit)
 ```
 
-#### Full Output
+## Full Output
 ```{r}
 efa_fit
 ```
@@ -130,7 +126,7 @@ efa_fit
 
 ----
 
-### CFA {.tabset .tabset-pills}
+# CFA {.tabset .tabset-pills}
 
 ```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
@@ -153,7 +149,7 @@ fit <- cfa(model = model, data = data, mimic = params$mimic,
 ```
 
 
-#### Summary Output
+## Summary Output
 ```{r}
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
@@ -164,7 +160,7 @@ sem_factorvar(fit, factors = factors)
 sem_rsquared(fit)
 ```
 
-#### Diagram Output
+## Diagram Output
 ```{r}
 ## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
@@ -175,25 +171,25 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ## If you want to modify the plot see ?semPlot::semPaths for argument descriptions
 ```
 
-#### Residual Correlation Matrix
+## Residual Correlation Matrix
 ```{r}
 sem_residuals(fit)
 ```
 
 
-#### Full Output
+## Full Output
 
-##### Summary
+### Summary
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
-##### Parameter Estimates
+### Parameter Estimates
 ```{r}
 standardizedSolution(fit)
 ```
 
-##### Modification Indices
+### Modification Indices
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
@@ -202,7 +198,7 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 
 ---
 
-### SEM {.tabset .tabset-pills}
+# SEM {.tabset .tabset-pills}
 
 ```{r}
 # factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
@@ -230,7 +226,7 @@ fit <- sem(model = model, data = data, mimic = params$mimic,
 ```
 
 
-#### Summary Output
+## Summary Output
 ```{r}
 ## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
@@ -242,7 +238,7 @@ sem_factorvar(fit, factors = factors)
 sem_rsquared(fit)
 ```
 
-#### Diagram Output
+## Diagram Output
 ```{r}
 ## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
@@ -253,25 +249,25 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ## If you want to modify the plot see ?semPlot::semPaths for argument descriptions
 ```
 
-#### Residual Correlation Matrix
+## Residual Correlation Matrix
 ```{r}
 sem_residuals(fit)
 ```
 
 
-#### Full Output
+## Full Output
 
-##### Summary
+### Summary
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
-##### Parameter Estimates
+### Parameter Estimates
 ```{r}
 standardizedSolution(fit)
 ```
 
-##### Modification Indices
+### Modification Indices
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
@@ -280,7 +276,7 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 
 ---
 
-## Session Info
+# Session Info
 ```{r comment=""}
 citation("lavaan")
 citation()
