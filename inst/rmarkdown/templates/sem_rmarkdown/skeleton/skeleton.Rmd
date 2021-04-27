@@ -7,15 +7,6 @@ output:
     toc: true
     toc_float:
       collapsed: false
-params:
-  mimic: "lavaan"       # Which software program to mimic?
-  estimator: "ML"       # Which estimation method to use?
-  missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs only, set latent variances to 1?
-  std.ov: FALSE         # Standardize all observed varialbes?
-  test: "standard"      # How to compute Chi-square test statistic
-  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
-  bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
 ---
 
 ```{r setup, include=FALSE}
@@ -47,24 +38,6 @@ Import Data
 ## Import Data
 data <- read_csv(here("relative file path", "file name"))
 ```
-
-default lavaan parameters:
-
-mimic = `r params$mimic`
-
-estimator = `r params$estimator`
-
-missing = `r params$missing`
-
-std.lv = `r params$std.lv`
-
-std.ov = `r params$std.ov`
-
-test = `r params$test`
-
-se = `r params$se`
-
-bootstrap = `r params$bootstrap`
 
 ---
 
@@ -129,9 +102,9 @@ efa_fit
 # CFA {.tabset .tabset-pills}
 
 ```{r}
-# factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
+# list of the latent factor labels
 factors <- c()
-# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+# specify the model
 model <- '
 # latent factors
 
@@ -140,18 +113,16 @@ model <- '
 # constraints
 
 '
-# You might want to specify other arguments. But this is pretty standard. 
-# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1.
-fit <- cfa(model = model, data = data, mimic = params$mimic, 
-           estimator = params$estimator, missing = params$missing, 
-           std.lv = params$std.lv, std.ov = params$std.ov,
-           test = params$test, se = params$se, bootstrap = params$bootstrap)
+
+fit <- cfa(model = model, data = data, mimic = "lavaan", 
+           estimator = "ML", missing = "ML", 
+           std.lv = TRUE, std.ov = FALSE, test = "standard", 
+           se = "standard", bootstrap = 1000)
 ```
 
 
 ## Summary Output
 ```{r}
-## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
@@ -162,13 +133,11 @@ sem_rsquared(fit)
 
 ## Diagram Output
 ```{r}
-## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
          sizeLat = 10, nCharNodes = 8, sizeMan = 11, sizeMan2 = 4, 
          edge.label.cex = 1.2, edge.color = "#000000")
-## If you want to modify the plot see ?semPlot::semPaths for argument descriptions
 ```
 
 ## Residual Correlation Matrix
@@ -201,9 +170,9 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 # SEM {.tabset .tabset-pills}
 
 ```{r}
-# factors is a list of the latent factor names. To be used for printing lavaan output to nice looking tables. Not needed to run actual lavaan model
+# list of the latent factor labels
 factors <- c()
-# Specify the model parameters. Must be incased within single or double quotes. Can add labels to organize parameter specifications. I provided just some example labels, they are not required though and you can use whatever labels you want. You need to know how lavaan works! See http://lavaan.ugent.be/tutorial/index.html for more information on how to specify the model parameters
+# specify the model
 model <- '
 # latent factors
 
@@ -217,18 +186,16 @@ model <- '
 # regressions
 
 '
-# You might want to specify other arguments. But this is pretty standard. 
-# std.lv = TRUE means that the latent factor variances are set to 1. If False, then the path for the first variable on the factor specificed in the model will be set to 1. For an SEM, it is better to set as FALSE. And if you want a latent factor variance set to 1 then specify it in the model and include NA* before the first variable on the factor. See http://lavaan.ugent.be/tutorial/index.html for more details
-fit <- sem(model = model, data = data, mimic = params$mimic, 
-           estimator = params$estimator, missing = params$missing, 
-           std.lv = FALSE, std.ov = params$std.ov,
-           test = params$test, se = params$se, bootstrap = params$bootstrap)
+
+fit <- sem(model = model, data = data, mimic = "lavaan", 
+           estimator = "ML", missing = "ML", 
+           std.lv = FALSE, std.ov = FALSE, test = "standard", 
+           se = "standard", bootstrap = "standard")
 ```
 
 
 ## Summary Output
 ```{r}
-## This tab will print out summary result tables with the most important information. Fit stats, standardized path values, etc...
 sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
@@ -240,13 +207,11 @@ sem_rsquared(fit)
 
 ## Diagram Output
 ```{r}
-## This tab will print out a model diagram. Pretty freak'n cool!
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
          sizeLat = 10, nCharNodes = 8, sizeMan = 11, sizeMan2 = 4, 
          edge.label.cex = 1.2, edge.color = "#000000")
-## If you want to modify the plot see ?semPlot::semPaths for argument descriptions
 ```
 
 ## Residual Correlation Matrix
