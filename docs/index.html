@@ -115,16 +115,6 @@
 <p>The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.</p>
 <p><strong>Once you install the package, you will be able to access the R Markdown template by going to</strong>:</p>
 <p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt; CFA/SEM (lavaan)</p>
-<p>When the RMarkdown file opens you need to specify the data file location and the following default model parameters in the YAML header</p>
-<pre class="{r}"><code>params:
-  mimic: "lavaan"       # Which software program to mimic?
-  estimator: "ML"       # Which estimation method to use?
-  missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs only, set latent variances to 1?
-  std.ov: FALSE         # Standardize all observed varialbes?
-  test: "standard"      # How to compute Chi-square test statistic
-  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
-  bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?</code></pre>
 </div>
 <div id="lavaan" class="section level2">
 <h2 class="hasAnchor">
@@ -135,7 +125,7 @@
 <h3 class="hasAnchor">
 <a href="#example-lavaan-syntax" class="anchor"></a>Example lavaan syntax</h3>
 <p>CFA</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co"># Specify the model parameters using intuitive syntax to write out equations</span>
 <span class="kw">model</span> <span class="op">&lt;-</span> <span class="st">'
 # latent factors
