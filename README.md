@@ -26,20 +26,6 @@ The package contains an R Markdwon template that makes it very easy to run CFA a
 
 File -> New File -> R Markdown... -> From Template -> CFA/SEM (lavaan)
 
-When the RMarkdown file opens you need to specify the data file location and the following default model parameters in the YAML header 
-
-```{r}
-params:
-  mimic: "lavaan"       # Which software program to mimic?
-  estimator: "ML"       # Which estimation method to use?
-  missing: "ML"         # How to deal with missing values: "ML" or "listwise"
-  std.lv: TRUE          # For CFAs only, set latent variances to 1?
-  std.ov: FALSE         # Standardize all observed varialbes?
-  test: "standard"      # How to compute Chi-square test statistic
-  se: "standard"        # Calcualte standard errors: "standard" or "bootstrap"
-  bootstrap: 1000       # If se = "bootstrap" how many boostrap samples?
-```
-
 ## lavaan
 
 lavaan syntax is very intuitive to use and is documented with useful tutorials
