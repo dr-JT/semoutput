@@ -4,12 +4,10 @@
 \alias{sem_factorcor}
 \title{Latent factor correlations}
 \usage{
-sem_factorcor(x, factors = c(), print = TRUE)
+sem_factorcor(x, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
-
-\item{factors}{list c() of factors included in the model}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }

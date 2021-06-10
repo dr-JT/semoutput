@@ -4,12 +4,10 @@
 \alias{sem_factorvar}
 \title{Latent factor variances}
 \usage{
-sem_factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
+sem_factorvar(x, standardized = TRUE, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
-
-\item{factors}{list c() of factors included in the model}
 
 \item{standardized}{logical. include standardized loadings? (default = TRUE)}
 
