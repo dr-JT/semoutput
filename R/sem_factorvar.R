@@ -2,14 +2,13 @@
 #'
 #' This function will display a table of Latent factor variances
 #' @param x a cfa() or sem() lavaan model
-#' @param factors depricated.
 #' @param standardized logical. include standardized loadings? (default = TRUE)
+#' @param factors list c() of factors included in the model
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
 sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
-  factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::parameterEstimates(x, standardized = standardized)
   table <- dplyr::filter(table,
                          op == "~~",
@@ -25,8 +24,7 @@ sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
 
   if (print == TRUE){
     table <- knitr::kable(table, digits = 3, format = "html",
-                          caption = "Latent Factor Variance/Residual Variance",
-                          row.names = FALSE)
+                          caption = "Latent Factor Variance/Residual Variance")
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")
   } else if (print == FALSE){
