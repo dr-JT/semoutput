@@ -7,10 +7,12 @@
 #'
 
 sem_rsquared <- function(x, print = TRUE){
+  factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::inspect(x, 'r2')
   table <- data.frame(table)
   table <- tibble::rownames_to_column(table)
   colnames(table) <- c("Variable", "R-Squared")
+  table <- dplyr::filter(table, Variable %in% factors)
 
   if (print == TRUE){
     table <- knitr::kable(table, digits = 3, format = "html",
