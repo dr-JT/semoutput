@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">semoutput</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/dr-JT/semoutput/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -96,9 +96,8 @@
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"dr-JT/semoutput"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"dr-JT/semoutput"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="required-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -125,9 +124,9 @@
 <h3 class="hasAnchor">
 <a href="#example-lavaan-syntax" class="anchor"></a>Example lavaan syntax</h3>
 <p>CFA</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># Specify the model parameters using intuitive syntax to write out equations</span>
-<span class="kw">model</span> <span class="op">&lt;-</span> <span class="st">'
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span>
+<span class="va">model</span> <span class="op">&lt;-</span> <span class="st">'
 # latent factors
 f1 =~ v1 + v2 + v3
 f2 =~ v4 + v5 + v6
@@ -139,8 +138,7 @@ v7 ~~ v8
 '</span>
 
 <span class="co"># Run a latent variable analysis</span>
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span>(<span class="kw">model</span>, data = <span class="kw">data</span>, missing = <span class="st">"ML"</span>, std.lv = <span class="fl">FALSE</span>)
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">data</span>, missing <span class="op">=</span> <span class="st">"ML"</span>, std.lv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="screenshots-of-nice-looking-output" class="section level2">
