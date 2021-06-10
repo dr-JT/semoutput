@@ -2,12 +2,13 @@
 #'
 #' This function will display a table of Latent factor variances
 #' @param x a cfa() or sem() lavaan model
+#' @param factors depricated.
 #' @param standardized logical. include standardized loadings? (default = TRUE)
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
-sem_factorvar <- function(x, standardized = TRUE, print = TRUE){
+sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
   factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::parameterEstimates(x, standardized = standardized)
   table <- dplyr::filter(table,

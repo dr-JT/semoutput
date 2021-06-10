@@ -2,11 +2,12 @@
 #'
 #' This function will display a table of Latent factor correlations
 #' @param x a cfa() or sem() lavaan model
+#' @param factors depricated.
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #'
 
-sem_factorcor <- function(x, print = TRUE){
+sem_factorcor <- function(x, factors = c(), print = TRUE){
   factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::standardizedSolution(x, level = 0.95)
   table <- dplyr::filter(table,
