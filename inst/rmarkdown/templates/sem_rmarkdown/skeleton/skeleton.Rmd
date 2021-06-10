@@ -102,8 +102,6 @@ efa_fit
 # CFA {.tabset .tabset-pills}
 
 ```{r}
-# list of the latent factor labels
-factors <- c()
 # specify the model
 model <- '
 # latent factors
@@ -113,7 +111,7 @@ model <- '
 # constraints
 
 '
-
+# fit the model
 fit <- cfa(model = model, data = data, mimic = "lavaan", 
            estimator = "ML", missing = "ML", 
            std.lv = TRUE, std.ov = FALSE, test = "standard", 
@@ -126,9 +124,7 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
 sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit, factors = factors)
-sem_factorvar(fit, factors = factors)
-sem_rsquared(fit)
+sem_factorcor(fit)
 ```
 
 ## Diagram Output
@@ -170,8 +166,6 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 # SEM {.tabset .tabset-pills}
 
 ```{r}
-# list of the latent factor labels
-factors <- c()
 # specify the model
 model <- '
 # latent factors
@@ -186,7 +180,7 @@ model <- '
 # regressions
 
 '
-
+# fit the model
 fit <- sem(model = model, data = data, mimic = "lavaan", 
            estimator = "ML", missing = "ML", 
            std.lv = FALSE, std.ov = FALSE, test = "standard", 
@@ -200,8 +194,8 @@ sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
 sem_paths(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit, factors = factors)
-sem_factorvar(fit, factors = factors)
+sem_factorcor(fit)
+sem_factorvar(fit)
 sem_rsquared(fit)
 ```
 

@@ -19,25 +19,26 @@ See [Package References](https://dr-jt.github.io/semoutput/reference/index.html)
 
 **NOTE: We will use two data sets in this example output. They come from the `lavaan` tutorial data sets; the cfa data set is`HolzingerSwineford1939` and the sem data set is `PoliticalDemocracy`**
 
-**NOTE: You can download the RMarkdown file associated with this output by selecting the 'Code' button on the top-right of this document and selecting "Download Rmd". You can also display the code used to produce each output by selecting the 'Code' buttons along the right of the document.** 
+**NOTE: You can download the RMarkdown file associated with this output by selecting the 'Code' button on the top-right of this document and selecting "Download Rmd". You can also display the code used to produce each output by selecting the 'Code' buttons along the right of the document.**
 
 **NOTE: For each CFA or SEM model output block there are 4 tabs:**
 
-- The "Summary Output" tab display nice looking tables summarizing the model results
+-   The "Summary Output" tab display nice looking tables summarizing the model results
 
-- The "Diagram Output" tab will display a model diagram
+-   The "Diagram Output" tab will display a model diagram
 
-- The "Residual Correlation Matrix" tab will display the residual correlation matrix
+-   The "Residual Correlation Matrix" tab will display the residual correlation matrix
 
-- The "Full Output" tab will display the results from `summary()` along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the "Summary Output". You can also add additional output to this section if you need more info about the model.
+-   The "Full Output" tab will display the results from `summary()` along with parameter estimates and modification indices. This way you can still get the full output from a lavaan model as it provides more information than the "Summary Output". You can also add additional output to this section if you need more info about the model.
 
 **Once you install the package, you will be able to access an Rmarkdown template by going to**:
 
-File -> New File -> R Markdown… -> From Template -> CFA/SEM (lavaan)
+File -\> New File -\> R Markdown... -\> From Template -\> CFA/SEM (lavaan)
 
 # Setup
 
 Required Packages
+
 ```{r warning=FALSE}
 library(readr)
 library(here)
@@ -48,7 +49,6 @@ library(semoutput)
 library(semPlot)
 library(sjPlot)
 ```
-
 
 Import Data
 
@@ -62,11 +62,11 @@ sem_data <- PoliticalDemocracy
 ```{r}
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
-# Descriptives 
+# Descriptives
 
 **Typically there is only one descriptive table displayed but since we have two data sets for this one output two descriptive tables are displayed.**
 
@@ -76,7 +76,7 @@ sem_descriptives(cfa_data)
 sem_descriptives(sem_data)
 ```
 
----
+------------------------------------------------------------------------
 
 # Correlation Matrix
 
@@ -90,9 +90,9 @@ tab_corr(cfa_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 tab_corr(sem_data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # EFA {.tabset .tabset-pills}
 
@@ -104,6 +104,7 @@ efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 ```
 
 ## Summary Output
+
 ```{r}
 efa_method(efa_fit)
 efa_var(efa_fit)
@@ -112,6 +113,7 @@ efa_rotmatrix(efa_fit)
 ```
 
 ## Diagram Output
+
 ```{r}
 fa.diagram(efa_fit)
 
@@ -122,19 +124,18 @@ VSS(efa_data, n = 4, rotate = "varimax")
 ```
 
 ## Full Output
+
 ```{r}
 efa_fit
 ```
 
-----
+------------------------------------------------------------------------
 
-----
+------------------------------------------------------------------------
 
 # CFA {.tabset .tabset-pills}
 
 ```{r}
-# list of the latent factor labels
-factors <- c("visual", "textual", "speed")
 # specify the model
 model <- '
 # latent factors
@@ -147,25 +148,24 @@ speed =~ x7 + x8 + x9
 # constraints
 
 '
-
+# fit model
 fit <- cfa(model = model, data = cfa_data, mimic = "lavaan", 
            estimator = "ML", missing = "ML", 
            std.lv = TRUE, std.ov = FALSE, test = "standard", 
            se = "standard", bootstrap = 1000)
 ```
 
-
 ## Summary Output
+
 ```{r}
 sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit, factors = factors)
-sem_factorvar(fit, factors = factors)
-sem_rsquared(fit)
+sem_factorcor(fit)
 ```
 
 ## Diagram Output
+
 ```{r}
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
@@ -175,37 +175,38 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ```
 
 ## Residual Correlation Matrix
+
 ```{r}
 sem_residuals(fit)
 ```
 
-
 ## Full Output
 
 ### Summary
+
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Parameter Estimates
+
 ```{r}
 standardizedSolution(fit)
 ```
 
 ### Modification Indices
+
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # SEM {.tabset .tabset-pills}
 
 ```{r}
-# list of the latent factor labels
-factors <- c("dem60", "ind60", "dem65")
 # specify the model
 model <- '
 # measurement model
@@ -227,22 +228,22 @@ y6 ~~ y8
 # variances
 
 '
-
+# fit model
 fit <- sem(model = model, data = sem_data, mimic = "lavaan", 
            estimator = "ML", missing = "ML", 
            std.lv = FALSE, std.ov = FALSE, test = "standard", 
            se = "standard", bootstrap = 1000)
 ```
 
-
 ## Summary Output
+
 ```{r}
 sem_sig(fit)
 sem_fitmeasures(fit)
 sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
 sem_paths(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit, factors = factors)
-sem_factorvar(fit, factors = factors)
+sem_factorcor(fit)
+sem_factorvar(fit)
 sem_rsquared(fit)
 ```
 
@@ -259,33 +260,37 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ```
 
 ## Residual Correlation Matrix
+
 ```{r}
 sem_residuals(fit)
 ```
 
-
 ## Full Output
 
 ### Summary
+
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Parameter Estimates
+
 ```{r}
 standardizedSolution(fit)
 ```
 
 ### Modification Indices
+
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # Session Info
+
 ```{r comment=""}
 citation("lavaan")
 citation()
