@@ -9,7 +9,7 @@ sem_factorcor(x, factors = c(), print = TRUE)
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
 
-\item{factors}{list c() of factors included in the model}
+\item{factors}{depricated.}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }
