@@ -12,11 +12,11 @@
 #' @export
 #'
 
-sem_tables <- function(x, standardize = TRUE, ci = "standardized",
+sem_tables <- function(x, standardized = TRUE, ci = "standardized",
                        ci.level = 0.95, digits = 3, print = TRUE){
   sem_sig(x, print = print)
   sem_fitmeasures(x, print = print)
-  sem_factorloadings(x, standardized = standardize, ci = ci,
+  sem_factorloadings(x, standardized = standardized, ci = ci,
                      ci.level = ci.level, digits = digits, print = print)
   sem_paths(x, standardized = standardized, ci = ci,
             ci.level = ci.level, digits = digits, print = print)

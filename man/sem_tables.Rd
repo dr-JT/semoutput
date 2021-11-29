@@ -6,7 +6,7 @@
 \usage{
 sem_tables(
   x,
-  standardize = TRUE,
+  standardized = TRUE,
   ci = "standardized",
   ci.level = 0.95,
   digits = 3,
@@ -16,6 +16,8 @@ sem_tables(
 \arguments{
 \item{x}{a lavaan model}
 
+\item{standardized}{logical. Include standardized loadings? (default = TRUE)}
+
 \item{ci}{logical. display standardized or unstandardized confidence
 intervals? (default = "standardized"). Not needed if standardized=FALSE}
 
@@ -24,8 +26,6 @@ intervals? (default = "standardized"). Not needed if standardized=FALSE}
 \item{digits}{How many digits to display? (default = 3)}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
-
-\item{standardized}{logical. Include standardized loadings? (default = TRUE)}
 }
 \description{
 Display all tables relevant for SEM models
