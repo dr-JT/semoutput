@@ -26,6 +26,8 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
   var_table <- sem_factorvar(x, standardized = standardized, print = print)
   rsquared_table <- sem_rsquared(x, print = print)
 
+  print(typeof(sig_table))
+
   if (typeof(sig_table) == "list") print(sig_table)
   if (typeof(fit_table) == "list") print(fit_table)
   if (typeof(loadings_table) == "list") print(loadings_table)
