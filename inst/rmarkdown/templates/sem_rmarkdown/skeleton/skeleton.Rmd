@@ -129,6 +129,7 @@ sem_factorcor(fit)
 
 ## Diagram Output
 ```{r}
+factors <- c()
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
@@ -201,6 +202,7 @@ sem_rsquared(fit)
 
 ## Diagram Output
 ```{r}
+factors <- c()
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
