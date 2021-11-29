@@ -26,11 +26,11 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
   var_table <- sem_factorvar(x, standardized = standardized, print = print)
   rsquared_table <- sem_rsquared(x, print = print)
 
-  return(sig_table)
-  return(fit_table)
-  return(loadings_table)
-  return(paths_table)
-  return(corr_table)
-  return(var_table)
-  return(rsquared_table)
+  print(sig_table)
+  print(fit_table)
+  print(loadings_table)
+  print(paths_table)
+  print(corr_table)
+  print(var_table)
+  print(rsquared_table)
 }
