@@ -14,13 +14,18 @@
 
 sem_tables <- function(x, standardized = TRUE, ci = "standardized",
                        ci.level = 0.95, digits = 3, print = TRUE){
-  sem_sig(x, print = print)
-  sem_fitmeasures(x, print = print)
-  sem_factorloadings(x, standardized = standardized, ci = ci,
-                     ci.level = ci.level, digits = digits, print = print)
-  sem_paths(x, standardized = standardized, ci = ci,
-            ci.level = ci.level, digits = digits, print = print)
-  sem_factorcor(x, print = print)
-  sem_factorvar(x, standardized = standardized, print = print)
-  sem_rsquared(x, print = print)
+  sig_table <- sem_sig(x, print = print)
+  fit_table <- sem_fitmeasures(x, print = print)
+  loadings_table <- sem_factorloadings(x, standardized = standardized, ci = ci,
+                                       ci.level = ci.level, digits = digits,
+                                       print = print)
+  paths_table <- sem_paths(x, standardized = standardized, ci = ci,
+                           ci.level = ci.level, digits = digits,
+                           print = print)
+  corr_table <- sem_factorcor(x, print = print)
+  var_table <- sem_factorvar(x, standardized = standardized, print = print)
+  rsquared_table <- sem_rsquared(x, print = print)
+
+  return(list(sig_table, fit_table, loadings_table, paths_table,
+              corr_table, var_table, rsquared_table))
 }
