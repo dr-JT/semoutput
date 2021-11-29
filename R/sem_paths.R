@@ -48,14 +48,18 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                              `Path Values` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper,
                              Loadings.std = std.all)
-      if (print == TRUE){
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Regression Paths")
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table,
-                                              c(" ", " ",
-                                                "Unstandardized" = 7,
-                                                "Standardized" = 1))
+      if (nrow(table) > 0) {
+        if (print == TRUE){
+          table <- knitr::kable(table, digits = digits, format = "html",
+                                caption = "Regression Paths")
+          table <- kableExtra::kable_styling(table)
+          table <- kableExtra::add_header_above(table,
+                                                c(" ", " ",
+                                                  "Unstandardized" = 7,
+                                                  "Standardized" = 1))
+        }
+      } else {
+        table <- ""
       }
     }
 
@@ -63,18 +67,22 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
                              `Path Values` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
-      if (print == TRUE){
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Regression Paths")
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table,
-                                              c(" ", " ",
-                                                "Unstandardized" = 7))
+      if (nrow(table) > 0) {
+        if (print == TRUE){
+          table <- knitr::kable(table, digits = digits, format = "html",
+                                caption = "Regression Paths")
+          table <- kableExtra::kable_styling(table)
+          table <- kableExtra::add_header_above(table,
+                                                c(" ", " ",
+                                                  "Unstandardized" = 7))
+        }
+      } else {
+        table <- ""
       }
     }
   }
   if (print == FALSE){
-    table <- as.data.frame(table)
+    if (nrow(table) > 0) table <- as.data.frame(table)
   }
   return(table)
 }

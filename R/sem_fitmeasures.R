@@ -13,14 +13,17 @@ sem_fitmeasures <- function(x, print = TRUE){
                       'RMSEA Lower' = stats[["rmsea.ci.lower"]],
                       'RMSEA Upper' = stats[["rmsea.ci.upper"]],
                       AIC = stats[["aic"]], BIC = stats[["bic"]])
-
-  if (print == TRUE){
-    table <- knitr::kable(table, digits = 3, format = "html",
-                          caption = "Model Fit Measures", row.names = FALSE)
-    table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                       position = "left")
-  } else if (print == FALSE){
-    table <- as.data.frame(table)
+  if (nrow(table) > 0) {
+    if (print == TRUE){
+      table <- knitr::kable(table, digits = 3, format = "html",
+                            caption = "Model Fit Measures", row.names = FALSE)
+      table <- kableExtra::kable_styling(table, full_width = FALSE,
+                                         position = "left")
+    } else if (print == FALSE){
+      table <- as.data.frame(table)
+    }
+  } else {
+    table <- ""
   }
 
   return(table)

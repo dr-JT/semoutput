@@ -23,14 +23,18 @@ sem_factorcor <- function(x, factors = c(), print = TRUE){
                          Lower.CI = ci.lower, Upper.CI = ci.upper,
                          SE = se)
 
-  if (print == TRUE){
-    table <- knitr::kable(table, digits = 3, format = "html",
-                          caption = "Latent Factor Correlations",
-                          row.names = FALSE)
-    table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                       position = "left")
-  } else if (print == FALSE){
-    table <- as.data.frame(table)
+  if (nrow(table) > 0) {
+    if (print == TRUE){
+      table <- knitr::kable(table, digits = 3, format = "html",
+                            caption = "Latent Factor Correlations",
+                            row.names = FALSE)
+      table <- kableExtra::kable_styling(table, full_width = FALSE,
+                                         position = "left")
+    } else if (print == FALSE){
+      table <- as.data.frame(table)
+    }
+  } else {
+    table <- ""
   }
 
   return(table)

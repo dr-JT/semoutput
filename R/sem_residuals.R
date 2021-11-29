@@ -11,13 +11,17 @@ sem_residuals <- function(x, print = TRUE){
   table[upper.tri(table)] <- NA
   diag(table) <- NA
 
-  if (print == TRUE){
-    options(knitr.kable.NA = '')
-    table <- knitr::kable(table, digits = 2, format = "html")
-    table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                       position = "left")
-  } else if (print == FALSE){
-    table <- as.data.frame(table)
+  if (nrow(table) > 0) {
+    if (print == TRUE){
+      options(knitr.kable.NA = '')
+      table <- knitr::kable(table, digits = 2, format = "html")
+      table <- kableExtra::kable_styling(table, full_width = FALSE,
+                                         position = "left")
+    } else if (print == FALSE){
+      table <- as.data.frame(table)
+    }
+  } else {
+    table <- ""
   }
 
   return(table)

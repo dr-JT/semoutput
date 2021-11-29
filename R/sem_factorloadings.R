@@ -27,14 +27,17 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
                            Loadings = est.std, 'sig' = stars, p = pvalue,
                            Lower.CI = ci.lower, Upper.CI = ci.upper,
                            SE = se, z)
-
-    if (print == TRUE){
-      table <- knitr::kable(table, digits = digits, format = "html",
-                            caption = "Factor Loadings")
-      table <- kableExtra::kable_styling(table)
-      table <- kableExtra::add_header_above(table,
-                                            c(" ", " ",
-                                              "Standardized" = 7))
+    if (nrow(table) > 0) {
+      if (print == TRUE){
+        table <- knitr::kable(table, digits = digits, format = "html",
+                              caption = "Factor Loadings")
+        table <- kableExtra::kable_styling(table)
+        table <- kableExtra::add_header_above(table,
+                                              c(" ", " ",
+                                                "Standardized" = 7))
+      }
+    } else {
+      table <- ""
     }
   }
 
@@ -51,14 +54,18 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
                              Lower.CI = ci.lower, Upper.CI = ci.upper,
                              SE = se, z, Loadings.std = std.all)
 
-      if (print == TRUE){
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Factor Loadings")
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table,
-                                              c(" ", " ",
-                                                "Unstandardized" = 7,
-                                                "Standardized" = 1))
+      if (nrow(table) > 0) {
+        if (print == TRUE){
+          table <- knitr::kable(table, digits = digits, format = "html",
+                                caption = "Factor Loadings")
+          table <- kableExtra::kable_styling(table)
+          table <- kableExtra::add_header_above(table,
+                                                c(" ", " ",
+                                                  "Unstandardized" = 7,
+                                                  "Standardized" = 1))
+        }
+      } else {
+        table <- ""
       }
     }
 
@@ -67,19 +74,22 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
                              Loadings = est, 'sig' = stars, p = pvalue,
                              Lower.CI = ci.lower, Upper.CI = ci.upper,
                              SE = se, z)
-
-      if (print == TRUE){
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Factor Loadings")
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table,
-                                              c(" ", " ",
-                                                "Unstandardized" = 7))
+      if (nrow(table) > 0) {
+        if (print == TRUE){
+          table <- knitr::kable(table, digits = digits, format = "html",
+                                caption = "Factor Loadings")
+          table <- kableExtra::kable_styling(table)
+          table <- kableExtra::add_header_above(table,
+                                                c(" ", " ",
+                                                  "Unstandardized" = 7))
+        }
+      } else {
+        table <- ""
       }
     }
   }
   if (print == FALSE){
-    table <- as.data.frame(table)
+    if (nrow(table) > 0) table <- as.data.frame(table)
   }
   return(table)
 }

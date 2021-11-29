@@ -26,11 +26,11 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
   var_table <- sem_factorvar(x, standardized = standardized, print = print)
   rsquared_table <- sem_rsquared(x, print = print)
 
-  print(sig_table)
-  print(fit_table)
-  print(loadings_table)
-  print(paths_table)
-  print(corr_table)
-  print(var_table)
-  print(rsquared_table)
+  if (typeof(sig_table) == "list") print(sig_table)
+  if (typeof(fit_table) == "list") print(fit_table)
+  if (typeof(loadings_table) == "list") print(loadings_table)
+  if (typeof(paths_table) == "list") print(paths_table)
+  if (typeof(corr_table) == "list") print(corr_table)
+  if (typeof(var_table) == "list") print(var_table)
+  if (typeof(rsquared_table) == "list") print(rsquared_table)
 }
