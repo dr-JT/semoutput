@@ -121,10 +121,7 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
 
 ## Summary Output
 ```{r}
-sem_sig(fit)
-sem_fitmeasures(fit)
-sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit)
+sem_tables()
 ```
 
 ## Diagram Output
@@ -191,13 +188,7 @@ fit <- sem(model = model, data = data, mimic = "lavaan",
 
 ## Summary Output
 ```{r}
-sem_sig(fit)
-sem_fitmeasures(fit)
-sem_factorloadings(fit, standardized = TRUE, ci = "standardized")
-sem_paths(fit, standardized = TRUE, ci = "standardized")
-sem_factorcor(fit)
-sem_factorvar(fit)
-sem_rsquared(fit)
+sem_tables()
 ```
 
 ## Diagram Output
