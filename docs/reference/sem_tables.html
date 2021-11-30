@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Latent factor variances — sem_factorvar • semoutput</title>
+<title>SEM Tables — sem_tables • semoutput</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,8 +52,8 @@
 
 
 
-<meta property="og:title" content="Latent factor variances — sem_factorvar" />
-<meta property="og:description" content="This function will display a table of Latent factor variances" />
+<meta property="og:title" content="SEM Tables — sem_tables" />
+<meta property="og:description" content="Display all tables relevant for SEM models" />
 <meta property="og:image" content="https://dr-jt.github.io/semoutput/logo.png" />
 
 
@@ -131,35 +131,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Latent factor variances</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dr-JT/semoutput/blob/master/R/sem_factorvar.R'><code>R/sem_factorvar.R</code></a></small>
-    <div class="hidden name"><code>sem_factorvar.Rd</code></div>
+    <h1>SEM Tables</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dr-JT/semoutput/blob/master/R/sem_tables.R'><code>R/sem_tables.R</code></a></small>
+    <div class="hidden name"><code>sem_tables.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function will display a table of Latent factor variances</p>
+    <p>Display all tables relevant for SEM models</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sem_factorvar</span><span class='op'>(</span><span class='va'>x</span>, factors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>, standardized <span class='op'>=</span> <span class='cn'>TRUE</span>, print <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sem_tables</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  standardized <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ci <span class='op'>=</span> <span class='st'>"standardized"</span>,
+  ci.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  digits <span class='op'>=</span> <span class='fl'>3</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a cfa() or sem() lavaan model</p></td>
-    </tr>
-    <tr>
-      <th>factors</th>
-      <td><p>depricated.</p></td>
+      <td><p>a lavaan model</p></td>
     </tr>
     <tr>
       <th>standardized</th>
-      <td><p>logical. include standardized loadings? (default = TRUE)</p></td>
+      <td><p>logical. Include standardized loadings? (default = TRUE)</p></td>
     </tr>
     <tr>
-      <th>print</th>
-      <td><p>Create a knitr table for displaying as html table? (default = TRUE)</p></td>
+      <th>ci</th>
+      <td><p>logical. display standardized or unstandardized confidence
+intervals? (default = "standardized"). Not needed if standardized=FALSE</p></td>
+    </tr>
+    <tr>
+      <th>ci.level</th>
+      <td><p>What level of confidence interval to use (default = 0.95)</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>How many digits to display? (default = 3)</p></td>
     </tr>
     </table>
 
