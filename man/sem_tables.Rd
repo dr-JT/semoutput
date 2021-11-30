@@ -9,8 +9,7 @@ sem_tables(
   standardized = TRUE,
   ci = "standardized",
   ci.level = 0.95,
-  digits = 3,
-  print = TRUE
+  digits = 3
 )
 }
 \arguments{
@@ -24,8 +23,6 @@ intervals? (default = "standardized"). Not needed if standardized=FALSE}
 \item{ci.level}{What level of confidence interval to use (default = 0.95)}
 
 \item{digits}{How many digits to display? (default = 3)}
-
-\item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }
 \description{
 Display all tables relevant for SEM models

@@ -8,31 +8,28 @@
 #'     intervals? (default = "standardized"). Not needed if standardized=FALSE
 #' @param ci.level What level of confidence interval to use (default = 0.95)
 #' @param digits How many digits to display? (default = 3)
-#' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
 sem_tables <- function(x, standardized = TRUE, ci = "standardized",
-                       ci.level = 0.95, digits = 3, print = TRUE){
-  sig_table <- sem_sig(x, print = print)
-  fit_table <- sem_fitmeasures(x, print = print)
+                       ci.level = 0.95, digits = 3){
+  sig_table <- sem_sig(x, print = TRUE)
+  fit_table <- sem_fitmeasures(x, print = TRUE)
   loadings_table <- sem_factorloadings(x, standardized = standardized, ci = ci,
                                        ci.level = ci.level, digits = digits,
-                                       print = print)
+                                       print = TRUE)
   paths_table <- sem_paths(x, standardized = standardized, ci = ci,
                            ci.level = ci.level, digits = digits,
-                           print = print)
-  corr_table <- sem_factorcor(x, print = print)
-  var_table <- sem_factorvar(x, standardized = standardized, print = print)
-  rsquared_table <- sem_rsquared(x, print = print)
+                           print = TRUE)
+  corr_table <- sem_factorcor(x, print = TRUE)
+  var_table <- sem_factorvar(x, standardized = standardized, print = TRUE)
+  rsquared_table <- sem_rsquared(x, print = TRUE)
 
-  print(typeof(sig_table))
-
-  if (typeof(sig_table) == "list") print(sig_table)
-  if (typeof(fit_table) == "list") print(fit_table)
-  if (typeof(loadings_table) == "list") print(loadings_table)
-  if (typeof(paths_table) == "list") print(paths_table)
-  if (typeof(corr_table) == "list") print(corr_table)
-  if (typeof(var_table) == "list") print(var_table)
-  if (typeof(rsquared_table) == "list") print(rsquared_table)
+  if (sig_table != "") print(sig_table)
+  if (fit_table != "") print(fit_table)
+  if (loadings_table != "") print(loadings_table)
+  if (paths_table != "") print(paths_table)
+  if (corr_table != "") print(corr_table)
+  if (var_table != "") print(var_table)
+  if (rsquared_table != "") print(rsquared_table)
 }
