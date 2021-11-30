@@ -20,7 +20,9 @@ devtools::install_github("dr-JT/semoutput")
 
 ## Usage
 
-The package contains an R Markdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
+Use a single function `sem_tables()` to display nice looking output from a lavaan model (e.g., sem_tables(fit))
+
+The package also contains an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
 
 **Once you install the package, you will be able to access the R Markdown template by going to**:
 
