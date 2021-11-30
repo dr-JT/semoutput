@@ -27,12 +27,16 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                            `Path Values` = est.std, SE = se, z, 'sig' = stars,
                            p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
 
-    if (print == TRUE){
-      table <- knitr::kable(table, digits = digits, format = "html",
-                            caption = "Regression Paths")
-      table <- kableExtra::kable_styling(table)
-      table <- kableExtra::add_header_above(table, c(" ", " ",
-                                                     "Standardized" = 7))
+    if (nrow(table) > 0) {
+      if (print == TRUE){
+        table <- knitr::kable(table, digits = digits, format = "html",
+                              caption = "Regression Paths")
+        table <- kableExtra::kable_styling(table)
+        table <- kableExtra::add_header_above(table, c(" ", " ",
+                                                       "Standardized" = 7))
+      }
+    } else {
+      table <- ""
     }
   }
 
