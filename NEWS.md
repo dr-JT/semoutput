@@ -1,3 +1,9 @@
+# semoutput 1.0.2
+
+* added `sem_tables()` as a wrapper around the other functions. Can now use this single function to print out all summary output tables
+
+* the R Markdown template has been updated to reflect this
+
 # semoutput 1.0.1
 
 * `sem_factorcor()` now automatically detects latent factor labels. The argument factors = c() is no deprecated.
