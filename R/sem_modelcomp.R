@@ -12,12 +12,6 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
   m0_name <- as.character(substitute(m0))
   m1_name <- as.character(substitute(m1))
 
-  # Get values to be used in the table
-  stats <- lavaan::anova(m0, m1)
-  bic1 <- BIC(m0)
-  bic2 <- BIC(m1)
-  bf <- exp((bic2 - bic1) / 2)
-
   # Create table
   table <- suppressWarnings(broom::tidy(stats))
   table <- dplyr::rename(table, Model = term,
