@@ -12,6 +12,9 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
   m0_name <- as.character(substitute(m0))
   m1_name <- as.character(substitute(m1))
 
+  # Get values to be used in the table
+  stats <- lavaan::anova(m0, m1)
+
   # Create table
   table <- suppressWarnings(broom::tidy(stats))
   table <- dplyr::rename(table, Model = term,
