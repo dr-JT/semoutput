@@ -2,16 +2,13 @@
 title: "Document Title"
 output: 
   html_document:
-    code_download: yes
-    code_folding: hide
     toc: true
     toc_float:
       collapsed: false
+    toc_depth: 1
+    code_folding: hide
+    code_download: true
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
-```
 
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
 
@@ -20,7 +17,10 @@ See [Package References](https://dr-jt.github.io/semoutput/reference/index.html)
 # Setup
 
 Required Packages
-```{r warning=FALSE}
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(error = TRUE, message = FALSE, warning = TRUE)
+
 library(readr)
 library(here)
 library(dplyr)
@@ -31,7 +31,6 @@ library(semPlot)
 library(sjPlot)
 ```
 
-
 Import Data
 
 ```{r warning=FALSE}
@@ -39,18 +38,18 @@ Import Data
 data <- read_csv(here("relative file path", "file name"))
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
-# Descriptives 
+# Descriptives
 
 ```{r}
 # Prints basic descriptive statistics
 sem_descriptives(data)
 ```
 
----
+------------------------------------------------------------------------
 
 # Correlation Matrix
 
@@ -59,9 +58,9 @@ sem_descriptives(data)
 tab_corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # EFA {.tabset .tabset-pills}
 
@@ -78,6 +77,7 @@ efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
 ```
 
 ## Summary Output
+
 ```{r}
 efa_method(efa_fit)
 efa_var(efa_fit)
@@ -86,20 +86,24 @@ efa_rotmatrix(efa_fit)
 ```
 
 ## Diagram Output
+
 ```{r}
 fa.diagram(efa_fit)
 ```
 
 ## Full Output
+
 ```{r}
 efa_fit
 ```
 
-----
+------------------------------------------------------------------------
 
-----
+------------------------------------------------------------------------
 
 # CFA {.tabset .tabset-pills}
+
+See the [lavaan Tutorial](https://lavaan.ugent.be/tutorial/index.html){target="_blank"} for model syntax
 
 ```{r}
 # specify the model
@@ -118,13 +122,14 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
            se = "standard", bootstrap = 1000)
 ```
 
-
 ## Summary Output
-```{r}
+
+```{r results='asis'}
 sem_tables()
 ```
 
 ## Diagram Output
+
 ```{r}
 factors <- fit$pta$vnames$lv[[1]]
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
@@ -135,33 +140,38 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ```
 
 ## Residual Correlation Matrix
+
 ```{r}
 sem_residuals(fit)
 ```
 
-
 ## Full Output
 
 ### Summary
+
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Parameter Estimates
+
 ```{r}
 standardizedSolution(fit)
 ```
 
 ### Modification Indices
+
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # SEM {.tabset .tabset-pills}
+
+See the [lavaan Tutorial](https://lavaan.ugent.be/tutorial/index.html){target="_blank"} for model syntax
 
 ```{r}
 # specify the model
@@ -185,13 +195,14 @@ fit <- sem(model = model, data = data, mimic = "lavaan",
            se = "standard", bootstrap = "standard")
 ```
 
-
 ## Summary Output
-```{r}
+
+```{r results='asis'}
 sem_tables()
 ```
 
 ## Diagram Output
+
 ```{r}
 factors <- fit$pta$vnames$lv[[1]]
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
@@ -202,33 +213,37 @@ semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2",
 ```
 
 ## Residual Correlation Matrix
+
 ```{r}
 sem_residuals(fit)
 ```
 
-
 ## Full Output
 
 ### Summary
+
 ```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Parameter Estimates
+
 ```{r}
 standardizedSolution(fit)
 ```
 
 ### Modification Indices
+
 ```{r}
 modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 ```
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 # Session Info
+
 ```{r comment=""}
 citation("lavaan")
 citation()
