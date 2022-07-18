@@ -126,7 +126,7 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
 ## Summary Output
 
 ```{r results='asis'}
-sem_tables()
+sem_tables(fit)
 ```
 
 ## Diagram Output
@@ -199,7 +199,7 @@ fit <- sem(model = model, data = data, mimic = "lavaan",
 ## Summary Output
 
 ```{r results='asis'}
-sem_tables()
+sem_tables(fit)
 ```
 
 ## Diagram Output
