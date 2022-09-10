@@ -1,8 +1,8 @@
-pandoc: 2.11.4
+pandoc: 2.17.1.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-03-04T20:49Z
+last_built: 2022-09-10T20:13Z
 urls:
   reference: https://dr-jt.github.io/semoutput//reference
   article: https://dr-jt.github.io/semoutput//articles

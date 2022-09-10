@@ -89,10 +89,11 @@
   <div class="contents col-md-9">
 <div id="semoutput-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#semoutput-" class="anchor"></a>semoutput <img src="reference/figures/logo_small.png" align="right">
+<a href="#semoutput-" class="anchor"></a>semoutput
+<img src="reference/figures/logo_small.png" align="right">
 </h1></div>
-<p>An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages</p>
-<p>Interact with an <a href="http://englelab.gatech.edu/articles/ExampleSEMOutput.html" target="_blank">Example RMarkdown Output</a></p>
+<p>An R package to create nice looking output for CFA and SEM analyses
+using lavaan and semPlot packages</p>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
@@ -111,15 +112,20 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Use a single function <code><a href="reference/sem_tables.html">sem_tables()</a></code> to display nice looking output from a lavaan model (e.g., sem_tables(fit))</p>
-<p>The package also contains an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.</p>
-<p><strong>Once you install the package, you will be able to access the R Markdown template by going to</strong>:</p>
-<p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt; CFA/SEM (lavaan)</p>
+<p>Use a single function <code><a href="reference/sem_tables.html">sem_tables()</a></code> to display nice
+looking output from a lavaan model.</p>
+<p>The package contains an RMarkdwon template that makes it very easy to
+run CFA and SEM analyses in R and create nice looking output.</p>
+<p><strong>Once you install the package, you will be able to access the
+R Markdown template by going to</strong>:</p>
+<p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt;
+CFA/SEM (lavaan)</p>
 </div>
 <div id="lavaan" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lavaan" class="anchor"></a>lavaan</h2>
-<p>lavaan syntax is very intuitive to use and is documented with useful tutorials</p>
+<p>lavaan syntax is very intuitive to use and is documented with useful
+tutorials</p>
 <p><a href="http://lavaan.ugent.be/tutorial/index.html" class="uri">http://lavaan.ugent.be/tutorial/index.html</a></p>
 <div id="example-lavaan-syntax" class="section level3">
 <h3 class="hasAnchor">
@@ -139,7 +145,10 @@ v7 ~~ v8
 '</span>
 
 <span class="co"># Run a latent variable analysis</span>
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">data</span>, missing <span class="op">=</span> <span class="st">"ML"</span>, std.lv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">data</span>, missing <span class="op">=</span> <span class="st">"ML"</span>, std.lv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Print styled tables</span>
+<span class="fu"><a href="reference/sem_tables.html">sem_tables</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="screenshots-of-nice-looking-output" class="section level2">

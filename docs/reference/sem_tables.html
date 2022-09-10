@@ -53,7 +53,8 @@
 
 
 <meta property="og:title" content="SEM Tables — sem_tables" />
-<meta property="og:description" content="Display all tables relevant for SEM models" />
+<meta property="og:description" content="Display all tables relevant for SEM models. Make sure results='asis' is
+specified in the R code chunk setting." />
 <meta property="og:image" content="https://dr-jt.github.io/semoutput/logo.png" />
 
 
@@ -137,14 +138,15 @@
     </div>
 
     <div class="ref-description">
-    <p>Display all tables relevant for SEM models</p>
+    <p>Display all tables relevant for SEM models. Make sure results='asis' is
+specified in the R code chunk setting.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sem_tables</span><span class='op'>(</span>
   <span class='va'>x</span>,
   standardized <span class='op'>=</span> <span class='cn'>TRUE</span>,
   ci <span class='op'>=</span> <span class='st'>"standardized"</span>,
-  ci.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  ci_level <span class='op'>=</span> <span class='fl'>0.95</span>,
   digits <span class='op'>=</span> <span class='fl'>3</span>
 <span class='op'>)</span></pre>
 
@@ -165,7 +167,7 @@
 intervals? (default = "standardized"). Not needed if standardized=FALSE</p></td>
     </tr>
     <tr>
-      <th>ci.level</th>
+      <th>ci_level</th>
       <td><p>What level of confidence interval to use (default = 0.95)</p></td>
     </tr>
     <tr>

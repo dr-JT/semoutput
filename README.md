@@ -2,8 +2,6 @@
 
 An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages
 
-Interact with an <a href="http://englelab.gatech.edu/articles/ExampleSEMOutput.html" target="_blank">Example RMarkdown Output</a>
-
 ## Install
 
 ```r
@@ -20,9 +18,9 @@ devtools::install_github("dr-JT/semoutput")
 
 ## Usage
 
-Use a single function `sem_tables()` to display nice looking output from a lavaan model (e.g., sem_tables(fit))
+Use a single function `sem_tables()` to display nice looking output from a lavaan model.
 
-The package also contains an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
+The package contains an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.
 
 **Once you install the package, you will be able to access the R Markdown template by going to**:
 
@@ -54,6 +52,8 @@ v7 ~~ v8
 # Run a latent variable analysis
 fit <- cfa(model, data = data, missing = "ML", std.lv = FALSE)
 
+# Print styled tables
+sem_tables(fit)
 ```
 
 ## Screenshots of nice looking output

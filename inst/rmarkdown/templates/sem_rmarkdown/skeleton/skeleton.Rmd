@@ -131,7 +131,7 @@ sem_tables(fit)
 ## Diagram Output
 
 ```{r}
-factors <- fit$pta$vnames$lv[[1]]
+factors <- fit@pta$vnames$lv[[1]]
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
@@ -192,7 +192,7 @@ model <- '
 fit <- sem(model = model, data = data, mimic = "lavaan", 
            estimator = "ML", missing = "ML", 
            std.lv = FALSE, std.ov = FALSE, test = "standard", 
-           se = "standard", bootstrap = "standard")
+           se = "standard", bootstrap = 1000)
 ```
 
 ## Summary Output
@@ -204,7 +204,7 @@ sem_tables(fit)
 ## Diagram Output
 
 ```{r}
-factors <- fit$pta$vnames$lv[[1]]
+factors <- fit@pta$vnames$lv[[1]]
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
          intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
