@@ -25,7 +25,7 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
   var_table <- sem_factorvar(x, standardized = standardized, print = TRUE)
   rsquared_table <- sem_rsquared(x, print = TRUE)
 
-  if (sig_table != "") print(sig_table)
+  if (sig_table != "") writeLines(sig_table)
   if (fit_table != "") print(fit_table)
   if (loadings_table != "") print(loadings_table)
   if (paths_table != "") print(paths_table)
