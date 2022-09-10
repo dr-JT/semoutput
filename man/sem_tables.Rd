@@ -8,7 +8,7 @@ sem_tables(
   x,
   standardized = TRUE,
   ci = "standardized",
-  ci.level = 0.95,
+  ci_level = 0.95,
   digits = 3
 )
 }
@@ -20,10 +20,11 @@ sem_tables(
 \item{ci}{logical. display standardized or unstandardized confidence
 intervals? (default = "standardized"). Not needed if standardized=FALSE}
 
-\item{ci.level}{What level of confidence interval to use (default = 0.95)}
+\item{ci_level}{What level of confidence interval to use (default = 0.95)}
 
 \item{digits}{How many digits to display? (default = 3)}
 }
 \description{
-Display all tables relevant for SEM models
+Display all tables relevant for SEM models. Make sure results='asis' is
+specified in the R code chunk setting.
 }

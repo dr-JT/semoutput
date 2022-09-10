@@ -5,19 +5,19 @@
 #' @param standardized logical. Include standardized loadings? (default = TRUE)
 #' @param ci logical. display standardized or unstandardized confidence
 #'     intervals? (default = "standardized"). Not needed if standardized=FALSE
-#' @param ci.level What level of confidence interval to use (default = 0.95)
+#' @param ci_level What level of confidence interval to use (default = 0.95)
 #' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
 sem_paths <- function(x, standardized = TRUE, ci = "standardized",
-                      ci.level = 0.95, digits = 3, print = TRUE){
-  if (standardized == FALSE){
+                      ci_level = 0.95, digits = 3, print = TRUE){
+  if (standardized == FALSE) {
     ci <- "unstandardized"
   }
-  if (ci == "standardized"){
-    table <- lavaan::standardizedSolution(x, level = ci.level)
+  if (ci == "standardized") {
+    table <- lavaan::standardizedSolution(x, level = ci_level)
     table <- dplyr::filter(table, op == "~" | op == ":=")
     table <- dplyr::mutate(table,
                            stars = ifelse(pvalue < .001, "***",
@@ -28,7 +28,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                            p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
 
     if (nrow(table) > 0) {
-      if (print == TRUE){
+      if (print == TRUE) {
         table <- knitr::kable(table, digits = digits, format = "html",
                               caption = "Regression Paths")
         table <- kableExtra::kable_styling(table)
@@ -40,20 +40,20 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
     }
   }
 
-  if (ci == "unstandardized"){
+  if (ci == "unstandardized") {
     table <- lavaan::parameterEstimates(x, standardized = standardized)
     table <- dplyr::filter(table, op == "~" | op == ":=")
     table <- dplyr::mutate(table,
                            stars = ifelse(pvalue < .001, "***",
                                           ifelse(pvalue < .01, "**",
                                                  ifelse(pvalue < .05, "*", ""))))
-    if (standardized == TRUE){
+    if (standardized == TRUE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
                              `Path Values` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper,
                              Loadings.std = std.all)
       if (nrow(table) > 0) {
-        if (print == TRUE){
+        if (print == TRUE) {
           table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Regression Paths")
           table <- kableExtra::kable_styling(table)
@@ -67,12 +67,12 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
       }
     }
 
-    if (standardized == FALSE){
+    if (standardized == FALSE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
                              `Path Values` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
       if (nrow(table) > 0) {
-        if (print == TRUE){
+        if (print == TRUE) {
           table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Regression Paths")
           table <- kableExtra::kable_styling(table)
@@ -85,7 +85,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
       }
     }
   }
-  if (print == FALSE){
+  if (print == FALSE) {
     if (nrow(table) > 0) table <- as.data.frame(table)
   }
   return(table)
