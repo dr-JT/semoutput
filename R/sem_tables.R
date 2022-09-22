@@ -14,6 +14,16 @@
 
 sem_tables <- function(x, standardized = TRUE, ci = "standardized",
                        ci_level = 0.95, digits = 3){
+  # Function to make sure table prints whether running code in R code chunk,
+  # with knit button or with rmarkdown::render()
+  print_table <- function(x) {
+    if (isTRUE(getOption('knitr.in.progress'))) {
+      writeLines(x)
+    } else {
+      print(x)
+    }
+  }
+
   sig_table <- sem_sig(x, print = TRUE)
   fit_table <- sem_fitmeasures(x, print = TRUE)
   loadings_table <- sem_factorloadings(x, standardized = standardized, ci = ci,
@@ -26,11 +36,11 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
   var_table <- sem_factorvar(x, standardized = standardized, print = TRUE)
   rsquared_table <- sem_rsquared(x, print = TRUE)
 
-  if (sig_table != "") writeLines(sig_table)
-  if (fit_table != "") writeLines(fit_table)
-  if (loadings_table != "") writeLines(loadings_table)
-  if (paths_table != "") writeLines(paths_table)
-  if (corr_table != "") writeLines(corr_table)
-  if (var_table != "") writeLines(var_table)
-  if (rsquared_table != "") writeLines(rsquared_table)
+  if (sig_table != "") print_table(sig_table)
+  if (fit_table != "") print_table(fit_table)
+  if (loadings_table != "") print_table(loadings_table)
+  if (paths_table != "") print_table(paths_table)
+  if (corr_table != "") print_table(corr_table)
+  if (var_table != "") print_table(var_table)
+  if (rsquared_table != "") print_table(rsquared_table)
 }
