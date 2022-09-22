@@ -13,12 +13,12 @@ sem_sig <- function(x, print = TRUE){
                       df = stats[["df"]], 'p-value' = stats[["pvalue"]])
 
   if (nrow(table) > 0) {
-    if (print == TRUE){
+    if (print == TRUE) {
       table <- knitr::kable(table, digits = 3,
                             caption = "Model Significance", row.names = FALSE)
       table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")
-    } else if (print == FALSE){
+    } else if (print == FALSE) {
       table <- as.data.frame(table)
     }
   } else {

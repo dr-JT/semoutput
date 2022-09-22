@@ -14,8 +14,8 @@ efa_var <- function(fit, print = TRUE){
   table <- dplyr::select(table, Factor = name, Eigenvalue = `SS loadings`, `Proportion Var`, `Cumulative Var`)
   table <- dplyr::mutate(table, Factor = stringr::str_replace(Factor, "PA", ""))
 
-  if (print == TRUE){
-    table <- knitr::kable(table, digits = 3, format = "html",
+  if (print == TRUE) {
+    table <- knitr::kable(table, digits = 3,
                           caption = "Total Variance Explained", row.names = FALSE)
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")

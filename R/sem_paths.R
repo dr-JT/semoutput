@@ -29,7 +29,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
 
     if (nrow(table) > 0) {
       if (print == TRUE) {
-        table <- knitr::kable(table, digits = digits, format = "html",
+        table <- knitr::kable(table, digits = digits,
                               caption = "Regression Paths")
         table <- kableExtra::kable_styling(table)
         table <- kableExtra::add_header_above(table, c(" ", " ",
@@ -54,7 +54,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                              Loadings.std = std.all)
       if (nrow(table) > 0) {
         if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits, format = "html",
+          table <- knitr::kable(table, digits = digits,
                                 caption = "Regression Paths")
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,
@@ -73,7 +73,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                              p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
       if (nrow(table) > 0) {
         if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits, format = "html",
+          table <- knitr::kable(table, digits = digits,
                                 caption = "Regression Paths")
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,

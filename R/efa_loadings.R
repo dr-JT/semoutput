@@ -22,8 +22,8 @@ efa_loadings <- function(fit, print = TRUE){
   table <- dplyr::arrange(table, id)
   table <- dplyr::select(table, -id)
 
-  if (print == TRUE){
-    table <- knitr::kable(table, digits = 3, format = "html",
+  if (print == TRUE) {
+    table <- knitr::kable(table, digits = 3,
                           caption = "Factor Loadings", row.names = FALSE)
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")

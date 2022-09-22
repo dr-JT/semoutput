@@ -24,13 +24,13 @@ sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
                          var = est, var.std = std.all, sig = stars, p = pvalue)
 
   if (nrow(table) > 0) {
-    if (print == TRUE){
-      table <- knitr::kable(table, digits = 3, format = "html",
+    if (print == TRUE) {
+      table <- knitr::kable(table, digits = 3,
                             caption = "Latent Factor Variance/Residual Variance",
                             row.names = FALSE)
       table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")
-    } else if (print == FALSE){
+    } else if (print == FALSE) {
       table <- as.data.frame(table)
     }
   } else {

@@ -14,10 +14,10 @@ sem_anova <- function(m1, m2, print = TRUE){
   table$term <- c(1, 2)
 
   if (nrow(table) > 0) {
-    if (print==TRUE){
-      table <- knitr::kable(table, digits=3, format="html",
-                            caption="Model Comparison", row.names = FALSE)
-      table <- kableExtra::kable_styling(table, full_width=FALSE,
+    if (print == TRUE) {
+      table <- knitr::kable(table, digits = 3,
+                            caption = "Model Comparison", row.names = FALSE)
+      table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")
     }
   } else {
