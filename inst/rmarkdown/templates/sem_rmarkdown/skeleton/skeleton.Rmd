@@ -105,7 +105,7 @@ efa_fit
 
 See the [lavaan Tutorial](https://lavaan.ugent.be/tutorial/index.html){target="_blank"} for model syntax
 
-```{r}
+```{r class.source = "fold-show"}
 # specify the model
 model <- '
 # latent factors
@@ -173,7 +173,7 @@ modificationIndices(fit, sort. = TRUE, minimum.value = 3)
 
 See the [lavaan Tutorial](https://lavaan.ugent.be/tutorial/index.html){target="_blank"} for model syntax
 
-```{r}
+```{r class.source = "fold-show"}
 # specify the model
 model <- '
 # latent factors
