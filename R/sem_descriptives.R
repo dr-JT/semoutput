@@ -6,14 +6,15 @@
 #'
 
 sem_descriptives <- function(x){
+  col_order <- colnames(x)
   x <- tidyr::gather(x, "Variable", "value")
   x <- dplyr::group_by(x, Variable)
   table <- dplyr::summarise(x,
                             n = length(which(!is.na(value))),
-                            Mean = mean(value, na.rm=TRUE),
-                            SD = sd(value, na.rm=TRUE),
-                            min = min(value, na.rm=TRUE),
-                            max = max(value, na.rm=TRUE),
+                            Mean = mean(value, na.rm = TRUE),
+                            SD = sd(value, na.rm = TRUE),
+                            min = min(value, na.rm = TRUE),
+                            max = max(value, na.rm = TRUE),
                             Skewness =
                               e1071::skewness(value, na.rm = TRUE, type = 2),
                             Kurtosis =
@@ -24,8 +25,9 @@ sem_descriptives <- function(x){
   N <- dplyr::summarise(x, N.total = dplyr::n())
   N <- N$N.total[1]
   table <- dplyr::ungroup(table)
-  table <- knitr::kable(table, digits=2, format="html",
-                        caption="Descriptive Statistics")
+  table <- dplyr::arrange(table, match(Variable, col_order))
+  table <- knitr::kable(table, digits = 2, format = "html",
+                        caption = "Descriptive Statistics")
   table <- kableExtra::kable_styling(table)
   table <- kableExtra::footnote(table, general_title = "\n",
                                 general = paste("Total N = ", N, sep = ""))
