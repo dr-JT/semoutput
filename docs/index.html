@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,18 +45,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">semoutput</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/dr-JT/semoutput/">
+  <a href="https://github.com/dr-JT/semoutput/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -87,97 +83,99 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="semoutput-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#semoutput-" class="anchor"></a>semoutput
-<img src="reference/figures/logo_small.png" align="right">
+<div class="section level1">
+<div class="page-header"><h1 id="semoutput-">semoutput <img src="reference/figures/logo_small.png" align="right"><a class="anchor" aria-label="anchor" href="#semoutput-"></a>
 </h1></div>
-<p>An R package to create nice looking output for CFA and SEM analyses
-using lavaan and semPlot packages</p>
-<div id="install" class="section level2">
-<h2 class="hasAnchor">
-<a href="#install" class="anchor"></a>Install</h2>
+<p>An R package to create nice looking output for CFA and SEM analyses using lavaan and semPlot packages</p>
+<div class="section level2">
+<h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"dr-JT/semoutput"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dr-JT/semoutput"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="required-packages" class="section level2">
-<h2 class="hasAnchor">
-<a href="#required-packages" class="anchor"></a>Required Packages</h2>
+<div class="section level2">
+<h2 id="required-packages">Required Packages<a class="anchor" aria-label="anchor" href="#required-packages"></a>
+</h2>
 <ul>
 <li><p>lavaan package to run CFA and SEM analyses</p></li>
 <li><p>semPlot package to display model diagrams</p></li>
 <li><p>sjPlot package to print correlation tables</p></li>
 </ul>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>Use a single function <code><a href="reference/sem_tables.html">sem_tables()</a></code> to display nice
-looking output from a lavaan model.</p>
-<p>The package contains an RMarkdwon template that makes it very easy to
-run CFA and SEM analyses in R and create nice looking output.</p>
-<p><strong>Once you install the package, you will be able to access the
-R Markdown template by going to</strong>:</p>
-<p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt;
-CFA/SEM (lavaan)</p>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>Use a single function <code><a href="reference/sem_tables.html">sem_tables()</a></code> to display nice looking output from a lavaan model.</p>
+<p>The package contains an RMarkdwon template that makes it very easy to run CFA and SEM analyses in R and create nice looking output.</p>
+<p><strong>Once you install the package, you will be able to access the R Markdown template by going to</strong>:</p>
+<p>File -&gt; New File -&gt; R Markdown… -&gt; From Template -&gt; CFA/SEM (lavaan)</p>
 </div>
-<div id="lavaan" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lavaan" class="anchor"></a>lavaan</h2>
-<p>lavaan syntax is very intuitive to use and is documented with useful
-tutorials</p>
-<p><a href="http://lavaan.ugent.be/tutorial/index.html" class="uri">http://lavaan.ugent.be/tutorial/index.html</a></p>
-<div id="example-lavaan-syntax" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-lavaan-syntax" class="anchor"></a>Example lavaan syntax</h3>
+<div class="section level2">
+<h2 id="lavaan">lavaan<a class="anchor" aria-label="anchor" href="#lavaan"></a>
+</h2>
+<p>lavaan syntax is very intuitive to use and is documented with useful tutorials</p>
+<p><a href="http://lavaan.ugent.be/tutorial/index.html" class="external-link uri">http://lavaan.ugent.be/tutorial/index.html</a></p>
+<div class="section level3">
+<h3 id="example-lavaan-syntax">Example lavaan syntax<a class="anchor" aria-label="anchor" href="#example-lavaan-syntax"></a>
+</h3>
 <p>CFA</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span>
-<span class="va">model</span> <span class="op">&lt;-</span> <span class="st">'
-# latent factors
-f1 =~ v1 + v2 + v3
-f2 =~ v4 + v5 + v6
-f3 =~ v7 + v8 + v9
-
-# correlated errors
-v5 ~~ v6
-v7 ~~ v8
-'</span>
-
-<span class="co"># Run a latent variable analysis</span>
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">data</span>, missing <span class="op">=</span> <span class="st">"ML"</span>, std.lv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># Print styled tables</span>
-<span class="fu"><a href="reference/sem_tables.html">sem_tables</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Specify the model parameters using intuitive syntax to write out equations</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">'</span></span>
+<span><span class="st"># latent factors</span></span>
+<span><span class="st">f1 =~ v1 + v2 + v3</span></span>
+<span><span class="st">f2 =~ v4 + v5 + v6</span></span>
+<span><span class="st">f3 =~ v7 + v8 + v9</span></span>
+<span><span class="st"></span></span>
+<span><span class="st"># correlated errors</span></span>
+<span><span class="st">v5 ~~ v6</span></span>
+<span><span class="st">v7 ~~ v8</span></span>
+<span><span class="st">'</span></span>
+<span></span>
+<span><span class="co"># Run a latent variable analysis</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model</span>, data <span class="op">=</span> <span class="va">data</span>, missing <span class="op">=</span> <span class="st">"ML"</span>, std.lv <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print styled tables</span></span>
+<span><span class="fu"><a href="reference/sem_tables.html">sem_tables</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="screenshots-of-nice-looking-output" class="section level2">
-<h2 class="hasAnchor">
-<a href="#screenshots-of-nice-looking-output" class="anchor"></a>Screenshots of nice looking output</h2>
-<div id="model-fit" class="section level3">
-<h3 class="hasAnchor">
-<a href="#model-fit" class="anchor"></a>Model Fit</h3>
-<p><img src="reference/figures/ModelFit_CFA.png" alt="alt text"></p>
+<div class="section level2">
+<h2 id="screenshots-of-nice-looking-output">Screenshots of nice looking output<a class="anchor" aria-label="anchor" href="#screenshots-of-nice-looking-output"></a>
+</h2>
+<div class="section level3">
+<h3 id="model-fit">Model Fit<a class="anchor" aria-label="anchor" href="#model-fit"></a>
+</h3>
+<div class="figure">
+<img src="reference/figures/ModelFit_CFA.png" alt=""><p class="caption">alt text</p>
 </div>
-<div id="cfa-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cfa-output" class="anchor"></a>CFA Output</h3>
-<p><img src="reference/figures/Output_CFA.png" alt="alt text"></p>
 </div>
-<div id="sem-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sem-output" class="anchor"></a>SEM Output</h3>
-<p><img src="reference/figures/Output_SEM.png" alt="alt text"></p>
+<div class="section level3">
+<h3 id="cfa-output">CFA Output<a class="anchor" aria-label="anchor" href="#cfa-output"></a>
+</h3>
+<div class="figure">
+<img src="reference/figures/Output_CFA.png" alt=""><p class="caption">alt text</p>
 </div>
-<div id="model-diagram" class="section level3">
-<h3 class="hasAnchor">
-<a href="#model-diagram" class="anchor"></a>Model Diagram</h3>
-<p><img src="reference/figures/DiagramModel_SEM.png" alt="alt text"></p>
 </div>
-<div id="correlation-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#correlation-matrix" class="anchor"></a>Correlation Matrix</h3>
-<p><img src="reference/figures/CorrelationMatrix.png" alt="alt text"></p>
+<div class="section level3">
+<h3 id="sem-output">SEM Output<a class="anchor" aria-label="anchor" href="#sem-output"></a>
+</h3>
+<div class="figure">
+<img src="reference/figures/Output_SEM.png" alt=""><p class="caption">alt text</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="model-diagram">Model Diagram<a class="anchor" aria-label="anchor" href="#model-diagram"></a>
+</h3>
+<div class="figure">
+<img src="reference/figures/DiagramModel_SEM.png" alt=""><p class="caption">alt text</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="correlation-matrix">Correlation Matrix<a class="anchor" aria-label="anchor" href="#correlation-matrix"></a>
+</h3>
+<div class="figure">
+<img src="reference/figures/CorrelationMatrix.png" alt=""><p class="caption">alt text</p>
+</div>
 </div>
 </div>
 </div>
@@ -185,38 +183,50 @@ v7 ~~ v8
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/dr-JT/semoutput/">https://​github.com/​dr-JT/​semoutput/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/dr-JT/semoutput/issues">https://​github.com/​dr-JT/​semoutput/​issues</a>
-</li>
+<li><a href="https://github.com/dr-JT/semoutput/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/dr-JT/semoutput/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>NA</li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>
-<a href="http://englelab.gatech.edu/jason">Jason Tsukahara</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/-5550" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing semoutput</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>
+<a href="http://englelab.gatech.edu/jason" class="external-link">Jason Tsukahara</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/-5550" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://englelab.gatech.edu/jason">Jason Tsukahara</a>.</p>
+  <p></p>
+<p>Developed by <a href="http://englelab.gatech.edu/jason" class="external-link">Jason Tsukahara</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

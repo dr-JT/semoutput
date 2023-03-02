@@ -11,25 +11,27 @@ template:
       index_name: INDEX_NAME
 
 reference:
-- title: Data
+- title: Main Table Functions
   contents:
+  - sem_tables
+  - sem_modelcomp
   - sem_descriptives
-- title: Model Fit
+- title: Model Fit Tables
   contents:
   - sem_sig
   - sem_fitmeasures
   - sem_modelcomp
-- title: Model Parameters
+- title: Model Parameters Tables
   contents:
   - sem_factorloadings
   - sem_factorcor
   - sem_factorvar
   - sem_paths
   - sem_rsquared
-- title: Model Diagnostics
+- title: Model Diagnostic Tables
   contents:
   - sem_residuals
-- title: Exploratory Factor Analysis
+- title: Exploratory Factor Analysis Tables
   contents:
   - efa_method
   - efa_var

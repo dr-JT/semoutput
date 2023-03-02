@@ -16,3 +16,4 @@ sem_anova(m1, m2, print = TRUE)
 \description{
 This function will display a table of Model significance tests
 }
+\keyword{internal}

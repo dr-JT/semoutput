@@ -4,6 +4,7 @@
 #' @param m1 A nested lavaan model
 #' @param m2 A nested lavaan model
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
+#' @keywords internal
 #' @export
 #'
 

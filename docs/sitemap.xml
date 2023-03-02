@@ -1,54 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dr-jt.github.io/semoutput//index.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/404.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/efa_loadings.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/articles/ExampleOutput.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/efa_method.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/articles/ExampleTemplate.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/efa_rotmatrix.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/efa_var.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/authors.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_anova.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/index.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_descriptives.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/news/index.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_factorcor.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/efa_loadings.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_factorloadings.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/efa_method.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_factorvar.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/efa_rotmatrix.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_fitmeasures.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/efa_var.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_modelcomp.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_paths.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.descriptives-deprecated.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_residuals.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.descriptives.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_rsquared.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorcor-deprecated.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_sig.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorcor.html</loc>
   </url>
   <url>
-    <loc>https://dr-jt.github.io/semoutput//reference/sem_tables.html</loc>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorloadings-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorloadings.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorvar-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.factorvar.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.fitmeasures-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.fitmeasures.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.paths-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.paths.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.residuals-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.residuals.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.rsquared-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.rsquared.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.sig-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem.sig.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_anova-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_anova.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_descriptives.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_factorcor.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_factorloadings.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_factorvar.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_fitmeasures.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_modelcomp.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_paths.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_residuals.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_rsquared.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_sig.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/sem_tables.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/semoutput-deprecated.html</loc>
+  </url>
+  <url>
+    <loc>https://dr-jt.github.io/semoutput/reference/semoutput.html</loc>
   </url>
 </urlset>
