@@ -137,7 +137,7 @@ factors <- fit@pta$vnames$lv[[1]]
 size <- .65
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
-         structural = FALSE, layoutSplit = TRUE,
+         structural = FALSE, layoutSplit = FALSE,
          intercepts = FALSE, residuals = FALSE, 
          curve = 1, curvature = 3, nCharNodes = 8, 
          sizeLat = 11 * size, sizeMan = 11 * size, sizeMan2 = 4 * size, 
