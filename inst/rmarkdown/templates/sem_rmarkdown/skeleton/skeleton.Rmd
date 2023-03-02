@@ -132,7 +132,7 @@ sem_tables(fit)
 
 ## Diagram Output
 
-```{r}
+```{r fig.height=6, fig.width=8}
 factors <- fit@pta$vnames$lv[[1]]
 size <- .65
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
@@ -209,7 +209,7 @@ sem_tables(fit)
 
 ## Diagram Output
 
-```{r}
+```{r fig.height=6, fig.width=8}
 factors <- fit@pta$vnames$lv[[1]]
 size <- .65
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
