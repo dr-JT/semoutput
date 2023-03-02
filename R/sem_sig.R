@@ -14,7 +14,7 @@ sem_sig <- function(x, print = TRUE){
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
-      table <- knitr::kable(table, digits = 3,
+      table <- knitr::kable(table, digits = 3, format = "html",
                             caption = "Model Significance", row.names = FALSE)
       table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")

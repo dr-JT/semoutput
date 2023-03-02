@@ -29,7 +29,7 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
                            SE = se, z)
     if (nrow(table) > 0) {
       if (print == TRUE) {
-        table <- knitr::kable(table, digits = digits,
+        table <- knitr::kable(table, digits = digits, format = "html",
                               caption = "Factor Loadings")
         table <- kableExtra::kable_styling(table)
         table <- kableExtra::add_header_above(table,
@@ -56,7 +56,7 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
 
       if (nrow(table) > 0) {
         if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits,
+          table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Factor Loadings")
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,
@@ -76,7 +76,7 @@ sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
                              SE = se, z)
       if (nrow(table) > 0) {
         if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits,
+          table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Factor Loadings")
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,

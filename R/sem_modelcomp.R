@@ -41,7 +41,7 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
 
   # Print table
   if (print == TRUE) {
-    table <- knitr::kable(table, digits = 3,
+    table <- knitr::kable(table, digits = 3, format = "html",
                           caption = "Model Comparison", row.names = FALSE)
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")

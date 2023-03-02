@@ -13,7 +13,7 @@ efa_rotmatrix <- function(fit, print = TRUE){
   table <- dplyr::rename(table, Factor = rowname)
 
   if (print == TRUE) {
-    table <- knitr::kable(table, digits = 3,
+    table <- knitr::kable(table, digits = 3, format = "html",
                           caption = "Factor Rotation Matrix", row.names = FALSE)
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")

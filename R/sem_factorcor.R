@@ -25,7 +25,7 @@ sem_factorcor <- function(x, factors = c(), print = TRUE){
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
-      table <- knitr::kable(table, digits = 3,
+      table <- knitr::kable(table, digits = 3, format = "html",
                             caption = "Latent Factor Correlations",
                             row.names = FALSE)
       table <- kableExtra::kable_styling(table, full_width = FALSE,

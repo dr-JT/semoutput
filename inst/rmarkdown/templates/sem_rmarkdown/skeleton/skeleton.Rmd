@@ -8,6 +8,8 @@ output:
     toc_depth: 1
     code_folding: hide
     code_download: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 Last updated: `r format(Sys.Date(), "%B %d %Y")`
@@ -132,11 +134,15 @@ sem_tables(fit)
 
 ```{r}
 factors <- fit@pta$vnames$lv[[1]]
+size <- .65
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
-         intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
-         sizeLat = 10, nCharNodes = 8, sizeMan = 11, sizeMan2 = 4, 
-         edge.label.cex = 1.2, edge.color = "#000000")
+         structural = FALSE, layoutSplit = TRUE,
+         intercepts = FALSE, residuals = FALSE, 
+         curve = 1, curvature = 3, nCharNodes = 8, 
+         sizeLat = 11 * size, sizeMan = 11 * size, sizeMan2 = 4 * size, 
+         edge.label.cex = 1.2 * size, 
+         edge.color = "#000000", edge.label.position = .40)
 ```
 
 ## Residual Correlation Matrix
@@ -205,11 +211,15 @@ sem_tables(fit)
 
 ```{r}
 factors <- fit@pta$vnames$lv[[1]]
+size <- .65
 semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
          rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
-         intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, 
-         sizeLat = 10, nCharNodes = 8, sizeMan = 11, sizeMan2 = 4, 
-         edge.label.cex = 1.2, edge.color = "#000000")
+         structural = FALSE, layoutSplit = TRUE,
+         intercepts = FALSE, residuals = FALSE, 
+         curve = 1, curvature = 3, nCharNodes = 8, 
+         sizeLat = 11 * size, sizeMan = 11 * size, sizeMan2 = 4 * size, 
+         edge.label.cex = 1.2 * size, 
+         edge.color = "#000000", edge.label.position = .40)
 ```
 
 ## Residual Correlation Matrix
