@@ -11,7 +11,7 @@ sem_factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
 
 \item{factors}{depricated.}
 
-\item{standardized}{logical. include standardized loadings? (default = TRUE)}
+\item{standardized}{depricated.}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }

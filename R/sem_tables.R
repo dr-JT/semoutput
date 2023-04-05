@@ -33,7 +33,7 @@ sem_tables <- function(x, standardized = TRUE, ci = "standardized",
                            ci_level = ci_level, digits = digits,
                            print = TRUE)
   corr_table <- sem_factorcor(x, print = TRUE)
-  var_table <- sem_factorvar(x, standardized = standardized, print = TRUE)
+  var_table <- sem_factorvar(x, print = TRUE)
   rsquared_table <- sem_rsquared(x, print = TRUE)
 
   if (sig_table != "") print_table(sig_table)
