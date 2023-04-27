@@ -1,0 +1,17 @@
+# Setup
+
+## Required Packages
+
+```{r}
+#| warning: false
+#| code-fold: false
+
+library(readr)
+library(here)
+library(dplyr)
+library(lavaan)
+library(psych)
+library(semoutput)
+library(semPlot)
+library(sjPlot)
+```

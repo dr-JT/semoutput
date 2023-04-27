@@ -1,0 +1,82 @@
+# CFA
+
+See the [lavaan Tutorial](https://lavaan.ugent.be/tutorial/index.html){target="_blank"} for model syntax
+
+Model
+
+```{r}
+#| code-fold: false
+
+# specify the model
+model <- '
+# latent factors
+
+# correlated errors
+
+# constraints
+
+'
+# fit the model
+fit <- cfa(model = model, data = data, mimic = "lavaan", 
+           estimator = "ML", missing = "ML", 
+           std.lv = TRUE, std.ov = FALSE, test = "standard", 
+           se = "standard", bootstrap = 1000)
+```
+
+:::panel-tabset
+## Summary Output
+
+```{r}
+#| results: asis
+
+sem_tables(fit)
+```
+
+## Diagram Output
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+
+factors <- fit@pta$vnames$lv[[1]]
+size <- .65
+semPaths(fit, latents = factors, whatLabels = "std", layout = "tree2", 
+         rotation = 2, style = "lisrel", optimizeLatRes = TRUE, 
+         structural = FALSE, layoutSplit = FALSE,
+         intercepts = FALSE, residuals = FALSE, 
+         curve = 1, curvature = 3, nCharNodes = 8, 
+         sizeLat = 11 * size, sizeMan = 11 * size, sizeMan2 = 4 * size, 
+         edge.label.cex = 1.2 * size, 
+         edge.color = "#000000", edge.label.position = .40)
+```
+
+## Residual Correlation Matrix
+
+```{r}
+sem_residuals(fit)
+```
+
+## Full Output
+
+### Summary
+
+```{r}
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+```
+
+### Parameter Estimates
+
+```{r}
+standardizedSolution(fit)
+```
+
+### Modification Indices
+
+```{r}
+modificationIndices(fit, sort. = TRUE, minimum.value = 3)
+```
+:::
+
+```{r}
+
+```

@@ -1,0 +1,25 @@
+# Footer
+
+::: panel-tabset
+## Session Info
+
+```{r}
+sessionInfo()
+```
+
+## Citations
+
+```{r}
+lapply(names(sessionInfo()$otherPkgs), citation)
+```
+
+## CSS Styling
+
+```{css}
+#| code-fold: false
+
+.tab-content {
+  border-style: none
+}
+```
+:::

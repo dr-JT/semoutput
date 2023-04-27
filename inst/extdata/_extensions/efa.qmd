@@ -1,0 +1,42 @@
+# EFA
+
+::: panel-tabset
+## Model
+
+```{r}
+efa_data <- data
+
+## Determine the number of factors to extract
+VSS.scree(efa_data)
+fa.parallel(efa_data, fa = "fa")
+VSS(efa_data, n = 4, rotate = "varimax")
+
+## Conduct EFA analysis with nfactors determined from methods above
+efa_fit <- fa(efa_data, fm = "pa", nfactors = 3, rotate = "varimax")
+```
+
+## Results
+
+```{r}
+efa_method(efa_fit)
+efa_var(efa_fit)
+efa_loadings(efa_fit)
+efa_rotmatrix(efa_fit)
+```
+
+## Diagram Output
+
+```{r}
+fa.diagram(efa_fit)
+```
+
+## Full Output
+
+```{r}
+efa_fit
+```
+:::
+
+```{r}
+
+```

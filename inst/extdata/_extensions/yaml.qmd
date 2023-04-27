@@ -1,0 +1,23 @@
+---
+title: "Document Title"
+author: Your Name
+date: today
+theme: default
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-link: true
+    toc: true
+    toc-depth: 1
+    toc-location: left
+    page-layout: full
+    df-print: paged
+execute:
+  error: true
+  warning: true
+editor_options: 
+  chunk_output_type: console
+---
+
+See [Package References](https://dr-jt.github.io/semoutput/reference/index.html){target="_blank"} for help documentation on `semoutput` functions

@@ -1,0 +1,38 @@
+# Data
+
+::: panel-tabset
+## Import Data
+
+```{r}
+#| message: false
+#| code-fold: false
+
+data_import <- read_csv(here("folder_path", "filename.csv"))
+```
+
+## Get Data Ready For Models
+
+```{r}
+#| code-fold: false
+
+data <- data_import
+```
+:::
+
+```{r}
+
+```
+
+# Descriptives
+
+```{r}
+sem_descriptives(data)
+```
+
+# Correlation Matrix
+
+```{r}
+tab_corr(data, na.deletion = "pairwise", digits = 2, triangle = "lower")
+```
+
+
