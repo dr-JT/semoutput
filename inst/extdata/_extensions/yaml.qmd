@@ -16,6 +16,7 @@ format:
 execute:
   error: true
   warning: true
+self-contained: true
 editor_options: 
   chunk_output_type: console
 ---
