@@ -3,17 +3,17 @@ Description: Start new analysis document
 Binding: new_document
 Interactive: false
 
-Name: EFA
+Name: Insert EFA
 Description: Insert EFA section in document
 Binding: add_efa
 Interactive: false
 
-Name: CFA
+Name: Insert CFA
 Description: Insert CFA section in document
 Binding: add_cfa
 Interactive: false
 
-Name: SEM
+Name: Insert SEM
 Description: Insert SEM section in document
 Binding: add_sem
 Interactive: false
