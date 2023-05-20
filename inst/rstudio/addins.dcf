@@ -3,17 +3,17 @@ Description: Start new analysis document
 Binding: new_document
 Interactive: false
 
-Name: Insert EFA
+Name: Insert EFA - first switch to Source View!
 Description: Insert EFA section in document
 Binding: add_efa
 Interactive: false
 
-Name: Insert CFA
+Name: Insert CFA - first switch to Source View!
 Description: Insert CFA section in document
 Binding: add_cfa
 Interactive: false
 
-Name: Insert SEM
+Name: Insert SEM - first switch to Source View!
 Description: Insert SEM section in document
 Binding: add_sem
 Interactive: false
