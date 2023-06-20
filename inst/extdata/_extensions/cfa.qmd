@@ -27,9 +27,10 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
 ## Summary Output
 
 ```{r}
-#| results: asis
-
-sem_tables(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_factorcor(fit)
 ```
 
 ## Diagram Output

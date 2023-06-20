@@ -32,8 +32,13 @@ fit <- sem(model = model, data = data, mimic = "lavaan",
 ## Summary Output
 
 ```{r}
-#| results: asis
-sem_tables(fit)
+sem_sig(fit)
+sem_fitmeasures(fit)
+sem_factorloadings(fit)
+sem_paths(fit)
+sem_factorcor(fit)
+sem_factorvar(fit)
+sem_rsquared(fit)
 ```
 
 ## Diagram Output
