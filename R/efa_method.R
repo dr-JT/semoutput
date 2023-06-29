@@ -20,7 +20,8 @@ efa_method <- function(fit, print = TRUE){
 
   if (print == TRUE) {
     table <- knitr::kable(table, digits = 3, format = "html",
-                          caption = "Extraction Method", row.names = FALSE)
+                          caption = "Extraction Method", row.names = FALSE,
+                          table.attr = 'data-quarto-disable-processing="true"')
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")
   }

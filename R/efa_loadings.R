@@ -24,7 +24,8 @@ efa_loadings <- function(fit, print = TRUE){
 
   if (print == TRUE) {
     table <- knitr::kable(table, digits = 3, format = "html",
-                          caption = "Factor Loadings", row.names = FALSE)
+                          caption = "Factor Loadings", row.names = FALSE,
+                          table.attr = 'data-quarto-disable-processing="true"')
     table <- kableExtra::kable_styling(table, full_width = FALSE,
                                        position = "left")
     table <- kableExtra::add_header_above(table,

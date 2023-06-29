@@ -17,7 +17,8 @@ sem_fitmeasures <- function(x, print = TRUE){
   if (nrow(table) > 0) {
     if (print == TRUE) {
       table <- knitr::kable(table, digits = 3, format = "html",
-                            caption = "Model Fit Measures", row.names = FALSE)
+                            caption = "Model Fit Measures", row.names = FALSE,
+                            table.attr = 'data-quarto-disable-processing="true"')
       table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")
     } else if (print == FALSE) {

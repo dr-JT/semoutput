@@ -14,7 +14,8 @@ sem_residuals <- function(x, print = TRUE){
   if (nrow(table) > 0) {
     if (print == TRUE) {
       options(knitr.kable.NA = '')
-      table <- knitr::kable(table, digits = 2, format = "html")
+      table <- knitr::kable(table, digits = 2, format = "html",
+                            table.attr = 'data-quarto-disable-processing="true"')
       table <- kableExtra::kable_styling(table, full_width = FALSE,
                                          position = "left")
     } else if (print == FALSE) {
