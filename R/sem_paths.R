@@ -14,6 +14,8 @@
 sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                       ci_level = 0.95, digits = 3, print = TRUE){
 
+  ci_col_name <- paste(ci * 100, "% CI", sep = "")
+
   if (x@call$se == "boot" | x@call$se == "bootstrap") {
     message("SEs, p-values, and confidence intervals may not be accuracte ",
             "for bootstrapped indirect effects. If using bootstrapping for ",
@@ -40,6 +42,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
 
     if (nrow(table) > 0) {
       if (print == TRUE) {
+        colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
         table <- knitr::kable(table, digits = digits, format = "html",
                               caption = "Regression Paths",
                               table.attr = 'data-quarto-disable-processing="true"')
@@ -68,6 +71,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                              Loadings.std = std.all)
       if (nrow(table) > 0) {
         if (print == TRUE) {
+          colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
           table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Regression Paths",
                                 table.attr = 'data-quarto-disable-processing="true"')
@@ -88,6 +92,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                              p = pvalue, CI)
       if (nrow(table) > 0) {
         if (print == TRUE) {
+          colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
           table <- knitr::kable(table, digits = digits, format = "html",
                                 caption = "Regression Paths",
                                 table.attr = 'data-quarto-disable-processing="true"')
