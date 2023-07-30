@@ -68,7 +68,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
                              `Path Value` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, CI,
-                             `Path Value` = std.all)
+                             `Path Value.Std` = std.all)
       if (nrow(table) > 0) {
         if (print == TRUE) {
           colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
