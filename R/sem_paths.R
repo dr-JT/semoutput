@@ -14,7 +14,7 @@
 sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                       ci_level = 0.95, digits = 3, print = TRUE){
 
-  ci_col_name <- paste(ci * 100, "% CI", sep = "")
+  ci_col_name <- paste(ci_level * 100, "% CI", sep = "")
 
   if (x@call$se == "boot" | x@call$se == "bootstrap") {
     message("SEs, p-values, and confidence intervals may not be accuracte ",
