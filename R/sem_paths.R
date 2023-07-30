@@ -66,9 +66,9 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
       tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
     if (standardized == TRUE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                             `Path Value` = std.all, SE = se, z, 'sig' = stars,
+                             `Path Value` = est, SE = se, z, 'sig' = stars,
                              p = pvalue, CI,
-                             Loadings.std = std.all)
+                             `Path Value` = std.all)
       if (nrow(table) > 0) {
         if (print == TRUE) {
           colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
