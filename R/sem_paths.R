@@ -31,10 +31,12 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
     table <- dplyr::mutate(table,
                            stars = ifelse(pvalue < .001, "***",
                                           ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))))
+                                                 ifelse(pvalue < .05, "*", ""))),
+                           dplyr::across(ci.lower, ci.upper, ~ round(.x, digits))) |>
+      tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
     table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                           `Path Values` = est.std, SE = se, z, 'sig' = stars,
-                           p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
+                           `Path Value` = est.std, SE = se, z, 'sig' = stars,
+                           p = pvalue, CI)
 
     if (nrow(table) > 0) {
       if (print == TRUE) {
@@ -43,7 +45,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                               table.attr = 'data-quarto-disable-processing="true"')
         table <- kableExtra::kable_styling(table)
         table <- kableExtra::add_header_above(table, c(" ", " ",
-                                                       "Standardized" = 7))
+                                                       "Standardized" = 6))
       }
     } else {
       table <- ""
@@ -51,16 +53,18 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
   }
 
   if (ci == "unstandardized") {
-    table <- lavaan::parameterEstimates(x, standardized = standardized)
+    table <- lavaan::parameterEstimates(x, standardized = TRUE)
     table <- dplyr::filter(table, op == "~" | op == ":=")
     table <- dplyr::mutate(table,
                            stars = ifelse(pvalue < .001, "***",
                                           ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))))
+                                                 ifelse(pvalue < .05, "*", ""))),
+                           dplyr::across(ci.lower, ci.upper, ~ round(.x, digits))) |>
+      tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
     if (standardized == TRUE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                             `Path Values` = est, SE = se, z, 'sig' = stars,
-                             p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper,
+                             `Path Value` = std.all, SE = se, z, 'sig' = stars,
+                             p = pvalue, CI,
                              Loadings.std = std.all)
       if (nrow(table) > 0) {
         if (print == TRUE) {
@@ -70,7 +74,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,
                                                 c(" ", " ",
-                                                  "Unstandardized" = 7,
+                                                  "Unstandardized" = 6,
                                                   "Standardized" = 1))
         }
       } else {
@@ -80,8 +84,8 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
 
     if (standardized == FALSE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                             `Path Values` = est, SE = se, z, 'sig' = stars,
-                             p = pvalue, Lower.CI = ci.lower, Upper.CI = ci.upper)
+                             `Path Value` = est, SE = se, z, 'sig' = stars,
+                             p = pvalue, CI)
       if (nrow(table) > 0) {
         if (print == TRUE) {
           table <- knitr::kable(table, digits = digits, format = "html",
@@ -90,7 +94,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
           table <- kableExtra::kable_styling(table)
           table <- kableExtra::add_header_above(table,
                                                 c(" ", " ",
-                                                  "Unstandardized" = 7))
+                                                  "Unstandardized" = 6))
         }
       } else {
         table <- ""
