@@ -32,7 +32,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                            stars = ifelse(pvalue < .001, "***",
                                           ifelse(pvalue < .01, "**",
                                                  ifelse(pvalue < .05, "*", ""))),
-                           dplyr::across(ci.lower, ci.upper, ~ round(.x, digits))) |>
+                           dplyr::across(c(ci.lower, ci.upper), ~ round(.x, digits))) |>
       tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
     table <- dplyr::select(table, Predictor = rhs, DV = lhs,
                            `Path Value` = est.std, SE = se, z, 'sig' = stars,
@@ -59,7 +59,7 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
                            stars = ifelse(pvalue < .001, "***",
                                           ifelse(pvalue < .01, "**",
                                                  ifelse(pvalue < .05, "*", ""))),
-                           dplyr::across(ci.lower, ci.upper, ~ round(.x, digits))) |>
+                           dplyr::across(c(ci.lower, ci.upper), ~ round(.x, digits))) |>
       tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
     if (standardized == TRUE) {
       table <- dplyr::select(table, Predictor = rhs, DV = lhs,
