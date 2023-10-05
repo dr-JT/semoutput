@@ -16,12 +16,14 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
 
   ci_col_name <- paste(ci_level * 100, "% CI", sep = "")
 
-  if (x@call$se == "boot" | x@call$se == "bootstrap") {
-    message("SEs, p-values, and confidence intervals may not be accuracte ",
-            "for bootstrapped indirect effects. If using bootstrapping for ",
-            "indirect effects it is advised to set se = \"standard\" and to ",
-            "use semTools::monteCarloCI() instead. This will calculate ",
-            "bias-corrected percentile confidence intervals.")
+  if (!is.null(x@call$se)) {
+    if (x@call$se == "boot" | x@call$se == "bootstrap") {
+      message("SEs, p-values, and confidence intervals may not be accuracte ",
+              "for bootstrapped indirect effects. If using bootstrapping for ",
+              "indirect effects it is advised to set se = \"standard\" and to ",
+              "use semTools::monteCarloCI() instead. This will calculate ",
+              "bias-corrected percentile confidence intervals.")
+    }
   }
 
   if (standardized == FALSE) {
