@@ -20,7 +20,7 @@ sem_factorcor <- function(x, ci_level = .95, print = TRUE) {
                          lhs != rhs)
   table <- format_stars(table)
   table <- dplyr::select(table, lhs, rhs, est.std, ci.lower, ci.upper,
-                         sig = stars, SE = se, p = pvalue)
+                         stars, se, pvalue)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
