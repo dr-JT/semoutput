@@ -15,25 +15,36 @@ sem_factorcor <- function(x, factors = c(), print = TRUE){
                          lhs %in% factors,
                          !is.na(pvalue),
                          lhs != rhs)
-  table <- dplyr::mutate(table, stars = ifelse(pvalue < .001, "***",
-                                       ifelse(pvalue < .01, "**",
-                                              ifelse(pvalue < .05, "*", ""))))
-  table <- dplyr::select(table, 'Factor 1' = lhs, 'Factor 2' = rhs,
-                         r = est.std, sig = stars, p = pvalue,
-                         Lower.CI = ci.lower, Upper.CI = ci.upper,
-                         SE = se)
+  table <- format_stars(table)
+  table <- dplyr::select(table, lhs, rhs, est.std, ci.lower, ci.upper,
+                         sig = stars, SE = se, p = pvalue)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
-      table <- knitr::kable(table, digits = 3, format = "html",
-                            caption = "Latent Factor Correlations",
-                            row.names = FALSE,
-                            table.attr = 'data-quarto-disable-processing="true"')
-      table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                         position = "left")
-    } else if (print == FALSE) {
+
+      table_title <- "Latent Factor Correlations"
+
+      table <- gt::gt(table) |>
+        table_styling() |>
+        gt::tab_header(title = table_title) |>
+        gt::cols_merge(columns = c(lhs, rhs), pattern = "{1} ~~ {2}") |>
+        gt::cols_merge_range(col_begin = ci.lower, col_end = ci.upper) |>
+        gt::cols_label(lhs = "Factors",
+                       est.std = "r",
+                       ci.lower = ci_col_label,
+                       stars = "sig",
+                       se = "SE",
+                       pvalue = "p") |>
+        gt::cols_align(align = "left", columns = lhs) |>
+        gt::sub_small_vals(columns = pvalue, threshold = .001) |>
+        gt::fmt_number(decimals = digits)
+
+    }
+
+    if (print == FALSE) {
       table <- as.data.frame(table)
     }
+
   } else {
     table <- ""
   }
