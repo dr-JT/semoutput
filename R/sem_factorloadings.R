@@ -17,7 +17,7 @@
 sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
                                ci_level = 0.95, digits = 3, print = TRUE){
 
-  ci_col_label <- paste(round(ci*100, 0), "% ", "CI", sep = "")
+  ci_col_label <- paste(round(ci_level*100, 0), "% ", "CI", sep = "")
 
   format_ci <- function(x, digits = digits) {
     x <- as.data.frame(x) |>
