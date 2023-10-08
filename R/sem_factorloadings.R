@@ -2,97 +2,94 @@
 #'
 #' This function will display a table of Factor loadings
 #' @param x a cfa() or sem() lavaan model
-#' @param standardized logical. Include standardized loadings? (default = TRUE)
-#' @param ci logical. display standardized or unstandardized confidence
-#'     intervals? (default = "standardized"). Not needed if standardized=FALSE
+#' @param standardized Logical, indicating whether or not to print standardized
+#'      estimates. Standardized estimates are based on "refit" of the model
+#'      on standardized data but it will not standardize categorical predictors.
+#'      Defualt is TRUE.
+#' @param unstandardized Logical, indicating whether or not to print
+#'      unstandardized estimates. Default is TRUE.
 #' @param ci_level What level of confidence interval to use (default = 0.95)
 #' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
-sem_factorloadings <- function(x, standardized = TRUE, ci = "standardized",
+sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
                                ci_level = 0.95, digits = 3, print = TRUE){
-  if (standardized == FALSE) {
-    ci <- "unstandardized"
-  }
-  if (ci == "standardized") {
-    table <- lavaan::standardizedSolution(x, level = ci_level)
-    table <- dplyr::filter(table, op == "=~")
-    table <- dplyr::mutate(table,
-                           stars = ifelse(pvalue < .001, "***",
-                                          ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))))
-    table <- dplyr::select(table, 'Latent Factor' = lhs, Indicator = rhs,
-                           Loadings = est.std, 'sig' = stars, p = pvalue,
-                           Lower.CI = ci.lower, Upper.CI = ci.upper,
-                           SE = se, z)
-    if (nrow(table) > 0) {
-      if (print == TRUE) {
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Factor Loadings",
-                              table.attr = 'data-quarto-disable-processing="true"')
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table,
-                                              c(" ", " ",
-                                                "Standardized" = 7))
-      }
-    } else {
-      table <- ""
-    }
+
+  ci_col_label <- paste(round(ci*100, 0), "% ", "CI", sep = "")
+
+  format_ci <- function(x, digits = digits) {
+    x <- as.data.frame(x) |>
+      dplyr::mutate(ci.lower = round(ci.lower, digits),
+                    ci.upper = round(ci.upper, digits)) |>
+      tidyr::unite(CI, ci.lower, ci.upper, sep = ", ") |>
+      dplyr::mutate(CI = paste("[", CI, "]", sep = ""))
+    return(x)
   }
 
-  if (ci == "unstandardized") {
-    table <- lavaan::parameterEstimates(x, standardized = standardized)
-    table <- dplyr::filter(table, op == "=~")
-    table <- dplyr::mutate(table,
-                           stars = ifelse(pvalue < .001, "***",
-                                          ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))))
-    if (standardized == TRUE) {
-      table <- dplyr::select(table, 'Latent Factor' = lhs, Indicator = rhs,
-                             Loadings = est, 'sig' = stars, p = pvalue,
-                             Lower.CI = ci.lower, Upper.CI = ci.upper,
-                             SE = se, z, Loadings.std = std.all)
+  fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
+    format_ci() |>
+    dplyr::rename(CI_std = CI)
 
-      if (nrow(table) > 0) {
-        if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits, format = "html",
-                                caption = "Factor Loadings",
-                                table.attr = 'data-quarto-disable-processing="true"')
-          table <- kableExtra::kable_styling(table)
-          table <- kableExtra::add_header_above(table,
-                                                c(" ", " ",
-                                                  "Unstandardized" = 7,
-                                                  "Standardized" = 1))
-        }
-      } else {
-        table <- ""
+  fit_unstandardized <- lavaan::parameterEstimates(x, standardized = FALSE) |>
+    format_ci() |>
+    dplyr::select(lhs, rhs, est, CI_unstd = CI, stars_unstd = stars,
+                  se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
+
+  table <- merge(fit_unstandardized, fit_standardized, by = c("lhs", "rhs")) |>
+    select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd, z_unstd, pvalue_unstd,
+           est.std, CI_std, stars, se, z, pvalue)
+
+  if (nrow(table) > 0) {
+    if (print == TRUE) {
+      table_title <- "Factor Loadings"
+
+      table <- gt::gt(table) |>
+        table_styling() |>
+        gt::tab_header(title = table_title) |>
+        gt::cols_label(lhs = "Latent Factor", rhs = "Indicator",
+                       est = "Loading", CI_unstd = ci_col_label,
+                       stars_unstd = "sig", se_unstd = "SE", z_unstd = "z",
+                       pvalue_unstd = "p",
+                       est.std = "Loading",
+                       CI_std = ci_col_label,
+                       stars = "sig",
+                       se = "SE",
+                       pvalue = "p") |>
+        gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
+        gt::sub_small_vals(columns = pvalue, threshold = .001) |>
+        gt::fmt_number(decimals = digits)
+
+      if (standardized == TRUE & unstandardized == TRUE) {
+        table <- table |>
+          gt::cols_hide(c(stars_unstd, se_unstd, z_unstd, pvalue_unstd)) |>
+          gt::tab_spanner(label = "Unstandardized",
+                          columns = c(est, CI_unstd)) |>
+          gt::tab_spanner(label = "Standardized",
+                          columns = c(est.std, CI_std, stars, se, z, pvalue))
+      }
+
+      if (standardized == TRUE & unstandardized == FALSE) {
+        table <- table |>
+          gt::cols_hide(c(est, CI_unstd, stars_unstd, se_unstd,
+                          z_unstd, pvalue_unstd)) |>
+          gt::tab_spanner(label = "Standardized",
+                          columns = c(est.std, CI_std, stars, se, z, pvalue))
+      }
+
+      if (standardized == FALSE & unstandardized == TRUE) {
+        table <- table |>
+          gt::cols_hide(c(est.std, CI_std, stars, se, z, pvalue)) |>
+          gt::tab_spanner(label = "Unstandardized",
+                          columns = c(est, CI_unstd))
       }
     }
-
-    if (standardized == FALSE) {
-      table <- dplyr::select(table, 'Latent Factor' = lhs, Indicator = rhs,
-                             Loadings = est, 'sig' = stars, p = pvalue,
-                             Lower.CI = ci.lower, Upper.CI = ci.upper,
-                             SE = se, z)
-      if (nrow(table) > 0) {
-        if (print == TRUE) {
-          table <- knitr::kable(table, digits = digits, format = "html",
-                                caption = "Factor Loadings",
-                                table.attr = 'data-quarto-disable-processing="true"')
-          table <- kableExtra::kable_styling(table)
-          table <- kableExtra::add_header_above(table,
-                                                c(" ", " ",
-                                                  "Unstandardized" = 7))
-        }
-      } else {
-        table <- ""
-      }
+    if (print == FALSE) {
+      table <- as.data.frame(table)
     }
-  }
-  if (print == FALSE) {
-    if (nrow(table) > 0) table <- as.data.frame(table)
+  } else {
+    table <- ""
   }
   return(table)
 }

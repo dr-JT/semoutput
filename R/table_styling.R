@@ -34,7 +34,7 @@ table_styling <- function(x) {
         )
       ),
       locations = gt::cells_column_labels(
-        columns = -dplyr::any_of(c("Model", "Term"))
+        columns = -dplyr::any_of(c("lhs", "rhs"))
       )
     ) |>
     gt::opt_horizontal_padding(scale = 2)
