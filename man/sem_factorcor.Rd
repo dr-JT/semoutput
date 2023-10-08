@@ -4,12 +4,12 @@
 \alias{sem_factorcor}
 \title{Latent factor correlations}
 \usage{
-sem_factorcor(x, factors = c(), print = TRUE)
+sem_factorcor(x, ci_level = 0.95, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
 
-\item{factors}{depricated.}
+\item{ci_level}{What level of confidence interval to use (default = 0.95)}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }

@@ -2,12 +2,15 @@
 #'
 #' This function will display a table of Latent factor correlations
 #' @param x a cfa() or sem() lavaan model
-#' @param factors depricated.
+#' @param ci_level What level of confidence interval to use (default = 0.95)
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #'
 
-sem_factorcor <- function(x, factors = c(), print = TRUE){
+sem_factorcor <- function(x, ci_level = .95, print = TRUE) {
+
+  ci_col_label <- paste(round(ci_level*100, 0), "% ", "CI", sep = "")
+
   factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::standardizedSolution(x, level = 0.95)
   table <- dplyr::filter(table,
