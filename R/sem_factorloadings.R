@@ -29,11 +29,11 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
   }
 
   fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
-    format_ci() |>
+    format_ci(digits = digits) |>
     dplyr::rename(CI_std = CI)
 
-  fit_unstandardized <- lavaan::parameterEstimates(x, standardized = FALSE) |>
-    format_ci() |>
+  fit_unstandardized <- lavaan::parameterEstimates(x, level = ci_level) |>
+    format_ci(digits = digits) |>
     dplyr::select(lhs, rhs, est, CI_unstd = CI, stars_unstd = stars,
                   se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
 
