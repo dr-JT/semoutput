@@ -8,21 +8,21 @@ table_styling <- function(x) {
   x <- x |>
     gt::tab_options(
       table.align = "left",
-      heading.border.bottom.color = "black",
+      heading.border.bottom.color = "gray",
       heading.title.font.size = 12,
       heading.align = "center",
-      table.border.top.color = "black",
+      table.border.top.color = "gray",
       heading.title.font.weight = "bolder",
       column_labels.font.weight = "bold",
       footnotes.font.size = 12,
       table.border.top.width = 0,
       table.border.bottom.width = 0,
       column_labels.border.top.width = 2,
-      column_labels.border.top.color = "black",
-      column_labels.border.bottom.width = 0,
-      column_labels.border.bottom.color = "black",
-      table_body.border.bottom.color = "black",
-      table_body.border.top.color = "black"
+      column_labels.border.top.color = "gray",
+      column_labels.border.bottom.width = 2,
+      column_labels.border.bottom.color = "gray",
+      table_body.border.bottom.color = "gray",
+      table_body.border.top.color = "gray"
     ) |>
     gt::tab_style(
       style = list(
@@ -37,6 +37,7 @@ table_styling <- function(x) {
         columns = -dplyr::any_of(c("lhs", "rhs"))
       )
     ) |>
-    gt::opt_horizontal_padding(scale = 2)
+    gt::opt_horizontal_padding(scale = 2) |>
+    gt::sub_missing(missing_text = "-")
   return(x)
 }
