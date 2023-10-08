@@ -28,17 +28,26 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
     return(x)
   }
 
+  format_stars <- function(x) {
+    x <- dplyr::mutate(x,
+                       stars = ifelse(pvalue < .001, "***",
+                                      ifelse(pvalue < .01, "**",
+                                             ifelse(pvalue < .05, "*", ""))))
+  }
+
   fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
     format_ci(digits = digits) |>
+    format_stars() |>
     dplyr::rename(CI_std = CI)
 
   fit_unstandardized <- lavaan::parameterEstimates(x, level = ci_level) |>
     format_ci(digits = digits) |>
+    format_stars() |>
     dplyr::select(lhs, rhs, est, CI_unstd = CI, stars_unstd = stars,
                   se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
 
   table <- merge(fit_unstandardized, fit_standardized, by = c("lhs", "rhs")) |>
-    select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd, z_unstd, pvalue_unstd,
+    dplyr::select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd, z_unstd, pvalue_unstd,
            est.std, CI_std, stars, se, z, pvalue)
 
   if (nrow(table) > 0) {
