@@ -19,22 +19,6 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
 
   ci_col_label <- paste(round(ci_level*100, 0), "% ", "CI", sep = "")
 
-  format_ci <- function(x, digits = digits) {
-    x <- as.data.frame(x) |>
-      dplyr::mutate(ci.lower = round(ci.lower, digits),
-                    ci.upper = round(ci.upper, digits)) |>
-      tidyr::unite(CI, ci.lower, ci.upper, sep = ", ") |>
-      dplyr::mutate(CI = paste("[", CI, "]", sep = ""))
-    return(x)
-  }
-
-  format_stars <- function(x) {
-    x <- dplyr::mutate(x,
-                       stars = ifelse(pvalue < .001, "***",
-                                      ifelse(pvalue < .01, "**",
-                                             ifelse(pvalue < .05, "*", ""))))
-  }
-
   fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
     dplyr::filter(op == "=~") |>
     format_ci(digits = digits) |>

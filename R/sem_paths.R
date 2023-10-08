@@ -2,19 +2,22 @@
 #'
 #' This function will display a table of SEM regression paths
 #' @param x a cfa() or sem() lavaan model
-#' @param standardized logical. Include standardized loadings? (default = TRUE)
-#' @param ci logical. display standardized or unstandardized confidence
-#'     intervals? (default = "standardized"). Not needed if standardized=FALSE
+#' @param standardized Logical, indicating whether or not to print standardized
+#'      estimates. Standardized estimates are based on "refit" of the model
+#'      on standardized data but it will not standardize categorical predictors.
+#'      Defualt is TRUE.
+#' @param unstandardized Logical, indicating whether or not to print
+#'      unstandardized estimates. Default is TRUE.
 #' @param ci_level What level of confidence interval to use (default = 0.95)
 #' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
-sem_paths <- function(x, standardized = TRUE, ci = "standardized",
+sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
                       ci_level = 0.95, digits = 3, print = TRUE){
 
-  ci_col_name <- paste(ci_level * 100, "% CI", sep = "")
+  ci_col_label <- paste(ci_level * 100, "% CI", sep = "")
 
   if (!is.null(x@call$se)) {
     if (x@call$se == "boot" | x@call$se == "bootstrap") {
@@ -26,90 +29,74 @@ sem_paths <- function(x, standardized = TRUE, ci = "standardized",
     }
   }
 
-  if (standardized == FALSE) {
-    ci <- "unstandardized"
-  }
-  if (ci == "standardized") {
-    table <- lavaan::standardizedSolution(x, level = ci_level)
-    table <- dplyr::filter(table, op == "~" | op == ":=")
-    table <- dplyr::mutate(table,
-                           stars = ifelse(pvalue < .001, "***",
-                                          ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))),
-                           dplyr::across(c(ci.lower, ci.upper), ~ round(.x, digits))) |>
-      tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
-    table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                           `Path Value` = est.std, SE = se, z, 'sig' = stars,
-                           p = pvalue, CI)
+  fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
+    dplyr::filter(table, op == "~" | op == ":=") |>
+    format_ci(digits = digits) |>
+    format_stars() |>
+    dplyr::rename(CI_std = CI)
 
-    if (nrow(table) > 0) {
-      if (print == TRUE) {
-        colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
-        table <- knitr::kable(table, digits = digits, format = "html",
-                              caption = "Regression Paths",
-                              table.attr = 'data-quarto-disable-processing="true"')
-        table <- kableExtra::kable_styling(table)
-        table <- kableExtra::add_header_above(table, c(" ", " ",
-                                                       "Standardized" = 6))
-      }
-    } else {
-      table <- ""
-    }
-  }
+  fit_unstandardized <- lavaan::parameterEstimates(x, level = ci_level) |>
+    dplyr::filter(table, op == "~" | op == ":=") |>
+    format_ci(digits = digits) |>
+    format_stars() |>
+    dplyr::select(lhs, rhs, est, CI_unstd = CI, stars_unstd = stars,
+                  se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
 
-  if (ci == "unstandardized") {
-    table <- lavaan::parameterEstimates(x, standardized = TRUE)
-    table <- dplyr::filter(table, op == "~" | op == ":=")
-    table <- dplyr::mutate(table,
-                           stars = ifelse(pvalue < .001, "***",
-                                          ifelse(pvalue < .01, "**",
-                                                 ifelse(pvalue < .05, "*", ""))),
-                           dplyr::across(c(ci.lower, ci.upper), ~ round(.x, digits))) |>
-      tidyr::unite("CI", ci.lower, ci.upper, sep = " - ")
-    if (standardized == TRUE) {
-      table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                             `Path Value` = est, SE = se, z, 'sig' = stars,
-                             p = pvalue, CI,
-                             `Path Value.Std` = std.all)
-      if (nrow(table) > 0) {
-        if (print == TRUE) {
-          colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
-          table <- knitr::kable(table, digits = digits, format = "html",
-                                caption = "Regression Paths",
-                                table.attr = 'data-quarto-disable-processing="true"')
-          table <- kableExtra::kable_styling(table)
-          table <- kableExtra::add_header_above(table,
-                                                c(" ", " ",
-                                                  "Unstandardized" = 6,
-                                                  "Standardized" = 1))
-        }
-      } else {
-        table <- ""
-      }
-    }
+  table <- merge(fit_unstandardized, fit_standardized, by = c("lhs", "rhs")) |>
+    dplyr::select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd,
+                  z_unstd, pvalue_unstd,
+                  est.std, CI_std, stars, se, z, pvalue)
 
-    if (standardized == FALSE) {
-      table <- dplyr::select(table, Predictor = rhs, DV = lhs,
-                             `Path Value` = est, SE = se, z, 'sig' = stars,
-                             p = pvalue, CI)
-      if (nrow(table) > 0) {
-        if (print == TRUE) {
-          colnames(table)[which(colnames(table) == "CI")] <- ci_col_name
-          table <- knitr::kable(table, digits = digits, format = "html",
-                                caption = "Regression Paths",
-                                table.attr = 'data-quarto-disable-processing="true"')
-          table <- kableExtra::kable_styling(table)
-          table <- kableExtra::add_header_above(table,
-                                                c(" ", " ",
-                                                  "Unstandardized" = 6))
-        }
-      } else {
-        table <- ""
+  if (nrow(table) > 0) {
+    if (print == TRUE) {
+
+      table_title <- "Regression Paths"
+
+      table <- gt::gt(table) |>
+        table_styling() |>
+        gt::tab_header(title = table_title) |>
+        gt::cols_label(lhs = "DV", rhs = "Predictor",
+                       est = "b", CI_unstd = ci_col_label,
+                       stars_unstd = "sig", se_unstd = "SE", z_unstd = "z",
+                       pvalue_unstd = "p",
+                       est.std = "{{:Beta:}}",
+                       CI_std = ci_col_label,
+                       stars = "sig",
+                       se = "SE",
+                       pvalue = "p") |>
+        gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
+        gt::sub_small_vals(columns = pvalue, threshold = .001) |>
+        gt::fmt_number(decimals = digits)
+
+      if (standardized == TRUE & unstandardized == TRUE) {
+        table <- table |>
+          gt::cols_hide(c(stars_unstd, se_unstd, z_unstd, pvalue_unstd)) |>
+          gt::tab_spanner(label = "Unstandardized",
+                          columns = c(est, CI_unstd)) |>
+          gt::tab_spanner(label = "Standardized",
+                          columns = c(est.std, CI_std, stars, se, z, pvalue))
       }
+
+      if (standardized == TRUE & unstandardized == FALSE) {
+        table <- table |>
+          gt::cols_hide(c(est, CI_unstd, stars_unstd, se_unstd,
+                          z_unstd, pvalue_unstd)) |>
+          gt::tab_spanner(label = "Standardized",
+                          columns = c(est.std, CI_std, stars, se, z, pvalue))
+      }
+
+      if (standardized == FALSE & unstandardized == TRUE) {
+        table <- table |>
+          gt::cols_hide(c(est.std, CI_std, stars, se, z, pvalue)) |>
+          gt::tab_spanner(label = "Unstandardized",
+                          columns = c(est, CI_unstd, stars_unstd, se_unstd,
+                                      z_unstd, pvalue_unstd))
+      }
+    }if (print == FALSE) {
+      table <- as.data.frame(table)
     }
-  }
-  if (print == FALSE) {
-    if (nrow(table) > 0) table <- as.data.frame(table)
+  } else {
+    table <- ""
   }
   return(table)
 }
