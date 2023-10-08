@@ -4,10 +4,12 @@
 \alias{sem_sig}
 \title{Chi-square significance test}
 \usage{
-sem_sig(x, print = TRUE)
+sem_sig(x, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
+
+\item{digits}{How many decimal places to round to? Default is 3.}
 
 \item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }

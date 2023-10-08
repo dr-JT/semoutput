@@ -2,23 +2,30 @@
 #'
 #' This function will display a table of Model significance tests
 #' @param x a cfa() or sem() lavaan model
+#' @param digits How many decimal places to round to? Default is 3.
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #'
 
-sem_sig <- function(x, print = TRUE){
+sem_sig <- function(x, digits = 3, print = TRUE){
   stats <- lavaan::fitMeasures(x, c("ntotal", "chisq", "pvalue", "df"))
-  table <- data.frame('Sample Size' = stats[["ntotal"]],
-                      'Chi-Square' = stats[["chisq"]],
-                      df = stats[["df"]], 'p-value' = stats[["pvalue"]])
+  table <- data.frame(sample_size = stats[["ntotal"]],
+                      Chi_Square = stats[["chisq"]],
+                      df = stats[["df"]], p = stats[["pvalue"]])
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
-      table <- knitr::kable(table, digits = 3, format = "html",
-                            caption = "Model Significance", row.names = FALSE,
-                            table.attr = 'data-quarto-disable-processing="true"')
-      table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                         position = "left")
+      table_title <- "Model Significance"
+
+      table <- gt::gt(table) |>
+        table_styling() |>
+        gt::tab_header(title = table_title) |>
+        gt::cols_label(sample_size = "Sample Size",
+                       Chi_Square = "{{:Chi:^2}}") |>
+        gt::sub_small_vals(columns = p, threshold = .001) |>
+        gt::fmt_number(decimals = digits) |>
+        gt::fmt_number(columns = c(sample_size, df), decimals = 0)
+
     } else if (print == FALSE) {
       table <- as.data.frame(table)
     }
