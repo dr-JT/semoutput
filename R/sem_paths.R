@@ -15,7 +15,7 @@
 #'
 
 sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
-                      ci_level = 0.95, digits = 3, print = TRUE){
+                      ci_level = 0.95, digits = 3, print = TRUE) {
 
   ci_col_label <- paste(ci_level * 100, "% CI", sep = "")
 
@@ -92,7 +92,8 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
                           columns = c(est, CI_unstd, stars_unstd, se_unstd,
                                       z_unstd, pvalue_unstd))
       }
-    }if (print == FALSE) {
+    }
+    if (print == FALSE) {
       table <- as.data.frame(table)
     }
   } else {

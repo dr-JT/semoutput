@@ -1,6 +1,6 @@
 #' Format confidence intervals for table display
 #'
-#' @param x
+#' @param x lavaan object
 #' @param digits How many digits to display? (default = 3)
 #' @export
 #'
