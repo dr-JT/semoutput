@@ -37,7 +37,7 @@ table_styling <- function(x) {
         columns = -dplyr::any_of(c("lhs", "rhs"))
       )
     ) |>
-    gt::opt_horizontal_padding(scale = 4) |>
+    gt::opt_horizontal_padding(scale = 3) |>
     gt::sub_missing(missing_text = "")
   return(x)
 }
