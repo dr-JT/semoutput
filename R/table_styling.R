@@ -9,8 +9,8 @@ table_styling <- function(x) {
     gt::tab_options(
       table.align = "left",
       heading.border.bottom.color = "gray",
-      heading.title.font.size = 12,
-      heading.align = "center",
+      heading.title.font.size = 16,
+      heading.align = "left",
       table.border.top.color = "gray",
       heading.title.font.weight = "bolder",
       column_labels.font.weight = "bold",
@@ -38,6 +38,6 @@ table_styling <- function(x) {
       )
     ) |>
     gt::opt_horizontal_padding(scale = 2) |>
-    gt::sub_missing(missing_text = "-")
+    gt::sub_missing(missing_text = "")
   return(x)
 }

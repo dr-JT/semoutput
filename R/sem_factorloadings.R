@@ -91,7 +91,8 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
         table <- table |>
           gt::cols_hide(c(est.std, CI_std, stars, se, z, pvalue)) |>
           gt::tab_spanner(label = "Unstandardized",
-                          columns = c(est, CI_unstd))
+                          columns = c(est, CI_unstd, stars_unstd, se_unstd,
+                                      z_unstd, pvalue_unstd))
       }
     }
     if (print == FALSE) {
