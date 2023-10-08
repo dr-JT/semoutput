@@ -4,14 +4,12 @@
 \alias{sem_factorvar}
 \title{Latent factor variances}
 \usage{
-sem_factorvar(x, factors = c(), standardized = TRUE, print = TRUE)
+sem_factorvar(x, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
 
-\item{factors}{depricated.}
-
-\item{standardized}{depricated.}
+\item{digits}{How many digits to display? (default = 3)}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }

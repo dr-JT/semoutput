@@ -2,13 +2,13 @@
 #'
 #' This function will display a table of Latent factor variances
 #' @param x a cfa() or sem() lavaan model
-#' @param factors depricated.
-#' @param standardized depricated.
+#' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table? (default = TRUE)
 #' @export
 #'
 
-sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
+sem_factorvar <- function(x, digits = 3, print = TRUE) {
+
   factors <- x@pta$vnames$lv[[1]]
   table <- lavaan::parameterEstimates(x, standardized = TRUE)
   table <- dplyr::filter(table,
@@ -16,21 +16,25 @@ sem_factorvar <- function(x, factors = c(), standardized = TRUE, print = TRUE){
                          lhs %in% factors,
                          !is.na(pvalue),
                          lhs == rhs)
-  table <- dplyr::mutate(table,
-                         stars = ifelse(pvalue < .001, "***",
-                                        ifelse(pvalue < .01, "**",
-                                               ifelse(pvalue < .05, "*", ""))))
-  table <- dplyr::select(table, 'Factor 1' = lhs, 'Factor 2' = rhs,
-                         var = est, var.std = std.all, sig = stars, p = pvalue)
+  table <- format_stars(table)
+  table <- dplyr::select(table, lhs, est, std.all, stars, pvalue)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
-      table <- knitr::kable(table, digits = 3, format = "html",
-                            caption = "Latent Factor Variance/Residual Variance",
-                            row.names = FALSE,
-                            table.attr = 'data-quarto-disable-processing="true"')
-      table <- kableExtra::kable_styling(table, full_width = FALSE,
-                                         position = "left")
+
+      table_title <- "Latent Factor Variance/Residual Variance"
+
+      table <- gt::gt(table) |>
+        table_styling() |>
+        gt::tab_header(title = table_title) |>
+        gt::cols_label(lhs = "Factor",
+                       est = "Variance",
+                       std.all = "Std. Variance",
+                       stars = "sig",
+                       pvalue = "p") |>
+        gt::cols_align(align = "left", columns = lhs) |>
+        gt::sub_small_vals(columns = pvalue, threshold = .001) |>
+        gt::fmt_number(decimals = digits)
     } else if (print == FALSE) {
       table <- as.data.frame(table)
     }
