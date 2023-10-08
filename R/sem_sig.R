@@ -9,7 +9,7 @@
 
 sem_sig <- function(x, digits = 3, print = TRUE){
   stats <- lavaan::fitMeasures(x, c("ntotal", "chisq", "pvalue", "df"))
-  table <- data.frame(sample_size = stats[["ntotal"]],
+  table <- data.frame(N = stats[["ntotal"]],
                       Chi_Square = stats[["chisq"]],
                       df = stats[["df"]], p = stats[["pvalue"]])
 
@@ -20,11 +20,10 @@ sem_sig <- function(x, digits = 3, print = TRUE){
       table <- gt::gt(table) |>
         table_styling() |>
         gt::tab_header(title = table_title) |>
-        gt::cols_label(sample_size = "Sample Size",
-                       Chi_Square = "{{:Chi:^2}}") |>
+        gt::cols_label(Chi_Square = "{{:Chi:^2}}") |>
         gt::sub_small_vals(columns = p, threshold = .001) |>
         gt::fmt_number(decimals = digits) |>
-        gt::fmt_number(columns = c(sample_size, df), decimals = 0)
+        gt::fmt_number(columns = c(N, df), decimals = 0)
 
     } else if (print == FALSE) {
       table <- as.data.frame(table)
