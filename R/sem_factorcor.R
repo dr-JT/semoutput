@@ -3,11 +3,12 @@
 #' This function will display a table of Latent factor correlations
 #' @param x a cfa() or sem() lavaan model
 #' @param ci_level What level of confidence interval to use (default = 0.95)
+#' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #'
 
-sem_factorcor <- function(x, ci_level = .95, print = TRUE) {
+sem_factorcor <- function(x, ci_level = .95, digits = 3, print = TRUE) {
 
   ci_col_label <- paste(round(ci_level*100, 0), "% ", "CI", sep = "")
 
