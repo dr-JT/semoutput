@@ -8,8 +8,9 @@ table_styling <- function(x) {
   x <- x |>
     gt::tab_options(
       table.align = "left",
+      heading.border.bottom.width = 0,
       heading.border.bottom.color = "gray",
-      heading.title.font.size = 16,
+      heading.title.font.size = 18,
       heading.align = "left",
       table.border.top.color = "gray",
       heading.title.font.weight = "bolder",
@@ -17,12 +18,13 @@ table_styling <- function(x) {
       footnotes.font.size = 12,
       table.border.top.width = 0,
       table.border.bottom.width = 0,
-      column_labels.border.top.width = 2,
+      column_labels.border.top.width = 1.25,
       column_labels.border.top.color = "gray",
-      column_labels.border.bottom.width = 2,
+      column_labels.border.bottom.width = 1.5,
       column_labels.border.bottom.color = "gray",
       table_body.border.bottom.color = "gray",
-      table_body.border.top.color = "gray"
+      table_body.border.top.color = "gray",
+      column_labels.padding = 3
     ) |>
     gt::tab_style(
       style = list(
