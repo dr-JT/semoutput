@@ -76,9 +76,11 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
       if (standardized == TRUE & unstandardized == TRUE) {
         table <- table |>
           gt::cols_merge_range(col_begin = ci.lower_unstd,
-                               col_end = ci.upper_unstd, sep = " -- ") |>
+                               col_end = ci.upper_unstd,
+                               sep = gt::html("&nbsp;&ndash;&nbsp")) |>
           gt::cols_merge_range(col_begin = ci.lower_std,
-                               col_end = ci.upper_std, sep = " -- ") |>
+                               col_end = ci.upper_std,
+                               sep = gt::html("&nbsp;&ndash;&nbsp")) |>
           gt::cols_hide(c(stars_unstd, se_unstd, z_unstd, pvalue_unstd)) |>
           gt::tab_spanner(label = "Unstandardized",
                           columns = c(est, ci.lower_unstd)) |>
@@ -90,7 +92,8 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
       if (standardized == TRUE & unstandardized == FALSE) {
         table <- table |>
           gt::cols_merge_range(col_begin = ci.lower_std,
-                               col_end = ci.upper_std, sep = " -- ") |>
+                               col_end = ci.upper_std,
+                               sep = gt::html("&nbsp;&ndash;&nbsp")) |>
           gt::cols_hide(c(est, ci.lower_unstd, stars_unstd, se_unstd,
                           z_unstd, pvalue_unstd)) |>
           gt::tab_spanner(label = "Standardized",
@@ -101,7 +104,8 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
       if (standardized == FALSE & unstandardized == TRUE) {
         table <- table |>
           gt::cols_merge_range(col_begin = ci.lower_unstd,
-                               col_end = ci.upper_unstd, sep = " -- ") |>
+                               col_end = ci.upper_unstd,
+                               sep = gt::html("&nbsp;&ndash;&nbsp")) |>
           gt::cols_hide(c(est.std, ci.lower_std, stars, se, z, pvalue)) |>
           gt::tab_spanner(label = "Unstandardized",
                           columns = c(est, ci.lower_unstd, stars_unstd,

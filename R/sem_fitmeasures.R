@@ -31,7 +31,7 @@ sem_fitmeasures <- function(x, ci_level = .95, digits = 3, print = TRUE) {
         table_styling() |>
         gt::tab_header(title = table_title) |>
         gt::cols_merge_range(col_begin = RMSEA_Lower, col_end = RMSEA_Upper,
-                             sep = " -- ") |>
+                             sep = gt::html("&nbsp;&ndash;&nbsp")) |>
         gt::cols_label(RMSEA_Lower = ci_col_label) |>
         gt::fmt_number(decimals = digits)
 
