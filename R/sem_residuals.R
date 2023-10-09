@@ -12,13 +12,14 @@ sem_residuals <- function(x, digits = 3, print = TRUE) {
   table <- lavaan::residuals(x, type = "cor")$cov
   table[upper.tri(table)] <- NA
   diag(table) <- NA
+  table <- as.data.frame(table)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
 
       table_title <- "Residual Correlations"
 
-      table <- gt::gt(table) |>
+      table <- gt::gt(table, rownames_to_stub = TRUE) |>
         table_styling() |>
         gt::tab_header(title = table_title) |>
         gt::fmt_number(decimals = digits)

@@ -40,6 +40,7 @@ sem_descriptives <- function(x, digits = 3, print = TRUE){
       gt::cols_label(min = "Range") |>
       gt::cols_align(align = "left", columns = Variable) |>
       gt::fmt_number(decimals = digits) |>
+      gt::fmt_number(columns = N, decimals = 0) |>
       gt::tab_footnote(paste("Total N = ", N, sep = ""))
   }
 
