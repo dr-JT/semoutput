@@ -8,7 +8,7 @@
 #' @export
 #'
 
-sem_fitmeasures <- function(x, digits = 3, print = TRUE) {
+sem_fitmeasures <- function(x, ci_level = .95, digits = 3, print = TRUE) {
 
   ci_col_label <- paste(round(ci_level*100, 0), "% ", "CI", sep = "")
 

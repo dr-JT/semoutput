@@ -4,16 +4,16 @@
 \alias{sem_fitmeasures}
 \title{Model fit statistics}
 \usage{
-sem_fitmeasures(x, digits = 3, print = TRUE)
+sem_fitmeasures(x, ci_level = 0.95, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
 
+\item{ci_level}{What level of confidence interval to use (default = 0.95)}
+
 \item{digits}{How many decimal places to round to? Default is 3.}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
-
-\item{ci_level}{What level of confidence interval to use (default = 0.95)}
 }
 \description{
 This function will display a table of Model fit measures
