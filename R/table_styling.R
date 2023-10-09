@@ -20,11 +20,12 @@ table_styling <- function(x) {
       column_labels.padding = 6,
       footnotes.font.size = 14
     ) |>
-    gt::tab_style(style = list(gt::cell_text(align = "left")),
-                  locations =
-                    gt::cells_column_labels(
-                      columns = dplyr::any_of(c("lhs", "rhs")))) |>
+    gt::tab_style(style = gt::cell_text(align = 'center'),
+                  locations = gt::cells_column_labels()) |>
+    gt::cols_align(align = "left",
+                   columns = dplyr::any_of(c("lhs", "rhs"))) |>
     gt::opt_horizontal_padding(scale = 3) |>
+    gt::cols_align_decimal(columns = everything()) |>
     gt::sub_missing(missing_text = "")
   return(x)
 }

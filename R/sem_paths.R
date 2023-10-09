@@ -69,9 +69,7 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
         gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
         gt::fmt_number(decimals = digits) |>
-        gt::tab_footnote("* p < .05") |>
-        gt::tab_footnote("** p < .01") |>
-        gt::tab_footnote("*** p < .001")
+        gt::tab_footnote("* p < .05; ** p < .01; *** p < .001")
 
       if (standardized == TRUE & unstandardized == TRUE) {
         table <- table |>
