@@ -43,9 +43,10 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
                   se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
 
   table <- merge(fit_unstandardized, fit_standardized, by = c("lhs", "rhs")) |>
-    dplyr::select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd,
+    dplyr::select(rhs, lhs, est, CI_unstd, stars_unstd, se_unstd,
                   z_unstd, pvalue_unstd,
-                  est.std, CI_std, stars, se, z, pvalue)
+                  est.std, CI_std, stars, se, z, pvalue) |>
+    dplyr::arrange(lhs)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {

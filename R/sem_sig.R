@@ -20,7 +20,7 @@ sem_sig <- function(x, digits = 3, print = TRUE){
       table <- gt::gt(table) |>
         table_styling() |>
         gt::tab_header(title = table_title) |>
-        gt::cols_label(Chi_Square = "χ^2") |>
+        gt::cols_label(Chi_Square = html("&chi;^2")) |>
         gt::sub_small_vals(columns = p, threshold = .001) |>
         gt::fmt_number(decimals = digits) |>
         gt::fmt_number(columns = c(N, df), decimals = 0)
