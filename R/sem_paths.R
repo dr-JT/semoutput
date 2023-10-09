@@ -92,8 +92,8 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
           gt::cols_merge_range(col_begin = ci.lower_std,
                                col_end = ci.upper_std,
                                sep = gt::html("&nbsp;&ndash;&nbsp")) |>
-          gt::cols_hide(c(est, ci.lower_unstd, stars_unstd, se_unstd,
-                          z_unstd, pvalue_unstd)) |>
+          gt::cols_hide(c(est, ci.lower_unstd, ci.upper_unstd, stars_unstd,
+                          se_unstd, z_unstd, pvalue_unstd)) |>
           gt::tab_spanner(label = "Standardized",
                           columns = c(est.std, ci.lower_std, stars,
                                       se, z, pvalue))
@@ -104,7 +104,8 @@ sem_paths <- function(x, standardized = TRUE, unstandardized = FALSE,
           gt::cols_merge_range(col_begin = ci.lower_unstd,
                                col_end = ci.upper_unstd,
                                sep = gt::html("&nbsp;&ndash;&nbsp")) |>
-          gt::cols_hide(c(est.std, ci.lower_std, stars, se, z, pvalue)) |>
+          gt::cols_hide(c(est.std, ci.lower_std, ci.upper_std, stars,
+                          se, z, pvalue)) |>
           gt::tab_spanner(label = "Unstandardized",
                           columns = c(est, ci.lower_unstd, stars_unstd,
                                       se_unstd, z_unstd, pvalue_unstd))
