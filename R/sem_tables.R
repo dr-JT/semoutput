@@ -22,26 +22,26 @@ sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
   table <- gt::gt_group(sig_table)
 
   fit_table <- sem_fitmeasures(x, ci_level = ci_level, digits = digits)
-  if (fit_table != "") table <- gt::grp_add(table, fit_table)
+  if (is.list(fit_table)) table <- gt::grp_add(table, fit_table)
 
   loadings_table <- sem_factorloadings(x, standardized = standardized,
                                        unstandardized = unstandardized,
                                        ci_level = ci_level, digits = digits)
-  if (loadings_table != "") table <- gt::grp_add(table, loadings_table)
+  if (is.list(loadings_table)) table <- gt::grp_add(table, loadings_table)
 
   paths_table <- sem_paths(x, standardized = standardized,
                            unstandardized = unstandardized,
                            ci_level = ci_level, digits = digits)
-  if (paths_table != "") table <- gt::grp_add(table, paths_table)
+  if (is.list(paths_table)) table <- gt::grp_add(table, paths_table)
 
   corr_table <- sem_factorcor(x, ci_level = ci_level, digits = digits)
-  if (corr_table != "") table <- gt::grp_add(table, corr_table)
+  if (is.list(corr_table)) table <- gt::grp_add(table, corr_table)
 
   var_table <- sem_factorvar(x, digits = digits)
-  if (var_table != "") table <- gt::grp_add(table, var_table)
+  if (is.list(var_table)) table <- gt::grp_add(table, var_table)
 
   rsquared_table <- sem_rsquared(x, digits = digits)
-  if (rsquared_table != "") table <- gt::grp_add(table, rsquared_table)
+  if (is.list(rsquared_table)) table <- gt::grp_add(table, rsquared_table)
 
   return(table)
 }
