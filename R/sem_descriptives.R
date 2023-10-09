@@ -2,10 +2,12 @@
 #'
 #' This function will display basic descriptive statistics for a dataframe
 #' @param x dataframe
+#' @param digits How many decimal places to round to? Default is 3.
+#' @param print Create a knitr table for displaying as html table (default = TRUE)
 #' @export
 #'
 
-sem_descriptives <- function(x){
+sem_descriptives <- function(x, digits = 3, print = TRUE){
   col_order <- colnames(x)
   x <- tidyr::gather(x, "Variable", "value")
   x <- dplyr::group_by(x, Variable)
@@ -26,10 +28,19 @@ sem_descriptives <- function(x){
   N <- N$N.total[1]
   table <- dplyr::ungroup(table)
   table <- dplyr::arrange(table, match(Variable, col_order))
-  table <- knitr::kable(table, digits = 2, format = "html",
-                        caption = "Descriptive Statistics")
-  table <- kableExtra::kable_styling(table)
-  table <- kableExtra::footnote(table, general_title = "\n",
-                                general = paste("Total N = ", N, sep = ""))
+
+  if (print == TRUE) {
+    table_title <- "Descriptive Statistics"
+
+    table <- gt::gt(table) |>
+      table_styling() |>
+      gt::tab_header(title = table_title) |>
+      gt::cols_merge_range(col_begin = min, col_end = max,
+                           sep = " -- ") |>
+      gt::cols_align(align = "left", columns = Variable) |>
+      gt::fmt_number(decimals = digits) |>
+      gt::tab_footnote(paste("Total N = ", N, sep = ""))
+  }
+
   return(table)
 }

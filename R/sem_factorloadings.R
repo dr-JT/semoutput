@@ -21,20 +21,20 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
 
   fit_standardized <- lavaan::standardizedSolution(x, level = ci_level) |>
     dplyr::filter(op == "=~") |>
-    format_ci(digits = digits) |>
     format_stars() |>
-    dplyr::rename(CI_std = CI)
+    dplyr::rename(ci.lower_std = ci.lower, ci.upper_std = ci.upper)
 
   fit_unstandardized <- lavaan::parameterEstimates(x, level = ci_level) |>
     dplyr::filter(op == "=~") |>
-    format_ci(digits = digits) |>
     format_stars() |>
-    dplyr::select(lhs, rhs, est, CI_unstd = CI, stars_unstd = stars,
+    dplyr::select(lhs, rhs, est, ci.lower_unstd = ci.lower,
+                  ci.upper_unstd = ci.upper, stars_unstd = stars,
                   se_unstd = se, z_unstd = z, pvalue_unstd = pvalue)
 
   table <- merge(fit_unstandardized, fit_standardized, by = c("lhs", "rhs")) |>
-    dplyr::select(lhs, rhs, est, CI_unstd, stars_unstd, se_unstd, z_unstd, pvalue_unstd,
-           est.std, CI_std, stars, se, z, pvalue)
+    dplyr::select(lhs, rhs, est, ci.lower_unstd, ci.upper_unstd, stars_unstd,
+                  se_unstd, z_unstd, pvalue_unstd,
+                  est.std, ci.lower_std, ci.upper_std, stars, se, z, pvalue)
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
@@ -44,41 +44,55 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
         table_styling() |>
         gt::tab_header(title = table_title) |>
         gt::cols_label(lhs = "Latent Factor", rhs = "Indicator",
-                       est = "Loading", CI_unstd = ci_col_label,
+                       est = "Loading", ci.lower_unstd = ci_col_label,
                        stars_unstd = "sig", se_unstd = "SE", z_unstd = "z",
                        pvalue_unstd = "p",
                        est.std = "Loading",
-                       CI_std = ci_col_label,
+                       ci.lower_std = ci_col_label,
                        stars = "sig",
                        se = "SE",
                        pvalue = "p") |>
         gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
-        gt::fmt_number(decimals = digits)
+        gt::fmt_number(decimals = digits) |>
+        gt::tab_footnote("* p < .05") |>
+        gt::tab_footnote("** p < .01") |>
+        gt::tab_footnote("*** p < .001")
 
       if (standardized == TRUE & unstandardized == TRUE) {
         table <- table |>
+          gt::cols_merge_range(col_begin = ci.lower_unstd,
+                               col_end = ci.upper_unstd, sep = " -- ") |>
+          gt::cols_merge_range(col_begin = ci.lower_std,
+                               col_end = ci.upper_std, sep = " -- ") |>
           gt::cols_hide(c(stars_unstd, se_unstd, z_unstd, pvalue_unstd)) |>
           gt::tab_spanner(label = "Unstandardized",
-                          columns = c(est, CI_unstd)) |>
+                          columns = c(est, ci.lower_unstd)) |>
           gt::tab_spanner(label = "Standardized",
-                          columns = c(est.std, CI_std, stars, se, z, pvalue))
+                          columns = c(est.std, ci.lower_std, stars,
+                                      se, z, pvalue))
       }
 
       if (standardized == TRUE & unstandardized == FALSE) {
         table <- table |>
-          gt::cols_hide(c(est, CI_unstd, stars_unstd, se_unstd,
-                          z_unstd, pvalue_unstd)) |>
+          gt::cols_merge_range(col_begin = ci.lower_std,
+                               col_end = ci.upper_std, sep = " -- ") |>
+          gt::cols_hide(c(est, ci.lower_unstd, ci.upper_unstd, stars_unstd,
+                          se_unstd, z_unstd, pvalue_unstd)) |>
           gt::tab_spanner(label = "Standardized",
-                          columns = c(est.std, CI_std, stars, se, z, pvalue))
+                          columns = c(est.std, ci.lower_std, stars,
+                                      se, z, pvalue))
       }
 
       if (standardized == FALSE & unstandardized == TRUE) {
         table <- table |>
-          gt::cols_hide(c(est.std, CI_std, stars, se, z, pvalue)) |>
+          gt::cols_merge_range(col_begin = ci.lower_unstd,
+                               col_end = ci.upper_unstd, sep = " -- ") |>
+          gt::cols_hide(c(est.std, ci.lower_std, ci.upper_std, stars,
+                          se, z, pvalue)) |>
           gt::tab_spanner(label = "Unstandardized",
-                          columns = c(est, CI_unstd, stars_unstd, se_unstd,
-                                      z_unstd, pvalue_unstd))
+                          columns = c(est, ci.lower_unstd, stars_unstd,
+                                      se_unstd, z_unstd, pvalue_unstd))
       }
     }
     if (print == FALSE) {

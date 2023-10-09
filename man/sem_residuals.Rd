@@ -4,10 +4,12 @@
 \alias{sem_residuals}
 \title{Residual correlation matrix}
 \usage{
-sem_residuals(x, print = TRUE)
+sem_residuals(x, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
+
+\item{digits}{How many digits to display? (default = 3)}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }

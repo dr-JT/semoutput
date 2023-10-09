@@ -12,6 +12,8 @@ sem_fitmeasures(x, digits = 3, print = TRUE)
 \item{digits}{How many decimal places to round to? Default is 3.}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
+
+\item{ci_level}{What level of confidence interval to use (default = 0.95)}
 }
 \description{
 This function will display a table of Model fit measures

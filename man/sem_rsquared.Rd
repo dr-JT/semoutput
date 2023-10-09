@@ -4,10 +4,12 @@
 \alias{sem_rsquared}
 \title{R squared values}
 \usage{
-sem_rsquared(x, print = TRUE)
+sem_rsquared(x, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
+
+\item{digits}{How many digits to display? (default = 3)}
 
 \item{print}{Create a knitr table for displaying as html table? (default = TRUE)}
 }

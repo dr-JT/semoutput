@@ -4,10 +4,14 @@
 \alias{sem_descriptives}
 \title{Descriptives table}
 \usage{
-sem_descriptives(x)
+sem_descriptives(x, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{dataframe}
+
+\item{digits}{How many decimal places to round to? Default is 3.}
+
+\item{print}{Create a knitr table for displaying as html table (default = TRUE)}
 }
 \description{
 This function will display basic descriptive statistics for a dataframe
