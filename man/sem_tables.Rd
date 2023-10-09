@@ -7,7 +7,7 @@
 sem_tables(
   x,
   standardized = TRUE,
-  ci = "standardized",
+  unstandardized = FALSE,
   ci_level = 0.95,
   digits = 3
 )
@@ -15,10 +15,13 @@ sem_tables(
 \arguments{
 \item{x}{a lavaan model}
 
-\item{standardized}{logical. Include standardized loadings? (default = TRUE)}
+\item{standardized}{Logical, indicating whether or not to print standardized
+estimates. Standardized estimates are based on "refit" of the model
+on standardized data but it will not standardize categorical predictors.
+Defualt is TRUE.}
 
-\item{ci}{logical. display standardized or unstandardized confidence
-intervals? (default = "standardized"). Not needed if standardized=FALSE}
+\item{unstandardized}{Logical, indicating whether or not to print
+unstandardized estimates. Default is TRUE.}
 
 \item{ci_level}{What level of confidence interval to use (default = 0.95)}
 
