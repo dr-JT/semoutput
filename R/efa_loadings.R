@@ -23,6 +23,23 @@ efa_loadings <- function(fit, print = TRUE){
   table <- dplyr::select(table, -id)
 
   if (print == TRUE) {
+    table <- gt::gt(table) |>
+      table_styling() |>
+      gt::tab_header(title = "Factor Loadings") |>
+      gt::cols_label(lhs = "Latent Factor", rhs = "Indicator",
+                     est = "Loading", ci.lower_unstd = ci_col_label,
+                     stars_unstd = "sig", se_unstd = "SE", z_unstd = "z",
+                     pvalue_unstd = "p",
+                     est.std = "Loading",
+                     ci.lower_std = ci_col_label,
+                     stars = "sig",
+                     se = "SE",
+                     pvalue = "p") |>
+      gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
+      gt::sub_small_vals(columns = pvalue, threshold = .001) |>
+      gt::fmt_number(decimals = digits) |>
+      gt::tab_footnote("* p < .05; ** p < .01; *** p < .001")
+
     table <- knitr::kable(table, digits = 3, format = "html",
                           caption = "Factor Loadings", row.names = FALSE,
                           table.attr = 'data-quarto-disable-processing="true"')

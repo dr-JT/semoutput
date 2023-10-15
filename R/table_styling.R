@@ -23,7 +23,7 @@ table_styling <- function(x) {
     gt::tab_style(style = gt::cell_text(align = 'center'),
                   locations = gt::cells_column_labels()) |>
     gt::opt_horizontal_padding(scale = 3) |>
-    gt::cols_align_decimal(columns = everything()) |>
+    gt::cols_align_decimal(columns = dplyr::everything()) |>
     gt::sub_missing(missing_text = "")
   return(x)
 }
