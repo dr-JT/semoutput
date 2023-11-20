@@ -55,8 +55,8 @@ sem_fitmeasures <- function(x, robust = FALSE,
           gt::cols_label(RMSEA_Lower = ci_col_label) |>
           gt::fmt_number(decimals = digits)
 
-        table <- gt::gt_group(table) |>
-          gt::grp_add(robust_table)
+        table <- gt::gt_group(table)
+        table <- gt::grp_add(table, robust_table)
       }
 
     } else if (print == FALSE) {
