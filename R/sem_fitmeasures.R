@@ -56,6 +56,7 @@ sem_fitmeasures <- function(x, robust = FALSE,
           gt::fmt_number(decimals = digits)
 
         table <- gt::gt_group(table)
+        test <- gt::gt_group(robust_table)
         table <- gt::grp_add(table, robust_table)
       }
 
