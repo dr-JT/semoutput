@@ -8,7 +8,9 @@ sem_tables(
   x,
   standardized = TRUE,
   unstandardized = FALSE,
+  robust = FALSE,
   ci_level = 0.95,
+  rmsea_ci_level = 0.9,
   digits = 3
 )
 }
@@ -23,7 +25,12 @@ Defualt is TRUE.}
 \item{unstandardized}{Logical, indicating whether or not to print
 unstandardized estimates. Default is TRUE.}
 
+\item{robust}{logical. Display robust fit statistics? (default: FALSE)}
+
 \item{ci_level}{What level of confidence interval to use (default = 0.95)}
+
+\item{rmsea_ci_level}{What level of confidence interval to use for
+RMSE? (default = .90)}
 
 \item{digits}{How many digits to display? (default = 3)}
 }

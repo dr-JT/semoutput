@@ -10,18 +10,23 @@
 #'      Defualt is TRUE.
 #' @param unstandardized Logical, indicating whether or not to print
 #'      unstandardized estimates. Default is TRUE.
+#' @param robust logical. Display robust fit statistics? (default: FALSE)
 #' @param ci_level What level of confidence interval to use (default = 0.95)
+#' @param rmsea_ci_level What level of confidence interval to use for
+#'     RMSE? (default = .90)
 #' @param digits How many digits to display? (default = 3)
 #' @export
 #'
 
 sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
-                       ci_level = 0.95, digits = 3) {
+                       robust = FALSE, ci_level = 0.95,
+                       rmsea_ci_level = .90, digits = 3) {
 
   sig_table <- sem_sig(x, digits = digits)
   table <- gt::gt_group(sig_table)
 
-  fit_table <- sem_fitmeasures(x, ci_level = ci_level, digits = digits)
+  fit_table <- sem_fitmeasures(x, robust = robust,
+                               ci_level = rmsea_ci_level, digits = digits)
   if (is.list(fit_table)) table <- gt::grp_add(table, fit_table)
 
   loadings_table <- sem_factorloadings(x, standardized = standardized,
