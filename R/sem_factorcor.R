@@ -31,16 +31,16 @@ sem_factorcor <- function(x, ci_level = .95, digits = 3, print = TRUE) {
       table <- gt::gt(table) |>
         table_styling() |>
         gt::tab_header(title = table_title) |>
-        gt::cols_merge(columns = c(lhs, rhs), pattern = "{1} ~~ {2}") |>
         gt::cols_merge_range(col_begin = ci.lower, col_end = ci.upper,
                              sep = gt::html("&nbsp;&ndash;&nbsp")) |>
-        gt::cols_label(lhs = "Factors",
+        gt::cols_label(lhs = "Factor",
+                       rhs = "Factor",
                        est.std = "r",
                        ci.lower = ci_col_label,
                        stars = "sig",
                        se = "SE",
                        pvalue = "p") |>
-        gt::cols_align(align = "left", columns = lhs) |>
+        gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
         gt::fmt_number(decimals = digits) |>
         gt::tab_footnote("* p < .05; ** p < .01; *** p < .001")
