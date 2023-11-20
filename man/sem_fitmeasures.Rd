@@ -4,12 +4,14 @@
 \alias{sem_fitmeasures}
 \title{Model fit statistics}
 \usage{
-sem_fitmeasures(x, ci_level = 0.95, digits = 3, print = TRUE)
+sem_fitmeasures(x, robust = FALSE, ci_level = 0.9, digits = 3, print = TRUE)
 }
 \arguments{
 \item{x}{a cfa() or sem() lavaan model}
 
-\item{ci_level}{What level of confidence interval to use (default = 0.95)}
+\item{robust}{logical. Include robust fit statistics?}
+
+\item{ci_level}{What level of confidence interval to use (default = 0.90)}
 
 \item{digits}{How many decimal places to round to? Default is 3.}
 
