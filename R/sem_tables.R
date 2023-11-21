@@ -29,8 +29,8 @@ sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
                                ci_level = rmsea_ci_level, digits = digits)
 
   if (robust == TRUE) {
-    fit_table <- gt::grp_pull(fit_table, 1)
     robust_table <- gt::grp_pull(fit_table, 2)
+    fit_table <- gt::grp_pull(fit_table, 1)
   }
 
   if (is.list(fit_table)) table <- gt::grp_add(table, fit_table)
