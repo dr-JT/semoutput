@@ -27,10 +27,8 @@ fit <- cfa(model = model, data = data, mimic = "lavaan",
 ## Summary Output
 
 ```{r}
-sem_sig(fit)
-sem_fitmeasures(fit)
-sem_factorloadings(fit)
-sem_factorcor(fit)
+sem_tables(fit, standardized = TRUE, unstandardized = FALSE, robust = TRUE,
+           ci_level = .95, rmsea_ci_level = .90, digits = 3)
 ```
 
 ## Diagram Output
