@@ -152,7 +152,7 @@ speed =~ x7 + x8 + x9
 '
 # fit model
 fit <- cfa(model = model, data = cfa_data, mimic = "lavaan", 
-           estimator = "ML", missing = "ML", 
+           estimator = "MLM", missing = "ML", 
            std.lv = TRUE, std.ov = FALSE, test = "standard", 
            se = "standard", bootstrap = 1000)
 ```

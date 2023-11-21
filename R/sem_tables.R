@@ -27,7 +27,14 @@ sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
 
   fit_table <- sem_fitmeasures(x, robust = robust,
                                ci_level = rmsea_ci_level, digits = digits)
+
+  if (robust == TRUE) {
+    fit_table <- gt::grp_pull(fit_table, 1)
+    robust_table <- gt::grp_pull(fit_table, 2)
+  }
+
   if (is.list(fit_table)) table <- gt::grp_add(table, fit_table)
+  if (robust == TRUE) table <- gt::grp_add(table, robust_table)
 
   loadings_table <- sem_factorloadings(x, standardized = standardized,
                                        unstandardized = unstandardized,
