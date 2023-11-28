@@ -24,6 +24,7 @@ table_styling <- function(x) {
                   locations = gt::cells_column_labels()) |>
     gt::opt_horizontal_padding(scale = 3) |>
     gt::cols_align_decimal(columns = dplyr::everything()) |>
-    gt::sub_missing(missing_text = "")
+    gt::sub_missing(missing_text = "") |>
+    gt::fmt_number(use_seps = FALSE)
   return(x)
 }
