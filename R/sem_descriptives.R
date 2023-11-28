@@ -33,15 +33,15 @@ sem_descriptives <- function(x, digits = 3, print = TRUE){
     table_title <- "Descriptive Statistics"
 
     table <- gt::gt(table) |>
+      table_styling() |>
       gt::tab_header(title = table_title) |>
       gt::cols_merge_range(col_begin = min, col_end = max,
                            sep = gt::html("&nbsp;&ndash;&nbsp")) |>
       gt::cols_label(min = "Range") |>
       gt::cols_align(align = "left", columns = Variable) |>
-      gt::fmt_number(decimals = digits) |>
-      gt::fmt_number(columns = n, decimals = 0) |>
-      gt::tab_footnote(paste("Total N = ", N, sep = "")) |>
-      table_styling()
+      gt::fmt_number(decimals = digits, use_seps = FALSE) |>
+      gt::fmt_number(columns = n, decimals = 0, use_seps = FALSE) |>
+      gt::tab_footnote(paste("Total N = ", N, sep = ""))
   }
 
   return(table)
