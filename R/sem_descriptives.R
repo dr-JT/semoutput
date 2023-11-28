@@ -36,7 +36,7 @@ sem_descriptives <- function(x, digits = 3, print = TRUE){
       table_styling() |>
       gt::tab_header(title = table_title) |>
       gt::cols_merge_range(col_begin = min, col_end = max,
-                           sep = gt::html("&nbsp;&ndash;&nbsp")) |>
+                           sep = gt::html("&nbsp;&ndash;&nbsp;")) |>
       gt::cols_label(min = "Range") |>
       gt::cols_align(align = "left", columns = Variable) |>
       gt::fmt_number(decimals = digits, use_seps = FALSE) |>
