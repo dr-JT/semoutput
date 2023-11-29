@@ -32,7 +32,7 @@ sem_factorcor <- function(x, ci_level = .95, digits = 3, print = TRUE) {
         table_styling() |>
         gt::tab_header(title = table_title) |>
         gt::cols_merge_range(col_begin = ci.lower, col_end = ci.upper,
-                             sep = gt::html("&nbsp;&ndash;&nbsp")) |>
+                             sep = gt::html("&nbsp;&ndash;&nbsp;")) |>
         gt::cols_label(lhs = "Factor",
                        rhs = "Factor",
                        est.std = "r",
