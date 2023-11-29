@@ -39,7 +39,7 @@ sem_fitmeasures <- function(x, robust = FALSE,
         table_styling() |>
         gt::tab_header(title = table_title) |>
         gt::cols_merge_range(col_begin = RMSEA_Lower, col_end = RMSEA_Upper,
-                             sep = gt::html("&nbsp;&ndash;&nbsp;")) |>
+                             sep = gt::html("&nbsp;&mdash;&nbsp;")) |>
         gt::cols_label(RMSEA_Lower = ci_col_label) |>
         gt::fmt_number(decimals = digits, use_seps = FALSE)
 
@@ -51,7 +51,7 @@ sem_fitmeasures <- function(x, robust = FALSE,
           table_styling() |>
           gt::tab_header(title = robust_table_title) |>
           gt::cols_merge_range(col_begin = RMSEA_Lower, col_end = RMSEA_Upper,
-                               sep = gt::html("&nbsp;&ndash;&nbsp;")) |>
+                               sep = gt::html("&nbsp;&mdash;&nbsp;")) |>
           gt::cols_label(RMSEA_Lower = ci_col_label) |>
           gt::fmt_number(decimals = digits, use_seps = FALSE)
 
