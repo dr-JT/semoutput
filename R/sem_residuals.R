@@ -22,7 +22,7 @@ sem_residuals <- function(x, digits = 3, print = TRUE) {
       table <- gt::gt(table, rownames_to_stub = TRUE) |>
         table_styling() |>
         gt::tab_header(title = table_title) |>
-        gt::fmt_number(decimals = digits)
+        gt::fmt_number(decimals = digits, use_seps = FALSE)
     }
 
     if (print == FALSE) {

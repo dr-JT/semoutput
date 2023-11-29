@@ -54,7 +54,7 @@ sem_factorloadings <- function(x, standardized = TRUE, unstandardized = FALSE,
                        pvalue = "p") |>
         gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
-        gt::fmt_number(decimals = digits) |>
+        gt::fmt_number(decimals = digits, use_seps = FALSE) |>
         gt::tab_footnote("* p < .05; ** p < .01; *** p < .001")
 
       if (standardized == TRUE & unstandardized == TRUE) {

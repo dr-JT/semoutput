@@ -26,7 +26,7 @@ sem_rsquared <- function(x, digits = 3, print = TRUE){
         gt::tab_header(title = table_title) |>
         gt::cols_label(R_Squared = "{{R^2}}") |>
         gt::cols_align(align = "left", columns = Variable) |>
-        gt::fmt_number(decimals = digits)
+        gt::fmt_number(decimals = digits, use_seps = FALSE)
     }
 
     if (print == FALSE) {

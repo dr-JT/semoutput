@@ -34,7 +34,7 @@ sem_factorvar <- function(x, digits = 3, print = TRUE) {
                        pvalue = "p") |>
         gt::cols_align(align = "left", columns = lhs) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
-        gt::fmt_number(decimals = digits)
+        gt::fmt_number(decimals = digits, use_seps = FALSE)
     } else if (print == FALSE) {
       table <- as.data.frame(table)
     }

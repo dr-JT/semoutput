@@ -41,7 +41,7 @@ sem_fitmeasures <- function(x, robust = FALSE,
         gt::cols_merge_range(col_begin = RMSEA_Lower, col_end = RMSEA_Upper,
                              sep = gt::html("&nbsp;&ndash;&nbsp")) |>
         gt::cols_label(RMSEA_Lower = ci_col_label) |>
-        gt::fmt_number(decimals = digits)
+        gt::fmt_number(decimals = digits, use_seps = FALSE)
 
       if (robust == TRUE) {
 
@@ -53,7 +53,7 @@ sem_fitmeasures <- function(x, robust = FALSE,
           gt::cols_merge_range(col_begin = RMSEA_Lower, col_end = RMSEA_Upper,
                                sep = gt::html("&nbsp;&ndash;&nbsp")) |>
           gt::cols_label(RMSEA_Lower = ci_col_label) |>
-          gt::fmt_number(decimals = digits)
+          gt::fmt_number(decimals = digits, use_seps = FALSE)
 
         table <- gt::gt_group(table)
         table <- gt::grp_add(table, robust_table)

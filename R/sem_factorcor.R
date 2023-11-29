@@ -42,7 +42,7 @@ sem_factorcor <- function(x, ci_level = .95, digits = 3, print = TRUE) {
                        pvalue = "p") |>
         gt::cols_align(align = "left", columns = c(lhs, rhs)) |>
         gt::sub_small_vals(columns = pvalue, threshold = .001) |>
-        gt::fmt_number(decimals = digits) |>
+        gt::fmt_number(decimals = digits, use_seps = FALSE) |>
         gt::tab_footnote("* p < .05; ** p < .01; *** p < .001")
     }
 

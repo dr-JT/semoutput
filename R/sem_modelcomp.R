@@ -53,8 +53,8 @@ sem_modelcomp <- function(m0, m1, print = TRUE){
                      Chi_Square_diff = gt::html("&Delta;&chi;<sup>2</sup>"),
                      df_diff = gt::html("&Delta;df")) |>
       gt::sub_small_vals(columns = p, threshold = .001) |>
-      gt::fmt_number(decimals = digits) |>
-      gt::fmt_number(columns = df, decimals = 0)
+      gt::fmt_number(decimals = digits, use_seps = FALSE) |>
+      gt::fmt_number(columns = df, decimals = 0, use_seps = FALSE)
   }
 
   return(table)
