@@ -4,12 +4,14 @@
 \alias{sem_modelcomp}
 \title{Model comparison}
 \usage{
-sem_modelcomp(m0, m1, print = TRUE)
+sem_modelcomp(m0, m1, digits = 3, print = TRUE)
 }
 \arguments{
 \item{m0}{A lavaan model.}
 
 \item{m1}{A lavaan model.}
+
+\item{digits}{How many digits to display? (default = 3)}
 
 \item{print}{Create a knitr table for displaying as html table.}
 }

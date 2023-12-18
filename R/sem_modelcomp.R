@@ -3,11 +3,12 @@
 #' This function will display a table of Model significance tests
 #' @param m0 A lavaan model.
 #' @param m1 A lavaan model.
+#' @param digits How many digits to display? (default = 3)
 #' @param print Create a knitr table for displaying as html table.
 #' @export
 #'
 
-sem_modelcomp <- function(m0, m1, print = TRUE){
+sem_modelcomp <- function(m0, m1, digits = 3, print = TRUE) {
   # Get names of model objects to use in output
   m0_name <- as.character(substitute(m0))
   m1_name <- as.character(substitute(m1))
