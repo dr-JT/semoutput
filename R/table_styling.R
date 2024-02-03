@@ -18,7 +18,8 @@ table_styling <- function(x) {
       column_labels.border.top.width = 0,
       column_labels.font.weight = "bold",
       column_labels.padding = 6,
-      footnotes.font.size = 14
+      footnotes.font.size = 14,
+      quarto.disable_processing = TRUE
     ) |>
     gt::tab_style(style = gt::cell_text(align = 'center'),
                   locations = gt::cells_column_labels()) |>
