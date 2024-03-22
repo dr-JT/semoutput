@@ -23,12 +23,14 @@ sem_fitmeasures <- function(x, robust = FALSE,
                       TLI = stats[["tli"]],
                       SRMR = stats["srmr"],
                       AIC = stats[["aic"]], BIC = stats[["bic"]])
-
-  robust_table <- data.frame(CFI = stats[["cfi.robust"]],
+  
+  if ("cfi.robust" %in% stats) {
+    robust_table <- data.frame(CFI = stats[["cfi.robust"]],
                              RMSEA = stats[["rmsea.robust"]],
                              RMSEA_Lower = stats[["rmsea.ci.lower.robust"]],
                              RMSEA_Upper = stats[["rmsea.ci.upper.robust"]],
                              TLI = stats[["tli.robust"]])
+  }
 
   if (nrow(table) > 0) {
     if (print == TRUE) {
