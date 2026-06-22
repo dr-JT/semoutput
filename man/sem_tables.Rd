@@ -11,7 +11,8 @@ sem_tables(
   robust = FALSE,
   ci_level = 0.95,
   rmsea_ci_level = 0.9,
-  digits = 3
+  digits = 3,
+  intercepts = FALSE
 )
 }
 \arguments{
@@ -33,6 +34,8 @@ unstandardized estimates. Default is TRUE.}
 RMSE? (default = .90)}
 
 \item{digits}{How many digits to display? (default = 3)}
+
+\item{intercepts}{Include intercepts in output (default = FALSE)}
 }
 \description{
 Display all tables relevant for SEM models. Make sure results='asis' is

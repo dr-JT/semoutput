@@ -15,18 +15,22 @@
 #' @param rmsea_ci_level What level of confidence interval to use for
 #'     RMSE? (default = .90)
 #' @param digits How many digits to display? (default = 3)
+#' @param intercepts Include intercepts in output (default = FALSE)
 #' @export
 #'
 
 sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
                        robust = FALSE, ci_level = 0.95,
-                       rmsea_ci_level = .90, digits = 3) {
+                       rmsea_ci_level = .90, digits = 3,
+                       intercepts = FALSE) {
 
   sig_table <- sem_sig(x, digits = digits)
   table <- gt::gt_group(sig_table)
 
-  fit_table <- sem_fitmeasures(x, robust = robust,
-                               ci_level = rmsea_ci_level, digits = digits)
+  fit_table <- sem_fitmeasures(x,
+                               robust = robust,
+                               ci_level = rmsea_ci_level,
+                               digits = digits)
 
   if (robust == TRUE) {
     robust_table <- gt::grp_pull(fit_table, 2)
@@ -54,6 +58,9 @@ sem_tables <- function(x, standardized = TRUE, unstandardized = FALSE,
 
   rsquared_table <- sem_rsquared(x, digits = digits)
   if (is.list(rsquared_table)) table <- gt::grp_add(table, rsquared_table)
+
+  intercept_table <- sem_intercepts(x, digits = digits)
+  if (is.list(intercept_table) && intercepts) table <- gt::grp_add(table, intercept_table)
 
   return(table)
 }
